@@ -27,7 +27,8 @@ Resources:
           ViewerProtocolPolicy: redirect-to-https
         ViewerCertificate:
           SslSupportMethod: sni-only
-          AcmCertificateArn: !Ref AcmCertArn
+          AcmCertificateArn:
+            Fn::ImportValue: "us-east-1-ceoa-tls-pipeline-acm-CertificateArn"
   CloudFrontOriginAccessIdentity:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:
