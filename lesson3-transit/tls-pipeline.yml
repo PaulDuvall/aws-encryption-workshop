@@ -277,8 +277,7 @@ Resources:
               - - ""
                 - Ref: AWS::StackName
                 - "-"
-                - Ref: AWS::Region
-                - ""
+                - "acm"
             TemplatePath: TLSArtifacts::tls-acm.yml
           RunOrder: 1
         - ActionTypeId:
