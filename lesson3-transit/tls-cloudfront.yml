@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  FrontURL:
+    Type: String
+    Default: "encryptaws.com"
+  AcmCertArn:
+    Type: String
+
+Resources:
+  FrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - Id: FrontOrigin
+            DomainName: !Ref FrontURL
+            CustomOriginConfig:
+              HTTPPort: 80
+              OriginProtocolPolicy: http-only
+        Enabled: true
+        Comment: !Sub ${AWS::StackName} distribution
+        DefaultCacheBehavior:
+          TargetOriginId: FrontOrigin
+          ForwardedValues:
+            QueryString: false
+          ViewerProtocolPolicy: redirect-to-https
+        ViewerCertificate:
+          SslSupportMethod: sni-only
+          AcmCertificateArn: !Ref AcmCertArn
+  CloudFrontOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Ref AWS::StackName
+Outputs:
+  DistributionId:
+    Value: !Ref FrontDistribution
+    Description: CloudFront DistributionId
+    Value: !Join 
+      - ''
+      - - 'https://'
+        - !GetAtt 
+          - FrontDistribution
+          - DomainName
+    Description: URL for website CDN
