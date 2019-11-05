@@ -279,7 +279,7 @@ Resources:
                 - "-"
                 - Ref: AWS::Region
                 - ""
-            TemplatePath: TLSArtifacts::CLOUD_TRAIL_ENCRYPTION_ENABLED.template
+            TemplatePath: TLSArtifacts::tls-acm.yml
           RunOrder: 1
         - ActionTypeId:
             Category: Deploy

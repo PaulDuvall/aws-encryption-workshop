@@ -3,12 +3,11 @@ phases:
   build:
     commands:
       - >-
-        wget
-        https://s3.amazonaws.com/aws-configservice-us-east-1/cloudformation-templates-for-managed-rules/CLOUD_TRAIL_ENCRYPTION_ENABLED.template
+        wget https://raw.githubusercontent.com/PaulDuvall/aws-encryption-workshop/master/lesson3-transit/tls-acm.yml?token=AAMLKO4B3DA7OSBNSITNL6S5ZLTLK
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   type: zip
   files:
-    - CLOUD_TRAIL_ENCRYPTION_ENABLED.template
+    - tls-acm.yml
