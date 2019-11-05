@@ -203,6 +203,41 @@ Resources:
             Resource: "*"
             Effect: Allow
           Version: '2012-10-17'
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+      BucketName: !Ref SiteBucketName
+      WebsiteConfiguration:
+        IndexDocument: index.html
+  CodeBuildDeploySite:
+    Type: AWS::CodeBuild::Project
+    DependsOn: CodeBuildRole
+    Properties:
+      Name: !Sub ${AWS::StackName}-DeploySite
+      Description: Deploy site to S3
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: "LINUX_CONTAINER"
+        ComputeType: "BUILD_GENERAL1_SMALL"
+        Image: "aws/codebuild/ubuntu-base:14.04"
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: !Sub |
+          version: 0.2
+          phases:
+            post_build:
+              commands:
+                - wget https://docs.aws.amazon.com/codepipeline/latest/userguide/samples/sample-website.zip
+                - aws s3 cp --recursive --acl public-read . s3://${SiteBucketName}/ 
+          artifacts:
+            type: zip
+            files:
+              - ./index.html
+      TimeoutInMinutes: 10
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
@@ -265,7 +300,7 @@ Resources:
           OutputArtifacts: []
           Configuration:
             ActionMode: CHANGE_SET_REPLACE
-            ChangeSetName: pipeline-changeset
+            ChangeSetName: acm-changeset
             RoleArn:
               Fn::GetAtt:
               - CloudFormationTrustRole
@@ -287,19 +322,61 @@ Resources:
             Version: 1
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
-            ChangeSetName: pipeline-changeset
+            ChangeSetName: acm-changeset
             StackName:
               Fn::Join:
               - ''
               - - ""
                 - Ref: AWS::StackName
                 - "-"
-                - Ref: AWS::Region
-                - ""
+                - "acm"
           InputArtifacts: []
-          Name: ExecuteChangeSetCloudTrailEncryption
+          Name: ExecuteChangeSetACM
           OutputArtifacts: []
           RunOrder: 2
+        Name: DeployCloudFront
+          ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Version: '1'
+            Provider: CloudFormation
+          OutputArtifacts: []
+          Configuration:
+            ActionMode: CHANGE_SET_REPLACE
+            ChangeSetName: cloudfront-changeset
+            RoleArn:
+              Fn::GetAtt:
+              - CloudFormationTrustRole
+              - Arn
+            Capabilities: CAPABILITY_IAM
+            StackName:
+              Fn::Join:
+              - ''
+              - - ""
+                - Ref: AWS::StackName
+                - "-"
+                - "cloudfront"
+            TemplatePath: TLSArtifacts::tls-cloudfront.yml
+          RunOrder: 3
+        - ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Provider: CloudFormation
+            Version: 1
+          Configuration:
+            ActionMode: CHANGE_SET_EXECUTE
+            ChangeSetName: cloudfront-changeset
+            StackName:
+              Fn::Join:
+              - ''
+              - - ""
+                - Ref: AWS::StackName
+                - "-"
+                - "cloudfront"
+          InputArtifacts: []
+          Name: ExecuteChangeSetCloudFront
+          OutputArtifacts: []
+          RunOrder: 4
       ArtifactStore:
         Type: S3
         Location: !Ref PipelineBucket
