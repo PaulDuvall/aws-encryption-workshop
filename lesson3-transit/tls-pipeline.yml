@@ -234,7 +234,6 @@ Resources:
           phases:
             post_build:
               commands:
-                - wget https://docs.aws.amazon.com/codepipeline/latest/userguide/samples/sample-website.zip
                 - aws s3 cp --recursive --acl public-read . s3://${SiteBucketName}/ 
           artifacts:
             type: zip
