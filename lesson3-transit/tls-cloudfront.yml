@@ -4,8 +4,6 @@ Parameters:
   FrontURL:
     Type: String
     Default: "encryptaws.com"
-  AcmCertArn:
-    Type: String
 
 Resources:
   FrontDistribution:
