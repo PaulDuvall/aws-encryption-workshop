@@ -1,0 +1,14 @@
+- Name: DeployWebsite
+  ActionTypeId:
+    Category: Build
+    Owner: AWS
+    Version: '1'
+    Provider: CodeBuild
+  InputArtifacts:
+    - Name: TLSArtifacts
+  OutputArtifacts:
+    - Name: DeployOutput
+  Configuration:
+    ProjectName:
+      Ref: CodeBuildDeploySite
+  RunOrder: 1
