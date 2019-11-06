@@ -310,3 +310,6 @@ Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
+  SiteUrl:
+    Value: !GetAtt [SiteBucket, WebsiteURL]
+    Description: S3 Website URL

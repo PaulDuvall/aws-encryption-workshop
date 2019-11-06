@@ -289,6 +289,20 @@ Resources:
             ProjectName:
               Ref: CodeBuildWebApp
           RunOrder: 1
+        - InputArtifacts:
+          - Name: MyApp
+          Name: DeployWebsite
+          ActionTypeId:
+            Category: Build
+            Owner: AWS
+            Version: '1'
+            Provider: CodeBuild
+          OutputArtifacts:
+          - Name: WebsiteArtifacts
+          Configuration:
+            ProjectName:
+              Ref: CodeBuildDeploySite
+          RunOrder: 1
       - Name: Deploy
         Actions:
         - InputArtifacts:
