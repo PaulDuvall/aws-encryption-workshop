@@ -145,6 +145,7 @@ Resources:
             - cloudfront:*
             - s3:CreateBucket
             - s3:DeleteBucket
+            - route53:*
             Effect: Allow
             Resource: "*"
           - Action:
