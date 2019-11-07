@@ -279,7 +279,7 @@ Resources:
           - Name: SourceArtifacts
           Name: StoreTLSFiles
           ActionTypeId:
-            Category: Build
+            Category: Test
             Owner: AWS
             Version: '1'
             Provider: CodeBuild

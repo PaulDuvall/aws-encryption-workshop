@@ -2,17 +2,10 @@ version: 0.2
 phases:
   build:
     commands:
-      - >-
-        wget
-        https://raw.githubusercontent.com/PaulDuvall/aws-encryption-workshop/master/lesson3-transit/tls-acm.yml?token=AAMLKO4B3DA7OSBNSITNL6S5ZLTLK
-      - >-
-        wget
-        https://raw.githubusercontent.com/PaulDuvall/aws-encryption-workshop/master/lesson3-transit/tls-cloudfront.yml?token=AAMLKO2SKYPDCZXNWFKW55C5ZNYT4
+      - echo Build started on `date`
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
-  type: zip
   files:
-    - tls-acm.yml
-    - tls-cloudfront.yml
+    - '**/*'
