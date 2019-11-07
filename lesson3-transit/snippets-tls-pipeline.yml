@@ -1,14 +1,13 @@
-- Name: DeployWebsite
-  ActionTypeId:
-    Category: Build
-    Owner: AWS
-    Version: '1'
-    Provider: CodeBuild
-  InputArtifacts:
-    - Name: TLSArtifacts
-  OutputArtifacts:
-    - Name: DeployOutput
-  Configuration:
-    ProjectName:
-      Ref: CodeBuildDeploySite
-  RunOrder: 1
+  StaticWebBucketPolicy: 
+    Type: "AWS::S3::BucketPolicy"
+    Properties: 
+      Bucket: 
+        Fn::ImportValue: "us-east-1-ceoa-tls-pipeline-static-web-buckets"
+      PolicyDocument: 
+        Statement: 
+          - Action: 
+              - "s3:*"
+            Effect: "Allow"
+            Resource: !Sub "arn:aws:s3:::www.encryptaws.com/*"
+            Principal: 
+              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
