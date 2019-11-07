@@ -29,4 +29,4 @@ Outputs:
   CertificateArn:
     Value: !Ref Certificate
     Export:
-      Name: !Sub '${AWS::Region}-${AWS::StackName}-CertificateArn'
+      Name: !Sub '${AWS::Region}-CertificateArn'

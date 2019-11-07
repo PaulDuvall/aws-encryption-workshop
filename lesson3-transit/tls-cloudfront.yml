@@ -10,7 +10,7 @@ Parameters:
   DomainName:
     Type: String
     Description: "Domain Name"
-    Default: ""
+    Default: "www.encryptaws.com.s3.amazonaws.com"
   CloudFrontDomainName:
     Type: String
     Description: "CloudFront DomainName"
@@ -41,13 +41,14 @@ Resources:
         Comment: "created by cloudformation"
         ViewerCertificate:
           AcmCertificateArn:
-            Fn::ImportValue: "us-east-1-ceoa-tls-pipeline-acm-CertificateArn"
+            Fn::ImportValue:
+              !Sub "${AWS:Region}-CertificateArn"
           MinimumProtocolVersion: TLSv1.1_2016
           SslSupportMethod: sni-only
         Enabled: true
         Origins:
           - Id: S3-Origin
-            DomainName: "www.encryptaws.com.s3.amazonaws.com" #!GetAtt StaticWebBuckets.DomainName  #StaticWebBuckets.DomainName = xian.cutecherry.info.s3.amazonaws.com
+            DomainName: !Ref 'DomainName' #!GetAtt StaticWebBuckets.DomainName  #StaticWebBuckets.DomainName = xian.cutecherry.info.s3.amazonaws.com
             S3OriginConfig:
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
         DefaultRootObject: index.html
@@ -68,5 +69,5 @@ Resources:
       HostedZoneId: !Ref 'HostedZoneId'
       Name: !Ref 'CloudFrontCName'
       AliasTarget:
-        DNSName: !GetAtt CloudFront.DomainName  #CloudFront.DomainName = d2pbydp82cq5s1.cloudfront.net.
-        HostedZoneId: Z2FDTNDATAQYW2 #Cloudfront Default HostedZoneId
+        DNSName: !GetAtt CloudFront.DomainName  #CloudFront.DomainName = d2y1cxx7cc6yud.cloudfront.net.
+        HostedZoneId: Z2FDTNDATAQYW2 #CloudFront Default HostedZoneId
