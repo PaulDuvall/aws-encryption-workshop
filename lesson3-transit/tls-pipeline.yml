@@ -403,3 +403,7 @@ Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
+  DomainName:
+    Value: !Ref SiteBucketName
+    Export:
+      Name: !Sub '${SiteBucketName}.s3.amazonaws.com'
