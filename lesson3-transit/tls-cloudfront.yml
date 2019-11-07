@@ -44,6 +44,7 @@ Resources:
             Fn::ImportValue: "us-east-1-ceoa-tls-pipeline-acm-CertificateArn"
           MinimumProtocolVersion: TLSv1.1_2016
           SslSupportMethod: sni-only
+        Enabled: true
         Origins:
           - Id: S3-Origin
             DomainName: "www.encryptaws.com.s3.amazonaws.com" #!GetAtt StaticWebBuckets.DomainName  #StaticWebBuckets.DomainName = xian.cutecherry.info.s3.amazonaws.com
