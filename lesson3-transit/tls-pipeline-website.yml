@@ -218,14 +218,26 @@ Resources:
     Type: AWS::CodeBuild::Project
     DependsOn: CodeBuildRole
     Properties:
-      Name: !Sub ${AWS::StackName}-DeploySite
-      Description: Deploy site to S3
-      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Name:
+        Fn::Join:
+        - ''
+        - - Run
+          - "CodeBuild"
+          - Ref: AWS::StackName
+      Description: Build application
+      ServiceRole:
+        Fn::GetAtt:
+        - CodeBuildRole
+        - Arn
       Artifacts:
-        Type: CODEPIPELINE
+        Type: no_artifacts
       Environment:
-        Type: "LINUX_CONTAINER"
-        ComputeType: "BUILD_GENERAL1_SMALL"
+        EnvironmentVariables:
+        - Name: S3_BUCKET
+          Value:
+            Ref: ArtifactBucket
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
         Image: aws/codebuild/eb-nodejs-4.4.6-amazonlinux-64:2.1.3
       Source:
         BuildSpec: buildspec-website.yml
@@ -238,6 +250,9 @@ Resources:
             - Ref: AWS::StackName
         Type: CODECOMMIT
       TimeoutInMinutes: 10
+      Tags:
+      - Key: Owner
+        Value: MyCodeBuildSite
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
