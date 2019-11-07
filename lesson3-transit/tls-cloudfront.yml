@@ -35,7 +35,7 @@ Resources:
     Type: "AWS::S3::BucketPolicy"
     Properties: 
       Bucket: 
-        Ref: StaticWebBuckets
+        Fn::ImportValue: "us-east-1-ceoa-tls-pipeline-static-web-buckets"
       PolicyDocument: 
         Statement: 
           - Action: 
