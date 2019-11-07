@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: CodePipeline for Deploying AWS Certifcate Manager with CloudFront
+Description: CodePipeline for Deploying CloudFront and ACM
 Parameters:
   SiteBucketName:
     Type: String
@@ -45,45 +45,6 @@ Resources:
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'
-  CodeBuildWebApp:
-    Type: AWS::CodeBuild::Project
-    DependsOn: CodeBuildRole
-    Properties:
-      Name:
-        Fn::Join:
-        - ''
-        - - Run
-          - "CodePipeline"
-          - Ref: AWS::StackName
-      Description: Build application
-      ServiceRole:
-        Fn::GetAtt:
-        - CodeBuildRole
-        - Arn
-      Artifacts:
-        Type: no_artifacts
-      Environment:
-        EnvironmentVariables:
-        - Name: S3_BUCKET
-          Value:
-            Ref: ArtifactBucket
-        Type: LINUX_CONTAINER
-        ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/eb-nodejs-4.4.6-amazonlinux-64:2.1.3
-      Source:
-        BuildSpec: buildspec.yml
-        Location:
-          Fn::Join:
-          - ''
-          - - https://git-codecommit.
-            - Ref: AWS::Region
-            - ".amazonaws.com/v1/repos/"
-            - Ref: AWS::StackName
-        Type: CODECOMMIT
-      TimeoutInMinutes: 10
-      Tags:
-      - Key: Owner
-        Value: MyCodeBuildProject
   MySNSTopic:
     Type: AWS::SNS::Topic
   CodeCommitRepo:
@@ -219,41 +180,28 @@ Resources:
     Type: AWS::CodeBuild::Project
     DependsOn: CodeBuildRole
     Properties:
-      Name:
-        Fn::Join:
-        - ''
-        - - Run
-          - "CodeBuild"
-          - Ref: AWS::StackName
-      Description: Build application
-      ServiceRole:
-        Fn::GetAtt:
-        - CodeBuildRole
-        - Arn
+      Name: !Sub ${AWS::StackName}-DeploySite
+      Description: Deploy site to S3
+      ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
-        Type: no_artifacts
+        Type: CODEPIPELINE
       Environment:
-        EnvironmentVariables:
-        - Name: S3_BUCKET
-          Value:
-            Ref: ArtifactBucket
-        Type: LINUX_CONTAINER
-        ComputeType: BUILD_GENERAL1_SMALL
+        Type: "LINUX_CONTAINER"
+        ComputeType: "BUILD_GENERAL1_SMALL"
         Image: aws/codebuild/eb-nodejs-4.4.6-amazonlinux-64:2.1.3
       Source:
-        BuildSpec: buildspec-website.yml
-        Location:
-          Fn::Join:
-          - ''
-          - - https://git-codecommit.
-            - Ref: AWS::Region
-            - ".amazonaws.com/v1/repos/"
-            - Ref: AWS::StackName
-        Type: CODECOMMIT
+        Type: CODEPIPELINE
+        BuildSpec: !Sub |
+          version: 0.2
+          phases:
+            post_build:
+              commands:
+                - aws s3 cp --recursive --acl public-read . s3://${SiteBucketName}/ 
+          artifacts:
+            type: zip
+            files:
+              - ./index.html
       TimeoutInMinutes: 10
-      Tags:
-      - Key: Owner
-        Value: MyCodeBuildSite
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
@@ -289,20 +237,6 @@ Resources:
           RunOrder: 1
       - Name: Build
         Actions:
-        - InputArtifacts:
-          - Name: SourceArtifacts
-          Name: StoreTLSFiles
-          ActionTypeId:
-            Category: Test
-            Owner: AWS
-            Version: '1'
-            Provider: CodeBuild
-          OutputArtifacts:
-          - Name: TLSArtifacts
-          Configuration:
-            ProjectName:
-              Ref: CodeBuildWebApp
-          RunOrder: 1
         - InputArtifacts:
           - Name: SourceArtifacts
           Name: DeployWebsite
@@ -416,7 +350,3 @@ Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
-  DomainName:
-    Value: !Ref SiteBucketName
-    Export:
-      Name: !Sub '${SiteBucketName}.s3.amazonaws.com'
