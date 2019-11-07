@@ -266,7 +266,7 @@ Resources:
             Version: '1'
             Provider: CodeCommit
           OutputArtifacts:
-          - Name: MyApp
+          - Name: SourceArtifacts
           Configuration:
             BranchName:
               Ref: RepositoryBranch
@@ -276,7 +276,7 @@ Resources:
       - Name: Build
         Actions:
         - InputArtifacts:
-          - Name: MyApp
+          - Name: SourceArtifacts
           Name: StoreTLSFiles
           ActionTypeId:
             Category: Build
@@ -290,7 +290,7 @@ Resources:
               Ref: CodeBuildWebApp
           RunOrder: 1
         - InputArtifacts:
-          - Name: MyApp
+          - Name: SourceArtifacts
           Name: DeployWebsite
           ActionTypeId:
             Category: Build
@@ -306,7 +306,7 @@ Resources:
       - Name: Deploy
         Actions:
         - InputArtifacts:
-          - Name: TLSArtifacts
+          - Name: SourceArtifacts
           Name: DeployACMTemplate
           ActionTypeId:
             Category: Deploy
@@ -329,7 +329,7 @@ Resources:
                 - Ref: AWS::StackName
                 - "-"
                 - "acm"
-            TemplatePath: TLSArtifacts::tls-acm.yml
+            TemplatePath: SourceArtifacts::tls-acm.yml
           RunOrder: 1
         - ActionTypeId:
             Category: Deploy
@@ -351,7 +351,7 @@ Resources:
           OutputArtifacts: []
           RunOrder: 2
         - InputArtifacts:
-          - Name: TLSArtifacts
+          - Name: SourceArtifacts
           Name: DeployCloudFront
           ActionTypeId:
             Category: Deploy
@@ -374,7 +374,7 @@ Resources:
                 - Ref: AWS::StackName
                 - "-"
                 - "cloudfront"
-            TemplatePath: TLSArtifacts::tls-cloudfront.yml
+            TemplatePath: SourceArtifacts::tls-cloudfront.yml
           RunOrder: 3
         - ActionTypeId:
             Category: Deploy
