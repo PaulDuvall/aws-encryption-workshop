@@ -1,45 +1,85 @@
-AWSTemplateFormatVersion: 2010-09-09
+Description: 'Static Web Site'
+
+# "us-east-1-ceoa-tls-pipeline-static-web-buckets"
 
 Parameters:
-  FrontURL:
+  BucketName:
     Type: String
-    Default: "encryptaws.com"
+    Description: "Bucket Name"
+    Default: "www.encryptaws.com"
+  DomainName:
+    Type: String
+    Description: "Domain Name"
+    Default: ""
+  CloudFrontDomainName:
+    Type: String
+    Description: "CloudFront DomainName"
+    Default: ""
+  CloudFrontCName:
+    Type: String
+    Description: "CloudFront CNames"
+    Default: "www.encryptaws.com"
+  HostedZoneId:
+    Type: String
+    Description: "Hosted Zone Id"
+    Default: "ZLND5TXS03SWZ"
 
 Resources:
-  FrontDistribution:
-    Type: AWS::CloudFront::Distribution
-    Properties:
-      DistributionConfig:
-        Origins:
-          - Id: FrontOrigin
-            DomainName: !Ref FrontURL
-            CustomOriginConfig:
-              HTTPPort: 80
-              OriginProtocolPolicy: http-only
-        Enabled: true
-        Comment: !Sub ${AWS::StackName} distribution
-        DefaultCacheBehavior:
-          TargetOriginId: FrontOrigin
-          ForwardedValues:
-            QueryString: false
-          ViewerProtocolPolicy: redirect-to-https
-        ViewerCertificate:
-          SslSupportMethod: sni-only
-          AcmCertificateArn:
-            Fn::ImportValue: "us-east-1-ceoa-tls-pipeline-acm-CertificateArn"
   CloudFrontOriginAccessIdentity:
-    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity"
     Properties:
       CloudFrontOriginAccessIdentityConfig:
-        Comment: !Ref AWS::StackName
-Outputs:
-  DistributionId:
-    Value: !Ref FrontDistribution
-    Description: CloudFront DistributionId
-    Value: !Join 
-      - ''
-      - - 'https://'
-        - !GetAtt 
-          - FrontDistribution
-          - DomainName
-    Description: URL for website CDN
+        Comment: CloudFrontOriginAccessIdentity for TLS Solution
+    
+  StaticWebBucketPolicy: 
+    Type: "AWS::S3::BucketPolicy"
+    Properties: 
+      Bucket: 
+        Ref: StaticWebBuckets
+      PolicyDocument: 
+        Statement: 
+          - Action: 
+              - "s3:GetObject"
+            Effect: "Allow"
+            Resource: !Sub "arn:aws:s3:::www.encryptaws.com/*"
+            Principal: 
+              AWS: !Sub "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
+          
+  CloudFront:
+    Type: "AWS::CloudFront::Distribution"
+    Properties:
+      DistributionConfig:
+        Aliases: 
+          - !Ref CloudFrontCName
+        Enabled: true
+        Comment: "created by cloudformation"
+        ViewerCertificate:
+          AcmCertificateArn:
+            Fn::ImportValue: "us-east-1-ceoa-tls-pipeline-acm-CertificateArn"
+          MinimumProtocolVersion: TLSv1.1_2016
+          SslSupportMethod: sni-only
+        Origins:
+          - Id: S3-Origin
+            DomainName: "www.encryptaws.com.s3.amazonaws.com" #!GetAtt StaticWebBuckets.DomainName  #StaticWebBuckets.DomainName = xian.cutecherry.info.s3.amazonaws.com
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
+        DefaultRootObject: index.html
+        DefaultCacheBehavior:
+          TargetOriginId: S3-Origin
+          ViewerProtocolPolicy: redirect-to-https
+          DefaultTTL: 600
+          ForwardedValues:
+            QueryString: True
+            Cookies:
+              Forward: all
+          Compress: True
+
+  StaticSiteDomainName:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      Type: A
+      HostedZoneId: !Ref 'HostedZoneId'
+      Name: !Ref 'CloudFrontCName'
+      AliasTarget:
+        DNSName: !GetAtt CloudFront.DomainName  #CloudFront.DomainName = d2pbydp82cq5s1.cloudfront.net.
+        HostedZoneId: Z2FDTNDATAQYW2 #Cloudfront Default HostedZoneId
