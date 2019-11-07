@@ -39,7 +39,7 @@ Resources:
       PolicyDocument: 
         Statement: 
           - Action: 
-              - "s3:GetObject"
+              - "s3:*"
             Effect: "Allow"
             Resource: !Sub "arn:aws:s3:::www.encryptaws.com/*"
             Principal: 
