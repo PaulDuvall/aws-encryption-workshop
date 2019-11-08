@@ -1,7 +1,6 @@
-Description: 'Static Web Site'
-
-# "us-east-1-ceoa-tls-pipeline-static-web-buckets"
-
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFront configuration for S3 bucket
 Parameters:
   BucketName:
     Type: String
@@ -47,7 +46,7 @@ Resources:
         Enabled: true
         Origins:
           - Id: S3-Origin
-            DomainName: !Ref 'DomainName' #!GetAtt StaticWebBuckets.DomainName  #StaticWebBuckets.DomainName = xian.cutecherry.info.s3.amazonaws.com
+            DomainName: !Ref 'DomainName'
             S3OriginConfig:
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
         DefaultRootObject: index.html

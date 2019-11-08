@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Creates the ACM Certificate for domain
 Parameters:
   DnsDomainName:
-    Description: Domain to secure with the certificate (i.e. encryptaws.com)
+    Description: Domain to secure with the certificate (e.g. encryptaws.com)
     Type: String
     Default: "encryptaws.com"
   DnsSubDomainName:

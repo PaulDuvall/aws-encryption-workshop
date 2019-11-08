@@ -5,6 +5,9 @@ Parameters:
   SiteBucketName:
     Type: String
     Description: Name of bucket to create to host the website
+  DnsDomainName:
+    Type: String
+    Description: Root domain name
   RepositoryBranch:
     Description: The name of the branch for the CodeCommit repo
     Type: String
