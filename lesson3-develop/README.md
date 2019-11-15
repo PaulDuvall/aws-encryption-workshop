@@ -1,1 +1,1 @@
-# Lesson 2 - Developing with Encryption
+# Lesson 3 - Developing with Encryption
