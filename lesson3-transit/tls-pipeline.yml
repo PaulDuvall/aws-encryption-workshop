@@ -5,9 +5,6 @@ Parameters:
   SiteBucketName:
     Type: String
     Description: Name of bucket to create to host the website
-  DnsDomainName:
-    Type: String
-    Description: Root domain name
   RepositoryBranch:
     Description: The name of the branch for the CodeCommit repo
     Type: String
@@ -80,7 +77,6 @@ Resources:
           Principal:
             Service:
             - cloudformation.amazonaws.com
-            - route53.amazonaws.com
       Path: "/"
       Policies:
       - PolicyDocument:
@@ -89,7 +85,6 @@ Resources:
             - s3:PutObject
             - s3:GetObject
             - s3:GetObjectVersion
-            - route53:*
             Effect: Allow
             Resource:
             - Fn::Join:
@@ -116,14 +111,13 @@ Resources:
             Resource: "*"
           - Action:
             - iam:PassRole
-            - route53:*
             Effect: Allow
             Resource: "*"
           - Action:
             - cloudformation:CreateChangeSet
-            - route53:*
             Effect: Allow
-            Resource: "*"
+            Resource:
+            - arn:aws:cloudformation:us-east-1:aws:transform/Serverless-2016-10-31
         PolicyName: CloudFormationRolePolicy
       RoleName:
         Fn::Join:
