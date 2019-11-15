@@ -1,1 +1,0 @@
-# Lesson 3 - Encryption in Transit
