@@ -2,6 +2,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: CodePipeline for Config Rules, CloudWatch Event Rules, and Lambda
 Parameters:
+  ComplianceResourceId:
+    Description: Resource id to exclude from Config Rule
+    Type: String
   EmailAddress:
     Description: Email Address for sending SNS notifications for CodeCommit
     Type: String
@@ -138,6 +141,7 @@ Resources:
         bucket access control list (ACL).
       InputParameters: {}
       Scope:
+        ComplianceResourceId: !Ref ComplianceResourceId, 
         ComplianceResourceTypes:
         - AWS::S3::Bucket
       Source:
