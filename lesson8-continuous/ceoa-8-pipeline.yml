@@ -167,7 +167,7 @@ Resources:
       - PolicyDocument:
           Statement:
           - Action:
-            - s3:DeleteBucketPolicy
+            - s3:PutEncryptionConfiguration
             - logs:CreateLogGroup
             - logs:CreateLogStream
             - logs:PutLogEvents
