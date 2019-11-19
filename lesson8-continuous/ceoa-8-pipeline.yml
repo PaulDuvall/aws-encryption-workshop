@@ -141,7 +141,7 @@ Resources:
         bucket access control list (ACL).
       InputParameters: {}
       Scope:
-        ComplianceResourceId: !Ref ComplianceResourceId, 
+        ComplianceResourceId: !Ref 'ComplianceResourceId'
         ComplianceResourceTypes:
         - AWS::S3::Bucket
       Source:
