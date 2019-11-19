@@ -144,7 +144,7 @@ Resources:
         - AWS::S3::Bucket
       Source:
         Owner: AWS
-        SourceIdentifier: S3_BUCKET_PUBLIC_WRITE_PROHIBITED
+        SourceIdentifier: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
       MaximumExecutionFrequency:
         Ref: MaximumExecutionFrequency
   ArtifactBucket:
