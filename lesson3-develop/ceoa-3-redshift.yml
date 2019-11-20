@@ -1,0 +1,21 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "Example template to demonstrate CloudFormation resources for Secrets Manager"
+Parameters:
+  MasterUserPassword:
+    Type: String
+    Description: MasterUserPassword
+    Default: "Password9875"
+Resources:
+    myCluster: 
+      Type: "AWS::Redshift::Cluster"
+      Properties:
+        DBName: "mydb"
+        MasterUsername: "master"
+        MasterUserPassword: 
+          Ref: "MasterUserPassword"
+        NodeType: "ds2.xlarge"
+        ClusterType: "single-node"
+        Tags:
+          - Key: foo
+            Value: bar
