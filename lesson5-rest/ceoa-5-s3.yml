@@ -4,7 +4,6 @@ Description: Create an S3 Bucket with KMS Encryption
 Resources:
   ConfigBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Retain
     Properties:
       BucketEncryption:
         ServerSideEncryptionConfiguration:
