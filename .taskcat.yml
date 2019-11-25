@@ -10,3 +10,5 @@ tests:
     parameters:
       AvailabilityZones: '$[taskcat_genaz_1]'
     template: ./lesson5-rest/ceoa-5-ebs.yml
+  lesson5-ddb:
+    template: ./lesson5-rest/ceoa-5-ddb.yml
