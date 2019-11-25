@@ -1,0 +1,12 @@
+project:
+  name: ceoa
+  regions:
+    - us-east-1
+    - us-east-2
+tests:
+  lesson5-s3:
+    template: ./lesson5-rest/ceoa-5-s3.yml
+  lesson5-ebs:
+    parameters:
+      AvailabilityZones: '$[taskcat_genaz_1]'
+    template: ./lesson5-rest/ceoa-5-ebs.yml

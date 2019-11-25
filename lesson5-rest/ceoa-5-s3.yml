@@ -1,0 +1,15 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create an S3 Bucket with KMS Encryption
+Resources:
+  ConfigBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              KMSMasterKeyID: !Sub arn:aws:kms:${AWS::Region}:${AWS::AccountId}:alias/aws/s3
+              SSEAlgorithm: aws:kms
+      AccessControl: BucketOwnerFullControl
+      BucketName: !Sub 'ceoa-${AWS::StackId}'
