@@ -62,6 +62,7 @@ Resources:
             - codebuild:*
             - s3:*
             - ec2:*
+            - cloudformation:*
             Resource: "*"
             Effect: Allow
           - Action:
