@@ -188,7 +188,7 @@ Resources:
         Actions:
         - InputArtifacts:
           - Name: SourceArtifacts
-          Name: TaskCat
+          Name: RunTaskCat
           ActionTypeId:
             Category: Test
             Owner: AWS
@@ -202,7 +202,7 @@ Resources:
           RunOrder: 1
         - InputArtifacts:
           - Name: TaskCatArtifacts
-          Name: BuildWebsite
+          Name: TaskCatDashboard
           ActionTypeId:
             Category: Test
             Owner: AWS
@@ -220,3 +220,6 @@ Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
+  TaskCatDashboardUrl:
+    Value: !Sub http://${SiteBucket}
+    Description: URL for TaskCat Dashboard (Available after the CodePipeline completes)
