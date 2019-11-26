@@ -111,6 +111,7 @@ Resources:
             - cloudformation:*
             - ec2:*
             - dynamodb:*
+            - sqs:*
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'
