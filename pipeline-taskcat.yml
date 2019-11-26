@@ -39,6 +39,13 @@ Metadata:
       GitHubBranch: 
         default: GitHub Branch Name
 Resources:
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
   CodePipelineRole:
     Type: AWS::IAM::Role
     Properties:
@@ -122,6 +129,32 @@ Resources:
         Image: "aws/codebuild/amazonlinux2-x86_64-standard:1.0"
       Source:
         Type: CODEPIPELINE
+      TimeoutInMinutes: 10
+  CodeBuildWebsite:
+    Type: AWS::CodeBuild::Project
+    DependsOn: CodeBuildRole
+    Properties:
+      Name: !Sub ${AWS::StackName}-DeploySite
+      Description: Deploy site to S3
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: "aws/codebuild/amazonlinux2-x86_64-standard:1.0"
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: !Sub |
+          version: 0.2
+          phases:
+            post_build:
+              commands:
+                - aws s3 cp --recursive --acl public-read ./taskcat_outputs s3://${SiteBucketName}/ 
+          artifacts:
+            type: zip
+            files:
+              - ./index.html
       TimeoutInMinutes: 10
   PipelineBucket:
     Type: AWS::S3::Bucket
