@@ -61,8 +61,6 @@ Resources:
             - cloudwatch:*
             - codebuild:*
             - s3:*
-            - ec2:*
-            - cloudformation:*
             Resource: "*"
             Effect: Allow
           - Action:
@@ -103,7 +101,7 @@ Resources:
             - cloudwatch:*
             - codebuild:*
             - s3:*
-            - ec2:*
+            - cloudformation:*
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'
