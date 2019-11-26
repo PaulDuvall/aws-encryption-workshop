@@ -97,10 +97,11 @@ Resources:
             - cloudwatch:*
             - codebuild:*
             - s3:*
+            - ec2:*
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'
-  CodeBuildDeploySite:
+  CodeBuildTest:
     Type: AWS::CodeBuild::Project
     DependsOn: CodeBuildRole
     Properties:
@@ -154,7 +155,7 @@ Resources:
           OutputArtifacts: []
           Configuration:
             ProjectName:
-              Ref: CodeBuildWebsite
+              Ref: CodeBuildTest
           RunOrder: 1
       ArtifactStore:
         Type: S3
