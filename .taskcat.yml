@@ -4,6 +4,8 @@ project:
     - us-east-1
     - us-east-2
 tests:
+  taskcat-pipeline:
+    template: ./pipeline-taskcat.yml
   lesson5-s3:
     template: ./lesson5-rest/ceoa-5-s3.yml
   lesson5-ebs:
