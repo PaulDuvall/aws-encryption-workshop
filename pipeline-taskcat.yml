@@ -103,6 +103,7 @@ Resources:
             - s3:*
             - cloudformation:*
             - ec2:*
+            - dynamodb:*
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'
@@ -157,7 +158,7 @@ Resources:
             Owner: AWS
             Version: '1'
             Provider: CodeBuild
-          OutputArtifacts: []
+          OutputArtifacts: TaskCat
           Configuration:
             ProjectName:
               Ref: CodeBuildTest
