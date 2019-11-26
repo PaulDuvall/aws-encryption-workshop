@@ -158,7 +158,7 @@ Resources:
             Owner: AWS
             Version: '1'
             Provider: CodeBuild
-          OutputArtifacts: TaskCat
+          OutputArtifacts: TaskCatArtifacts
           Configuration:
             ProjectName:
               Ref: CodeBuildTest
