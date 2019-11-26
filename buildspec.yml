@@ -3,7 +3,12 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - pip3 install taskcat --user
+      - sudo yum -y update
+      - python --version
+      - curl -O https://bootstrap.pypa.io/get-pip.py
+      - python3 get-pip.py
+      - pip install --upgrade pip
+      - pip3 install taskcat
       - taskcat test run
   post_build:
     commands:
