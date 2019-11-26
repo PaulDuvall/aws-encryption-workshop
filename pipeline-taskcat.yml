@@ -221,5 +221,5 @@ Outputs:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
   TaskCatDashboardUrl:
-    Value: !Sub http://${SiteBucket}
+    Value: !Sub http://${SiteBucket}.s3-website-us-east-1.amazonaws.com
     Description: URL for TaskCat Dashboard (Available after the CodePipeline completes)

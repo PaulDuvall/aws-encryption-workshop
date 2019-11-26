@@ -1,0 +1,368 @@
+{
+    "platforms": [
+        {
+            "languages": [
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-java-7-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-java-7-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Java 7 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-java-8-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-java-8-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Java 8 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-java-7-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-java-7-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Java 7 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-java-8-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-java-8-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Java 8 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-java-7-amazonlinux-64:2.4.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-java-7-amazonlinux-64:2.4.3", 
+                            "description": "AWS ElasticBeanstalk - Java 7 Running on Amazon Linux 64bit v2.4.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-java-8-amazonlinux-64:2.4.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-java-8-amazonlinux-64:2.4.3", 
+                            "description": "AWS ElasticBeanstalk - Java 8 Running on Amazon Linux 64bit v2.4.3"
+                        }
+                    ], 
+                    "language": "JAVA"
+                }, 
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-1.9-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-1.9-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Ruby 1.9 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.0-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.0-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.0 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.1-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.1-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.1 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.2-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.2-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.2 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.3 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-1.9-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-1.9-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Ruby 1.9 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.0-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.0-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.0 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.1-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.1-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.1 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.2-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.2-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.2 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.3 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-1.9-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-1.9-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Ruby 1.9 Running on Amazon Linux 64bit v2.3.2"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.0-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.0-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.0 Running on Amazon Linux 64bit v2.3.2"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.1-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.1-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.1 Running on Amazon Linux 64bit v2.3.2"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.2-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.2-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.2 Running on Amazon Linux 64bit v2.3.2"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Ruby 2.3 Running on Amazon Linux 64bit v2.3.2"
+                        }
+                    ], 
+                    "language": "RUBY"
+                }, 
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-go-1.5-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-go-1.5-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Go 1.5 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-go-1.5-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-go-1.5-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Go 1.5 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-go-1.6-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-go-1.6-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Go 1.6 Running on Amazon Linux 64bit v2.3.2"
+                        }
+                    ], 
+                    "language": "GOLANG"
+                }, 
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-nodejs-4.4.6-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-nodejs-4.4.6-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Node.js 4.4.6 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-nodejs-6.10.0-amazonlinux-64:4.0.0-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-nodejs-6.10.0-amazonlinux-64:4.0.0", 
+                            "description": "AWS ElasticBeanstalk - Node.js 6.10.0 Running on Amazon Linux 64bit v4.0.0"
+                        }
+                    ], 
+                    "language": "NODE_JS"
+                }, 
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-2.6-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-2.6-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Python 2.6 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-2.7-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-2.7-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Python 2.7 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-3.4-amazonlinux-64:2.1.3-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-3.4-amazonlinux-64:2.1.3", 
+                            "description": "AWS ElasticBeanstalk - Python 3.4 Running on Amazon Linux 64bit v2.1.3"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-2.6-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-2.6-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Python 2.6 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-2.7-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-2.7-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Python 2.7 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-3.4-amazonlinux-64:2.1.6-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-3.4-amazonlinux-64:2.1.6", 
+                            "description": "AWS ElasticBeanstalk - Python 3.4 Running on Amazon Linux 64bit v2.1.6"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-2.6-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-2.6-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Python 2.6 Running on Amazon Linux 64bit v2.3.2"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-2.7-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-2.7-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Python 2.7 Running on Amazon Linux 64bit v2.3.2"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/eb-python-3.4-amazonlinux-64:2.3.2-1.0.0"
+                            ], 
+                            "name": "aws/codebuild/eb-python-3.4-amazonlinux-64:2.3.2", 
+                            "description": "AWS ElasticBeanstalk - Python 3.4 Running on Amazon Linux 64bit v2.3.2"
+                        }
+                    ], 
+                    "language": "PYTHON"
+                }
+            ], 
+            "platform": "AMAZON_LINUX"
+        }, 
+        {
+            "languages": [
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/amazonlinux2-x86_64-standard:1.0-1.0.0", 
+                                "aws/codebuild/amazonlinux2-x86_64-standard:1.0-1.13.0"
+                            ], 
+                            "name": "aws/codebuild/amazonlinux2-x86_64-standard:1.0", 
+                            "description": "AWS CodeBuild - Docker image based on Amazon Linux 2 (x86_64) with multiple language support"
+                        }, 
+                        {
+                            "versions": [], 
+                            "name": "aws/codebuild/amazonlinux2-x86_64-standard:2.0", 
+                            "description": "AWS CodeBuild - Docker image based on Amazon Linux 2 (x86_64) with multiple language support"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/amazonlinux2-aarch64-standard:1.0-19.11.14"
+                            ], 
+                            "name": "aws/codebuild/amazonlinux2-aarch64-standard:1.0", 
+                            "description": "AWS CodeBuild - Docker image based on Amazon Linux 2 (aarch64) with multiple language support"
+                        }
+                    ], 
+                    "language": "STANDARD"
+                }
+            ], 
+            "platform": "AMAZON_LINUX_2"
+        }, 
+        {
+            "languages": [
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/standard:1.0-1.8.0"
+                            ], 
+                            "name": "aws/codebuild/standard:1.0", 
+                            "description": "AWS CodeBuild - Docker image based on Ubuntu 18 with multiple language support"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/standard:2.0-1.9.0", 
+                                "aws/codebuild/standard:2.0-1.10.0", 
+                                "aws/codebuild/standard:2.0-1.11.0", 
+                                "aws/codebuild/standard:2.0-1.12.0", 
+                                "aws/codebuild/standard:2.0-1.13.0"
+                            ], 
+                            "name": "aws/codebuild/standard:2.0", 
+                            "description": "AWS CodeBuild - Docker image based on Ubuntu 18 with multiple language support"
+                        }, 
+                        {
+                            "versions": [], 
+                            "name": "aws/codebuild/standard:3.0", 
+                            "description": "AWS CodeBuild - Docker image based on Ubuntu 18 with multiple language support"
+                        }
+                    ], 
+                    "language": "STANDARD"
+                }
+            ], 
+            "platform": "UBUNTU"
+        }, 
+        {
+            "languages": [
+                {
+                    "images": [
+                        {
+                            "versions": [
+                                "aws/codebuild/windows-base:1.0-1.0.0", 
+                                "aws/codebuild/windows-base:1.0-1.1.0"
+                            ], 
+                            "name": "aws/codebuild/windows-base:1.0", 
+                            "description": "Windows Docker image based on Windows Server Core 2016 with multiple language support"
+                        }, 
+                        {
+                            "versions": [
+                                "aws/codebuild/windows-base:2.0-1.0.0", 
+                                "aws/codebuild/windows-base:2.0-1.1.0"
+                            ], 
+                            "name": "aws/codebuild/windows-base:2.0", 
+                            "description": "Windows Docker image based on Windows Server Core 2016 with multiple language support"
+                        }
+                    ], 
+                    "language": "BASE"
+                }
+            ], 
+            "platform": "WINDOWS_SERVER"
+        }
+    ]
+}
