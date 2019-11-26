@@ -111,14 +111,14 @@ Resources:
     DependsOn: CodeBuildRole
     Properties:
       Name: !Sub ceoa-${AWS::StackName}
-      Description: Run cfn_nag
+      Description: Run TaskCat
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
         Type: CODEPIPELINE
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.1.6
+        Image: aws/codebuild/eb-python-3.4-amazonlinux-64:2.3.2
       Source:
         Type: CODEPIPELINE
       TimeoutInMinutes: 10
@@ -151,7 +151,7 @@ Resources:
         Actions:
         - InputArtifacts:
           - Name: SourceArtifacts
-          Name: cfn_nag
+          Name: TaskCat
           ActionTypeId:
             Category: Test
             Owner: AWS

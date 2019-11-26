@@ -1,11 +1,10 @@
 version: 0.2
-
 phases:
   build:
     commands:
       - echo Build started on `date`
-      - gem install cfn-nag
-      - cfn_nag_scan --input-path volume.yml
+      - pip3 install taskcat --user
+      - taskcat test run
   post_build:
     commands:
       - echo Build completed on `date`
