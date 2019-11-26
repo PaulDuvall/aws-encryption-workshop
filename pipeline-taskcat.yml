@@ -75,6 +75,47 @@ Resources:
             Resource: "*"
             Effect: Allow
           Version: '2012-10-17'
+  CodeBuildRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - codebuild.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: codebuild-service
+        PolicyDocument:
+          Statement:
+          - Action:
+            - logs:*
+            - lambda:*
+            - cloudwatch:*
+            - codebuild:*
+            - s3:*
+            Effect: Allow
+            Resource: "*"
+          Version: '2012-10-17'
+  CodeBuildDeploySite:
+    Type: AWS::CodeBuild::Project
+    DependsOn: CodeBuildRole
+    Properties:
+      Name: !Sub ceoa-${AWS::StackName}
+      Description: Run cfn_nag
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/eb-ruby-2.3-amazonlinux-64:2.1.6
+      Source:
+        Type: CODEPIPELINE
+      TimeoutInMinutes: 10
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
@@ -102,13 +143,19 @@ Resources:
           RunOrder: 1
       - Name: Build
         Actions:
-        - Name: Deploy
+        - InputArtifacts:
+          - Name: SourceArtifacts
+          Name: cfn_nag
           ActionTypeId:
-            Category: Approval
+            Category: Test
             Owner: AWS
             Version: '1'
-            Provider: Manual
-          RunOrder: 2
+            Provider: CodeBuild
+          OutputArtifacts: []
+          Configuration:
+            ProjectName:
+              Ref: CodeBuildWebsite
+          RunOrder: 1
       ArtifactStore:
         Type: S3
         Location: !Ref PipelineBucket
