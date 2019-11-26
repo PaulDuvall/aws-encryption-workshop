@@ -102,6 +102,7 @@ Resources:
             - codebuild:*
             - s3:*
             - cloudformation:*
+            - ec2:*
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'
