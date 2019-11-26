@@ -56,9 +56,12 @@ Resources:
         PolicyDocument:
           Statement:
           - Action:
-            - s3:GetObject
-            - s3:GetObjectVersion
-            - s3:GetBucketVersioning
+            - logs:*
+            - lambda:*
+            - cloudwatch:*
+            - codebuild:*
+            - s3:*
+            - ec2:*
             Resource: "*"
             Effect: Allow
           - Action:
@@ -67,10 +70,12 @@ Resources:
             - arn:aws:s3:::codepipeline*
             Effect: Allow
           - Action:
-            - s3:GetObject
-            - s3:GetObjectVersion
-            - s3:GetBucketVersioning
-            - s3:PutObject
+            - logs:*
+            - lambda:*
+            - cloudwatch:*
+            - codebuild:*
+            - s3:*
+            - ec2:*
             - iam:PassRole
             Resource: "*"
             Effect: Allow
