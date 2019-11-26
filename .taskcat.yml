@@ -10,6 +10,8 @@ tests:
   #   template: ./lesson1-automate/ceoa-1-cfn.yml
   lesson5-s3:
     template: ./lesson5-rest/ceoa-5-s3.yml
+  lesson1-sqs:
+    template: ./lesson1-automate/ceoa-1-cfn.yml
   lesson5-ebs:
     parameters:
       AvailabilityZones: '$[taskcat_genaz_1]'
