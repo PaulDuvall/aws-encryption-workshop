@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Simple CodePipeline example with GitHub and Approval
+Description: CodePipeline with CodeBuild workflow to run TaskCat test CloudFormation templates
 Parameters:
   GitHubUser:
     Type: String
