@@ -1,9 +1,0 @@
-version: 0.2
-phases:
-  post_build:
-    commands:
-      - aws s3 cp --recursive --acl public-read ./html s3://${SiteBucketName}/ 
-artifacts:
-  type: zip
-  files:
-    - ./index.html
