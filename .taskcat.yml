@@ -18,3 +18,9 @@ tests:
     template: ./lesson5-rest/ceoa-5-ebs.yml
   lesson5-ddb:
     template: ./lesson5-rest/ceoa-5-ddb.yml
+  lesson4-tls-pipeline:
+    parameters:
+      CodeCommitS3Bucket: pmd-encryption-workshop/4
+      CodeCommitS3Key: ceoa-examples.zip
+      SiteBucketName: www.encryptaws.com
+    template: ./lesson4-transit/tls-pipeline.yml
