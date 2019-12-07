@@ -17,6 +17,6 @@ tests:
   lesson4-tls-pipeline:
     parameters:
       CodeCommitS3Bucket: pmd-encryption-workshop
-      CodeCommitS3Key: 4/ceoa-examples.zip
+      CodeCommitS3Key: 4/ceoa-4-examples.zip
       SiteBucketName: www.encryptaws.com
     template: ./lesson4-transit/tls-pipeline.yml
