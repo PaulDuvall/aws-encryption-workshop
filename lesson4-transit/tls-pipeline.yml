@@ -51,7 +51,7 @@ Resources:
     Type: AWS::CodeCommit::Repository
     Properties:
       RepositoryName:
-        Ref: AWS::StackName
+        Ref: AWS::StackId
       RepositoryDescription: CodeCommit Repository for TLS solution
       Code:
         S3:
