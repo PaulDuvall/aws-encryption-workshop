@@ -269,13 +269,7 @@ Resources:
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: acm-changeset
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - "acm"
+            StackName: !Sub ${AWS::StackName}-acm
           InputArtifacts: []
           Name: ExecuteChangeSetACM
           OutputArtifacts: []
@@ -297,13 +291,7 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - "cloudfront"
+            StackName: !Sub ${AWS::StackName}-cloudfront
             TemplatePath: SourceArtifacts::tls-cloudfront.yml
           RunOrder: 3
         - ActionTypeId:
