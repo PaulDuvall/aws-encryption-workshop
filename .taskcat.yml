@@ -10,6 +10,7 @@ tests:
     parameters:
       CodeCommitS3Bucket: ceoa-$(aws sts get-caller-identity --output text --query 'Account') 
       CodeCommitS3Key: ceoa-4-examples.zip
+      SiteBucketName: www.encryptaws.com
     template: ./lesson4-transit/tls-pipeline.yml
   lesson5-rest:
     parameters:
