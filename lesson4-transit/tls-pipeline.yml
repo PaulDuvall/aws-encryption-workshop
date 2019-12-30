@@ -115,12 +115,6 @@ Resources:
             Resource:
             - arn:aws:cloudformation:us-east-1:aws:transform/Serverless-2016-10-31
         PolicyName: CloudFormationRolePolicy
-      RoleName:
-        Fn::Join:
-        - "-"
-        - - stelligent
-          - Ref: AWS::StackName
-          - CloudFormation
     Type: AWS::IAM::Role
   CodePipelineRole:
     Type: AWS::IAM::Role
@@ -175,7 +169,7 @@ Resources:
   CodeBuildDeploySite:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub ${AWS::StackName}-DeploySite
+      Name: !Sub ${AWS::StackName}-Site
       Description: Deploy site to S3
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
