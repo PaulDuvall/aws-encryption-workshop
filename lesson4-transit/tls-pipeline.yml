@@ -265,7 +265,7 @@ Resources:
             Category: Deploy
             Owner: AWS
             Provider: CloudFormation
-            Version: 1
+            Version: '1'
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: acm-changeset
@@ -298,7 +298,7 @@ Resources:
             Category: Deploy
             Owner: AWS
             Provider: CloudFormation
-            Version: 1
+            Version: '1'
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: cloudfront-changeset
