@@ -66,9 +66,6 @@ Resources:
         Events:
         - all
   CloudFormationTrustRole:
-    DependsOn:
-    - ArtifactBucket
-    Description: Creating service role in IAM for AWS CloudFormation
     Properties:
       AssumeRolePolicyDocument:
         Statement:
@@ -178,7 +175,6 @@ Resources:
         IndexDocument: index.html
   CodeBuildDeploySite:
     Type: AWS::CodeBuild::Project
-    DependsOn: CodeBuildRole
     Properties:
       Name: !Sub ${AWS::StackName}-DeploySite
       Description: Deploy site to S3
@@ -262,13 +258,7 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - "acm"
+            StackName: !Sub ${AWS::StackName}-acm
             TemplatePath: SourceArtifacts::tls-acm.yml
           RunOrder: 1
         - ActionTypeId:
@@ -324,13 +314,7 @@ Resources:
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: cloudfront-changeset
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - "cloudfront"
+            StackName: !Sub ${AWS::StackName}-cloudfront
           InputArtifacts: []
           Name: ExecuteChangeSetCloudFront
           OutputArtifacts: []
