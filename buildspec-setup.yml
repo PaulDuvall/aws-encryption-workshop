@@ -7,17 +7,15 @@ phases:
       - python --version
   build:
     commands:
+      - echo MUST MANUALLY CREATE ceoa-workshop-ACCOUNTID S3 BUCKET
       - echo In buildspec-setup.yml Build started on `date`
-      - aws s3 sync . s3://ceoa-workshop
-      - cd lesson0-setup
-      - zip ceoa-0-examples.zip *.*
-      - aws s3 sync . s3://ceoa-workshop
-      - cd ../lesson0-setup
-      - zip ceoa-0-examples.zip *.*
-      - aws s3 sync . s3://ceoa-workshop
-      - cd ../lesson0-setup
-      - zip ceoa-0-examples.zip *.*
-      - aws s3 sync . s3://ceoa-workshop
+      - aws s3 sync . s3://ceoa-workshop-$(aws sts get-caller-identity --output text --query 'Account')
+      - cd lesson1-automate
+      - zip ceoa-1-examples.zip *.*
+      - aws s3 sync . s3://ceoa-workshop-$(aws sts get-caller-identity --output text --query 'Account')
+      - cd ../lesson2-manage
+      - zip ceoa-2-examples.zip *.*
+      - aws s3 sync . s3://ceoa-workshop-$(aws sts get-caller-identity --output text --query 'Account')
   post_build:
     commands:
       - echo In buildspec-setup.yml Build completed on `date`
