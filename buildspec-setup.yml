@@ -10,8 +10,8 @@ phases:
       - echo MUST MANUALLY CREATE ceoa-workshop-ACCOUNTID S3 BUCKET
       - echo In buildspec-setup.yml Build started on `date`
       - aws s3 sync . s3://ceoa-workshop-$(aws sts get-caller-identity --output text --query 'Account')
-      - cd lesson1-automate
-      - zip ceoa-1-examples.zip *.*
+      - cd lesson4-transit
+      - zip ceoa-4-examples.zip *.*
       - aws s3 sync . s3://ceoa-workshop-$(aws sts get-caller-identity --output text --query 'Account')
       - cd ../lesson2-manage
       - zip ceoa-2-examples.zip *.*

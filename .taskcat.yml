@@ -4,19 +4,14 @@ project:
     - us-east-1
     - us-east-2
 tests:
-  # lesson5-s3:
-  #   template: ./lesson5-rest/ceoa-5-s3.yml
-  lesson1-sqs:
+  lesson1-automate:
     template: ./lesson1-automate/ceoa-1-cfn.yml
-  lesson5-ebs:
+  lesson4-transit:
+    parameters:
+      CodeCommitS3Bucket: ceoa-$(aws sts get-caller-identity --output text --query 'Account') 
+      CodeCommitS3Key: ceoa-4-examples.zip
+    template: ./lesson4-transit/tls-pipeline.yml
+  lesson5-rest:
     parameters:
       AvailabilityZones: '$[taskcat_genaz_1]'
     template: ./lesson5-rest/ceoa-5-ebs.yml
-  # lesson5-ddb:
-  #   template: ./lesson5-rest/ceoa-5-ddb.yml
-  # lesson4-tls-pipeline:
-  #   parameters:
-  #     CodeCommitS3Bucket: 'pmd-encryption-workshop'
-  #     CodeCommitS3Key: '4/ceoa-4-examples.zip'
-  #     SiteBucketName: 'www.encryptaws.com'
-  #   template: ./lesson4-transit/tls-pipeline.yml
