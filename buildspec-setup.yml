@@ -9,8 +9,6 @@ phases:
     commands:
       - echo MUST MANUALLY CREATE ceoa-workshop-ACCOUNTID S3 BUCKET
       - aws s3api list-buckets --query 'Buckets[?starts_with(Name, `ceoa-workshop`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
-      - aws s3api list-buckets --query 'Buckets[?starts_with(Name, `tcat-`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
-      - aws s3api list-buckets --query 'Buckets[?starts_with(Name, `www.encryptaws.com`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
       - aws s3 mb s3://ceoa-workshop
       - echo In buildspec-setup.yml Build started on `date`
       - aws s3 sync . s3://ceoa-workshop
