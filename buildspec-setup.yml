@@ -1,0 +1,26 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - python --version
+  build:
+    commands:
+      - echo In buildspec-setup.yml Build started on `date`
+      - aws s3 sync . s3://ceoa-workshop
+      - cd lesson0-setup
+      - zip ceoa-0-examples.zip *.*
+      - aws s3 sync . s3://ceoa-workshop
+      - cd ../lesson0-setup
+      - zip ceoa-0-examples.zip *.*
+      - aws s3 sync . s3://ceoa-workshop
+      - cd ../lesson0-setup
+      - zip ceoa-0-examples.zip *.*
+      - aws s3 sync . s3://ceoa-workshop
+  post_build:
+    commands:
+      - echo In buildspec-setup.yml Build completed on `date`
+artifacts:
+  files:
+    - '**/*'
