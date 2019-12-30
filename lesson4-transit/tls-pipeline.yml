@@ -213,8 +213,7 @@ Resources:
           Configuration:
             BranchName:
               Ref: RepositoryBranch
-            RepositoryName:
-              Ref: AWS::StackName
+            RepositoryName: ceoa-lesson4
           RunOrder: 1
       - Name: Build
         Actions:
