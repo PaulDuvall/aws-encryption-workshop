@@ -163,7 +163,7 @@ Resources:
     DeletionPolicy: Delete
     Properties:
       AccessControl: PublicRead
-      BucketName: !Ref SiteBucketName
+      BucketName: !Ref AWS::StackName
       WebsiteConfiguration:
         IndexDocument: index.html
   CodeBuildDeploySite:
