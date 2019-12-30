@@ -171,7 +171,7 @@ Resources:
         Image: "aws/codebuild/amazonlinux2-x86_64-standard:1.0"
       Source:
         Type: CODEPIPELINE
-      TimeoutInMinutes: 10
+      TimeoutInMinutes: 60
   CodeBuildWebsite:
     Type: AWS::CodeBuild::Project
     DependsOn: CodeBuildRole

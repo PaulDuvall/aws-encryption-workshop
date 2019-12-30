@@ -8,7 +8,7 @@ tests:
     template: ./lesson1-automate/ceoa-1-cfn.yml
   lesson4-transit:
     parameters:
-      CodeCommitS3Bucket: ceoa-$(aws sts get-caller-identity --output text --query 'Account') 
+      CodeCommitS3Bucket: ceoa-workshop-$(aws sts get-caller-identity --output text --query 'Account') 
       CodeCommitS3Key: ceoa-4-examples.zip
       SiteBucketName: www.encryptaws.com
     template: ./lesson4-transit/tls-pipeline.yml
