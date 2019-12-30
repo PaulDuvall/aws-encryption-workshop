@@ -191,8 +191,6 @@ Resources:
             files:
               - ./index.html
       TimeoutInMinutes: 10
-  PipelineBucket:
-    Type: AWS::S3::Bucket
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
@@ -298,9 +296,6 @@ Resources:
           Name: ExecuteChangeSetCloudFront
           OutputArtifacts: []
           RunOrder: 4
-      ArtifactStore:
-        Type: S3
-        Location: !Ref PipelineBucket
 Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
