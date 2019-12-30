@@ -10,7 +10,7 @@ tests:
     parameters:
       CodeCommitS3Bucket: ceoa-workshop
       CodeCommitS3Key: ceoa-4-examples.zip
-      SiteBucketName: www.encryptaws.com
+      SiteBucketName: 'www.encryptaws.com'
     template: ./lesson4-transit/tls-pipeline.yml
   lesson5-rest:
     parameters:
