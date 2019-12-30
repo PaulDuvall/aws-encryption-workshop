@@ -11,7 +11,8 @@ phases:
       - python3 get-pip.py
       - pip install --upgrade pip
       - pip3 install taskcat
-      - taskcat test run
+      - taskcat test run -n
+      - aws s3api list-buckets --query 'Buckets[?starts_with(Name, `www.encryptaws.com`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
   post_build:
     commands:
       - echo Build completed on `date`
