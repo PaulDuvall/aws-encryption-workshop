@@ -1,6 +1,9 @@
 # TaskCat
 taskcat_outputs
 
+# MacOS
+__MACOSX
+
 # Logs
 logs
 *.log
