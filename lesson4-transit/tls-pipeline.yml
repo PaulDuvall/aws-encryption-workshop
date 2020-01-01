@@ -304,4 +304,4 @@ Outputs:
   SiteBucket:
     Value: !Ref SiteBucket
     Export:
-      Name: !Sub 'SiteBucket-${AWS::Region}'
+      Name: !Sub SiteBucket-${AWS::Region}.s3.amazonaws.com
