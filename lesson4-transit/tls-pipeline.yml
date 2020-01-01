@@ -2,9 +2,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: CodePipeline for Deploying CloudFront and ACM
 Parameters:
-  SiteBucketName:
-    Type: String
-    Description: Name of bucket to create to host the website
   RepositoryBranch:
     Description: The name of the branch for the CodeCommit repo
     Type: String
@@ -185,7 +182,7 @@ Resources:
           phases:
             post_build:
               commands:
-                - aws s3 cp --recursive --acl public-read . s3://${SiteBucketName}/ 
+                - aws s3 cp --recursive --acl public-read . s3://${SiteBucket}/ 
           artifacts:
             type: zip
             files:
