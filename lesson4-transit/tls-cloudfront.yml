@@ -38,7 +38,7 @@ Resources:
         Origins: 
           - Id: S3-Origin 
             DomainName:
-              Fn::ImportValue: !Sub '${SiteBucket}.s3.amazonaws.com'
+              Fn::Sub: !ImportValue '${SiteBucket}.s3.amazonaws.com'
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 
