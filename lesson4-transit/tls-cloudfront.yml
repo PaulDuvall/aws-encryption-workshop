@@ -2,18 +2,6 @@
 AWSTemplateFormatVersion: '2010-09-09' 
 Description: CloudFront configuration for S3 bucket 
 Parameters: 
-  BucketName: 
-    Type: String 
-    Description: "Bucket Name" 
-    Default: "www.encryptaws.com" 
-  DomainName: 
-    Type: String 
-    Description: "Domain Name" 
-    Default: "www.encryptaws.com.s3.amazonaws.com" 
-  CloudFrontDomainName: 
-    Type: String 
-    Description: "CloudFront DomainName" 
-    Default: "" 
   CloudFrontCName: 
     Type: String 
     Description: "CloudFront CNames" 
@@ -29,7 +17,6 @@ Resources:
     Properties: 
       CloudFrontOriginAccessIdentityConfig: 
         Comment: CloudFrontOriginAccessIdentity for TLS Solution 
- 
   CloudFront: 
     Type: "AWS::CloudFront::Distribution" 
     Properties: 
@@ -37,7 +24,7 @@ Resources:
         Aliases:  
           - !Ref CloudFrontCName 
         Enabled: true 
-        Comment: "created by cloudformation" 
+        Comment: "created by CloudFormation" 
         ViewerCertificate: 
           AcmCertificateArn: 
             Fn::ImportValue: "us-east-1-CertificateArn" 
@@ -46,7 +33,8 @@ Resources:
         Enabled: true 
         Origins: 
           - Id: S3-Origin 
-            DomainName: !Ref 'DomainName' 
+            DomainName:
+              Fn::ImportValue: "SiteBucket-us-east-1" 
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 
@@ -59,7 +47,6 @@ Resources:
             Cookies: 
               Forward: all 
           Compress: True 
- 
   StaticSiteDomainName: 
     Type: "AWS::Route53::RecordSet" 
     Properties: 
