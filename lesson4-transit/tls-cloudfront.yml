@@ -2,6 +2,10 @@
 AWSTemplateFormatVersion: '2010-09-09' 
 Description: CloudFront configuration for S3 bucket 
 Parameters: 
+  SiteBucket: 
+    Type: String
+    Description: "Name of Export Value from tls-pipeline"
+    Default: "SiteBucket-us-east-1"
   CloudFrontCName: 
     Type: String 
     Description: "CloudFront CNames" 
@@ -34,7 +38,7 @@ Resources:
         Origins: 
           - Id: S3-Origin 
             DomainName:
-              Fn::ImportValue: "SiteBucket-us-east-1" 
+              Fn::ImportValue: !Sub '${SiteBucket}.s3.amazonaws.com'
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 

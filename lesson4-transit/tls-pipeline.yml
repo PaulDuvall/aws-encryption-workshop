@@ -301,7 +301,7 @@ Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
-  SiteBucket:
+  SiteBucketExport:
     Value: !Ref SiteBucket
     Export:
-      Name: !Sub SiteBucket-${AWS::Region}.s3.amazonaws.com
+      Name: !Sub "SiteBucket-${AWS::Region}"
