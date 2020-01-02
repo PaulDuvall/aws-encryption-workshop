@@ -2,6 +2,7 @@ project:
   name: ceoa
   regions:
     - us-east-1
+    - us-east-2
 tests:
   lesson1-automate:
     template: ./lesson1-automate/ceoa-1-cfn.yml
