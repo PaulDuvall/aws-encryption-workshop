@@ -124,7 +124,7 @@ Resources:
     Type: AWS::CodeBuild::Project
     DependsOn: CodeBuildRole
     Properties:
-      Name: !Sub ccoa-${AWS::StackName}-setup
+      Name: !Sub ${AWS::StackName}-setup
       Description: Setup Test Files. For example uploading to S3
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
@@ -142,7 +142,7 @@ Resources:
     Type: AWS::CodeBuild::Project
     DependsOn: CodeBuildRole
     Properties:
-      Name: !Sub ccoa-${AWS::StackName}-cleanup
+      Name: !Sub ${AWS::StackName}-cleanup
       Description: Setup Test Files. For example uploading to S3
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
@@ -160,7 +160,7 @@ Resources:
     Type: AWS::CodeBuild::Project
     DependsOn: CodeBuildRole
     Properties:
-      Name: !Sub ccoa-${AWS::StackName}-taskcat
+      Name: !Sub ${AWS::StackName}-taskcat
       Description: Run TaskCat
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:
