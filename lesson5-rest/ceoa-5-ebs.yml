@@ -12,6 +12,3 @@ Resources:
       Encrypted: true
       AvailabilityZone: !Ref AvailabilityZones
       Size: 100
-      Tags:
-        - Key: Name
-          Value: ceoa-5-2-encrypted
