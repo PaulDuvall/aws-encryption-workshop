@@ -47,7 +47,7 @@ Resources:
   CodeCommitRepo:
     Type: AWS::CodeCommit::Repository
     Properties:
-      RepositoryName: ceoa-lesson4
+      RepositoryName: !Sub "ceoa-lesson4-${AWS::Region}"
       RepositoryDescription: CodeCommit Repository for TLS solution
       Code:
         S3:
