@@ -7,4 +7,14 @@ Resources:
     Type: AWS::SQS::Queue
     Properties:
       QueueName:
-        Fn::ImportValue: "MyQueue-us-east-1"
+        Fn::Join:
+        - ''
+        - - ImportValue-
+          - Ref: AWS::StackName
+Outputs: 
+  QueueName: 
+    Description: Name of Queue from export-value.yml stack
+    Value: 
+      Fn::Sub:
+        - "${HostedZoneName}.s3.amazonaws.com"
+        - HostedZoneName: !ImportValue "MyQueue-us-east-1"

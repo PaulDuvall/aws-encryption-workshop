@@ -9,10 +9,13 @@ Resources:
       QueueName:
         Fn::Join:
         - ''
-        - - SampleQueue-
+        - - ExportValue-
           - Ref: AWS::StackName
 Outputs:
   MyQueueExport:
-    Value: !Ref MyQueue
+    Value: 
+      Fn::GetAtt: 
+        - "MyQueue"
+        - "QueueName"
     Export:
       Name: !Sub "MyQueue-${AWS::Region}"
