@@ -6,7 +6,7 @@ project:
 tests:
   lesson1-automate:
     template: ./lesson1-automate/ceoa-1-cfn.yml
-  lesson1-pipeline
+  lesson1-pipeline:
     parameters:
       CodeCommitS3Bucket: ceoa-workshop
       CodeCommitS3Key: ceoa-1-examples.zip
