@@ -40,7 +40,9 @@ Resources:
             DomainName:
               Fn::Sub:
                 - "${SiteBucketName}.s3.amazonaws.com"
-                - SiteBucketName: !ImportValue "SiteBucket-us-east-1"
+                - SiteBucketName:
+                  Fn::ImportValue:
+                    !Sub "SiteBucket-${AWS::Region}"
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 
