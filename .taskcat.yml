@@ -6,11 +6,13 @@ project:
 tests:
   lesson1-automate:
     template: ./lesson1-automate/ceoa-1-cfn.yml
-  l4:
-    parameters:
-      CodeCommitS3Bucket: ceoa-workshop
-      CodeCommitS3Key: ceoa-4-examples.zip
-    template: ./lesson4-transit/tls-pipeline.yml
+  lesson1-pipeline:
+    template: ./lesson1-automate/ceoa-1-pipeline.yml
+  # l4:
+  #   parameters:
+  #     CodeCommitS3Bucket: ceoa-workshop
+  #     CodeCommitS3Key: ceoa-4-examples.zip
+  #   template: ./lesson4-transit/tls-pipeline.yml
   lesson5-rest:
     parameters:
       AvailabilityZones: '$[taskcat_genaz_1]'
