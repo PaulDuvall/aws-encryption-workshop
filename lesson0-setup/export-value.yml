@@ -2,25 +2,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Test Export Value so that it can be used by other templates
 Resources:
-  MyQueue:
-    Type: AWS::SQS::Queue
-    Properties:
-      QueueName:
-        Fn::Join:
-        - ''
-        - - Queue-
-          - Ref: AWS::StackName
-  BasicParameter:
-    Type: "AWS::SSM::Parameter"
-    Properties:
-      Name: "SiteBucketPipeline"
-      Type: "String"
-      Value: !Sub "${AWS::StackName}-${AWS::Region}"
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
 Outputs:
-  MyQueueExport:
-    Value: 
-      Fn::GetAtt: 
-        - "MyQueue"
-        - "QueueName"
+  SiteBucketExport:
+    Value: !Ref SiteBucket
     Export:
       Name: !Sub "${AWS::StackName}-${AWS::Region}"

@@ -2,9 +2,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Test Import Value from Export Value
 Parameters:
-  SiteBucketPipeline:
+  ExportStackName:
     Type: String
-    Default: '{{resolve:ssm:SiteBucketPipeline:1}}'
 Resources:
   MyQueue:
     Type: AWS::SQS::Queue
@@ -12,18 +11,15 @@ Resources:
       QueueName:
         Fn::Join:
         - ''
-        - - ImportValue-
+        - - SampleQueue-
           - Ref: AWS::StackName
-Outputs: 
-  ParamStore: 
-    Description: Name of ParamStore value defined in the export-value.yml stack
-    Value: '{{resolve:ssm:SiteBucketPipeline:1}}'
-  SiteBucketNameTest:
+Outputs:
+  SiteBucketExport:
     Value:
-      !ImportValue 
-        Fn::Join:
+      'Fn::ImportValue':
+        !Join
           - ''
           - - ''
-            - "${SiteBucketPipeline}"
-            - "-"
-            - Ref: AWS::Region
+            - !Ref ExportStackName
+            - '-'
+            - !Ref AWS::Region
