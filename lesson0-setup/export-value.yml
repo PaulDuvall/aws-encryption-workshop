@@ -1,7 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: This template creates one or more Amazon resources. 
-  You will be billed for AWS resources used if you create a stack
+Description: Test Export Value so that it can be used by other templates
 Resources:
   MyQueue:
     Type: AWS::SQS::Queue
@@ -9,8 +8,14 @@ Resources:
       QueueName:
         Fn::Join:
         - ''
-        - - ExportValue-
+        - - Queue-
           - Ref: AWS::StackName
+  BasicParameter:
+    Type: "AWS::SSM::Parameter"
+    Properties:
+      Name: "SiteBucketPipeline"
+      Type: "String"
+      Value: !Sub "${AWS::StackName}-${AWS::Region}"
 Outputs:
   MyQueueExport:
     Value: 
@@ -18,4 +23,4 @@ Outputs:
         - "MyQueue"
         - "QueueName"
     Export:
-      Name: !Sub "MyQueue-${AWS::Region}"
+      Name: !Sub "${AWS::StackName}-${AWS::Region}"

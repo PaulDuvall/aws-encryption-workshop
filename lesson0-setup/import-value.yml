@@ -1,7 +1,10 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: This template creates one or more Amazon resources. 
-  You will be billed for AWS resources used if you create a stack
+Description: Test Import Value from Export Value
+Parameters:
+  SiteBucketPipeline:
+    Type: String
+    Default: '{{resolve:ssm:SiteBucketPipeline:1}}'
 Resources:
   MyQueue:
     Type: AWS::SQS::Queue
@@ -12,9 +15,15 @@ Resources:
         - - ImportValue-
           - Ref: AWS::StackName
 Outputs: 
-  QueueName: 
-    Description: Name of Queue from export-value.yml stack
-    Value: 
-      Fn::Sub:
-        - "${HostedZoneName}.s3.amazonaws.com"
-        - HostedZoneName: !ImportValue "MyQueue-us-east-1"
+  ParamStore: 
+    Description: Name of ParamStore value defined in the export-value.yml stack
+    Value: '{{resolve:ssm:SiteBucketPipeline:1}}'
+  SiteBucketNameTest:
+    Value:
+      !ImportValue 
+        Fn::Join:
+          - ''
+          - - ''
+            - "${SiteBucketPipeline}"
+            - "-"
+            - Ref: AWS::Region
