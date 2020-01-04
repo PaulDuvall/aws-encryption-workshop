@@ -278,6 +278,10 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
+            ParameterOverrides: !Sub |
+              {
+                "PipelineStackName": "${AWS::StackName}"
+              }
             StackName: !Sub ${AWS::StackName}-cloudfront
             TemplatePath: SourceArtifacts::tls-cloudfront.yml
           RunOrder: 3
@@ -304,4 +308,4 @@ Outputs:
   SiteBucketExport:
     Value: !Ref SiteBucket
     Export:
-      Name: !Sub "WebSiteBucket4-${AWS::Region}"
+      Name: !Sub "${AWS::StackName}-${AWS::Region}"

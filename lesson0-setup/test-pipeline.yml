@@ -229,7 +229,7 @@ Resources:
             Capabilities: CAPABILITY_IAM
             ParameterOverrides: !Sub |
               {
-                "ExportStackName": "PMDWASHERE"
+                "ExportStackName": "${AWS::StackName}"
               }
             StackName: !Sub ${AWS::StackName}-simple
             TemplatePath: MyApp::test-pipeline-deploy.yml

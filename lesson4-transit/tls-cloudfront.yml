@@ -2,6 +2,9 @@
 AWSTemplateFormatVersion: '2010-09-09' 
 Description: CloudFront configuration for S3 bucket 
 Parameters: 
+  PipelineStackName:
+    Type: String
+    Default: "test"
   CloudFrontCName: 
     Type: String 
     Description: "CloudFront CNames" 
@@ -42,7 +45,7 @@ Resources:
                 - "${SiteBucketName}.s3.amazonaws.com"
                 - SiteBucketName:
                   Fn::ImportValue:
-                    !Sub "WebSiteBucket4-${AWS::Region}"
+                    !Sub "${AWS::StackName}-${AWS::Region}"
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 
