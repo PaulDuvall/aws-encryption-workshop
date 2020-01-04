@@ -127,6 +127,7 @@ Resources:
             - s3:CreateBucket
             - s3:DeleteBucket
             - route53:*
+            - sqs:*
             Effect: Allow
             Resource: "*"
           - Action:
@@ -226,6 +227,10 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
+            ParameterOverrides: !Sub |
+              {
+                "ExportStackName": "PMDWASHERE"
+              }
             StackName: !Sub ${AWS::StackName}-simple
             TemplatePath: MyApp::test-pipeline-deploy.yml
           RunOrder: 1
