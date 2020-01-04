@@ -1,0 +1,25 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Test Import Value from Export Value
+Parameters:
+  ExportStackName:
+    Type: String
+Resources:
+  MyQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName:
+        Fn::Join:
+        - ''
+        - - SampleQueue-
+          - Ref: AWS::StackName
+Outputs:
+  SiteBucketExport:
+    Value:
+      'Fn::ImportValue':
+        !Join
+          - ''
+          - - ''
+            - !Ref ExportStackName
+            - '-'
+            - !Ref AWS::Region

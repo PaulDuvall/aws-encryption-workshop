@@ -1,0 +1,12 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Test Export Value so that it can be used by other templates
+Resources:
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+Outputs:
+  SiteBucketExport:
+    Value: !Ref SiteBucket
+    Export:
+      Name: !Sub "${AWS::StackName}-${AWS::Region}"
