@@ -45,7 +45,7 @@ Resources:
                 - "${SiteBucketName}.s3.amazonaws.com"
                 - SiteBucketName:
                   Fn::ImportValue:
-                    !Sub "${AWS::StackName}-${AWS::Region}"
+                    !Sub "${PipelineStackName}-${AWS::Region}"
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 
