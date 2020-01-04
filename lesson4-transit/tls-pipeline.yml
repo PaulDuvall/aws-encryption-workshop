@@ -208,7 +208,7 @@ Resources:
           Configuration:
             BranchName:
               Ref: RepositoryBranch
-            RepositoryName: ceoa-lesson4
+            RepositoryName: !Sub ceoa-lesson4-${AWS::Region}
           RunOrder: 1
       - Name: Build
         Actions:
