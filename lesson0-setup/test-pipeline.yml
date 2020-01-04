@@ -220,7 +220,7 @@ Resources:
           OutputArtifacts: []
           Configuration:
             ActionMode: CHANGE_SET_REPLACE
-            ChangeSetName: simple-changeset-replace
+            ChangeSetName: simple-changeset
             RoleArn:
               Fn::GetAtt:
               - CloudFormationTrustRole
@@ -236,7 +236,7 @@ Resources:
             Version: '1'
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
-            ChangeSetName: simple-changeset-execute
+            ChangeSetName: simple-changeset
             StackName: !Sub ${AWS::StackName}-simple
           InputArtifacts: []
           Name: ExecuteChangeSetSimple
