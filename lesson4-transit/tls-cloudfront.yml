@@ -5,10 +5,6 @@ Parameters:
   SiteBucketName:
     Type: String
     Default: "test"
-  SiteBucket: 
-    Type: String
-    Description: "Name of Export Value from tls-pipeline"
-    Default: "SiteBucket-us-east-1"
   CloudFrontCName: 
     Type: String 
     Description: "CloudFront CNames" 
