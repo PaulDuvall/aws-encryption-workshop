@@ -34,7 +34,7 @@ Resources:
         Comment: "created by CloudFormation" 
         ViewerCertificate: 
           AcmCertificateArn: 
-            Fn::ImportValue: "us-east-1-CertificateArn" 
+            Fn::ImportValue: !Sub "${AWS::Region}-CertificateArn" 
           MinimumProtocolVersion: TLSv1.1_2016 
           SslSupportMethod: sni-only 
         Enabled: true 
