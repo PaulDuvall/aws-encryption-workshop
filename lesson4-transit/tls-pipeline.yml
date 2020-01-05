@@ -47,7 +47,7 @@ Resources:
   CodeCommitRepo:
     Type: AWS::CodeCommit::Repository
     Properties:
-      RepositoryName: !Sub "ceoa-lesson4-${AWS::Region}"
+      RepositoryName: ceoa-lesson4
       RepositoryDescription: CodeCommit Repository for TLS solution
       Code:
         S3:
@@ -208,7 +208,7 @@ Resources:
           Configuration:
             BranchName:
               Ref: RepositoryBranch
-            RepositoryName: !Sub ceoa-lesson4-${AWS::Region}
+            RepositoryName: ceoa-lesson4
           RunOrder: 1
       - Name: Build
         Actions:
@@ -278,10 +278,6 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
-            ParameterOverrides: !Sub |
-              {
-                "PipelineStackName": "${AWS::StackName}"
-              }
             StackName: !Sub ${AWS::StackName}-cloudfront
             TemplatePath: SourceArtifacts::tls-cloudfront.yml
           RunOrder: 3
@@ -308,4 +304,4 @@ Outputs:
   SiteBucketExport:
     Value: !Ref SiteBucket
     Export:
-      Name: !Sub "${AWS::StackName}-${AWS::Region}"
+      Name: !Sub "SiteBucket-${AWS::Region}"

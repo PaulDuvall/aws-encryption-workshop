@@ -2,9 +2,10 @@
 AWSTemplateFormatVersion: '2010-09-09' 
 Description: CloudFront configuration for S3 bucket 
 Parameters: 
-  PipelineStackName:
+  SiteBucket: 
     Type: String
-    Default: "test"
+    Description: "Name of Export Value from tls-pipeline"
+    Default: "SiteBucket-us-east-1"
   CloudFrontCName: 
     Type: String 
     Description: "CloudFront CNames" 
@@ -29,9 +30,8 @@ Resources:
         Enabled: true 
         Comment: "created by CloudFormation" 
         ViewerCertificate: 
-          AcmCertificateArn:
-            Fn::ImportValue:
-              !Sub "${AWS::Region}-CertificateArn"
+          AcmCertificateArn: 
+            Fn::ImportValue: "us-east-1-CertificateArn" 
           MinimumProtocolVersion: TLSv1.1_2016 
           SslSupportMethod: sni-only 
         Enabled: true 
@@ -40,9 +40,7 @@ Resources:
             DomainName:
               Fn::Sub:
                 - "${SiteBucketName}.s3.amazonaws.com"
-                - SiteBucketName:
-                  Fn::ImportValue:
-                    !Sub "${PipelineStackName}-${AWS::Region}"
+                - SiteBucketName: !ImportValue "SiteBucket-us-east-1"
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 
