@@ -280,7 +280,7 @@ Resources:
             Capabilities: CAPABILITY_IAM
             ParameterOverrides: !Sub |
               {
-                "PipelineStackName": "${AWS::StackName}"
+                "SiteBucketName": "${SiteBucket}.s3.amazonaws.com"
               }
             StackName: !Sub ${AWS::StackName}-cloudfront
             TemplatePath: SourceArtifacts::tls-cloudfront.yml

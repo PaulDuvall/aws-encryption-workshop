@@ -2,7 +2,7 @@
 AWSTemplateFormatVersion: '2010-09-09' 
 Description: CloudFront configuration for S3 bucket 
 Parameters: 
-  PipelineStackName:
+  SiteBucketName:
     Type: String
     Default: "test"
   SiteBucket: 
@@ -40,12 +40,7 @@ Resources:
         Enabled: true 
         Origins: 
           - Id: S3-Origin 
-            DomainName:
-              Fn::Sub:
-                - "${SiteBucketName}.s3.amazonaws.com"
-                - SiteBucketName:
-                  Fn::ImportValue:
-                    !Sub "ceoa-tls-pipeline2-${AWS::Region}"
+            DomainName: !Ref SiteBucketName
             S3OriginConfig: 
               OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}" 
         DefaultRootObject: index.html 

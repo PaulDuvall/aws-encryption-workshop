@@ -10,7 +10,4 @@ Resources:
     Type: AWS::SQS::Queue
     Properties:
       QueueName:
-        Fn::Join:
-        - ''
-        - - SampleQueue-
-          - Ref: AWS::StackName
+        Fn::ImportValue: !Sub '${ExportStackName}-us-east-1'
