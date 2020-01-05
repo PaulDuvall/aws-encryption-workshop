@@ -2,6 +2,9 @@
 AWSTemplateFormatVersion: '2010-09-09' 
 Description: CloudFront configuration for S3 bucket 
 Parameters: 
+  PipelineStackName:
+    Type: String
+    Default: "test"
   SiteBucket: 
     Type: String
     Description: "Name of Export Value from tls-pipeline"
