@@ -2,25 +2,25 @@ project:
   name: ceoa
   regions:
     - us-east-1
-    - us-east-2
+#    - us-east-2
 tests:
-  lesson1-automate:
-    template: ./lesson1-automate/ceoa-1-cfn.yml
-  lesson1-pipeline:
-    parameters:
-      CodeCommitS3Bucket: ceoa-workshop
-      CodeCommitS3Key: ceoa-1-examples.zip
-    template: ./lesson1-automate/ceoa-1-pipeline.yml
+#  lesson1-automate:
+#    template: ./lesson1-automate/ceoa-1-cfn.yml
+#  lesson1-pipeline:
+#    parameters:
+#      CodeCommitS3Bucket: ceoa-workshop
+#      CodeCommitS3Key: ceoa-1-examples.zip
+#    template: ./lesson1-automate/ceoa-1-pipeline.yml
   l4:
     parameters:
       CodeCommitS3Bucket: ceoa-workshop
       CodeCommitS3Key: ceoa-4-examples.zip
     template: ./lesson4-transit/tls-pipeline.yml
-  l5-rest-ebs:
-    parameters:
-      AvailabilityZones: '$[taskcat_genaz_1]'
-    template: ./lesson5-rest/ceoa-5-ebs.yml
-  l5-rest-ddb:
-    template: ./lesson5-rest/ceoa-5-ddb.yml
-  l5-rest-s3:
-    template: ./lesson5-rest/ceoa-5-s3.yml
+#  l5-rest-ebs:
+#    parameters:
+#      AvailabilityZones: '$[taskcat_genaz_1]'
+#    template: ./lesson5-rest/ceoa-5-ebs.yml
+#  l5-rest-ddb:
+#    template: ./lesson5-rest/ceoa-5-ddb.yml
+#  l5-rest-s3:
+#    template: ./lesson5-rest/ceoa-5-s3.yml
