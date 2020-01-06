@@ -173,7 +173,7 @@ Resources:
             Resource: "*"
           Version: '2012-10-17'
         PolicyName: MyLambdaWorkerPolicy
-      RoleName: !Sub ${AWS::StackName}-lambda
+      RoleName: !Sub ${AWS::StackName}-lambda-${AWS::Region}
     Type: AWS::IAM::Role
   CodeBuildRole:
     Type: AWS::IAM::Role
