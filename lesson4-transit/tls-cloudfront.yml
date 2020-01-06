@@ -5,6 +5,9 @@ Parameters:
   SiteBucketName:
     Type: String
     Default: "test"
+  CertificateExportName:
+    Type: String
+    Default: "test"
   CloudFrontCName: 
     Type: String 
     Description: "CloudFront CNames" 
@@ -30,7 +33,7 @@ Resources:
         Comment: "created by CloudFormation" 
         ViewerCertificate: 
           AcmCertificateArn: 
-            Fn::ImportValue: !Sub "${SiteBucketName}" 
+            Fn::ImportValue: !Sub "${CertificateExportName}" 
           MinimumProtocolVersion: TLSv1.1_2016 
           SslSupportMethod: sni-only 
         Enabled: true 
