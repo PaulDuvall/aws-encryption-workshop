@@ -1,0 +1,15 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Test codecommit
+Parameters:
+  InputString:
+    Default: "This is a test input string"
+    Type: String
+Resources:
+  S3Bucket:
+    Type: "AWS::S3::Bucket"
+  MyRepo:
+    Type: AWS::CodeCommit::Repository
+    Properties:
+      RepositoryName: !Ref S3Bucket
+      RepositoryDescription: a description
