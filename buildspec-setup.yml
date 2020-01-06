@@ -12,20 +12,20 @@ phases:
         aws s3api list-buckets --query 'Buckets[?starts_with(Name,
         `ceoa-workshop`) == `true`].[Name]' --output text | xargs -I {} aws s3
         rb s3://{} --force
-      - 'aws s3 mb s3://ceoa-workshop'
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - aws s3 mb s3://ceoa-workshop
+      - aws s3 sync . s3://ceoa-workshop
       - cd lesson1-automate
       - zip ceoa-1-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - aws s3 sync . s3://ceoa-workshop
       - cd ../lesson2-manage
       - zip ceoa-2-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - aws s3 sync . s3://ceoa-workshop
       - cd ../lesson4-transit
       - zip ceoa-4-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - aws s3 sync . s3://ceoa-workshop
       - cd ../lesson8-continuous
       - zip ceoa-8-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - aws s3 sync . s3://ceoa-workshop
   post_build:
     commands:
       - echo In buildspec-setup.yml Build completed on `date`

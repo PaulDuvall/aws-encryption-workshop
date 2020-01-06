@@ -26,7 +26,7 @@ tests:
 #    template: ./lesson5-rest/ceoa-5-s3.yml
   l8:
     parameters:
-      ComplianceResourceId: ceoa-workshop 
+      ComplianceResourceId: encryptaws.com
       CodeCommitS3Bucket: ceoa-workshop
       CodeCommitS3Key: ceoa-8-examples.zip
     template: ./lesson8-continuous/ceoa-8-pipeline.yml
