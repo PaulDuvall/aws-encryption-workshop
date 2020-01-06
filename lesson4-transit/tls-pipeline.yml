@@ -245,6 +245,10 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
+            ParameterOverrides: !Sub |
+              {
+                "SiteBucketName": "${SiteBucket}.s3.amazonaws.com"
+              }
             StackName: !Sub ${AWS::StackName}-acm
             TemplatePath: SourceArtifacts::tls-acm.yml
           RunOrder: 1

@@ -2,6 +2,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Creates the ACM Certificate for domain
 Parameters:
+  SiteBucketName:
+    Type: String
+    Default: "test"
   DnsDomainName:
     Description: Domain to secure with the certificate (i.e. encryptaws.com)
     Type: String
@@ -29,4 +32,4 @@ Outputs:
   CertificateArn:
     Value: !Ref Certificate
     Export:
-      Name: !Sub '${AWS::Region}-CertificateArn'
+      Name: !Sub '${SiteBucketName}'
