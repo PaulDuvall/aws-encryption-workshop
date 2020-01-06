@@ -28,7 +28,7 @@ Parameters:
     ConstraintDescription: This parameter is required.
   MaximumExecutionFrequency:
     Type: String
-    Default: TwentyFour_Hours
+    Default: Six_Hours
     Description: The frequency that you want AWS Config to run evaluations for the
       rule.
     MinLength: '1'
@@ -52,7 +52,7 @@ Resources:
     Type: AWS::Config::DeliveryChannel
     Properties: 
       ConfigSnapshotDeliveryProperties: 
-        DeliveryFrequency: "Six_Hours"
+        DeliveryFrequency: !Ref MaximumExecutionFrequency
       S3BucketName: 
         Ref: ConfigBucket
       SnsTopicARN: 
@@ -149,7 +149,6 @@ Resources:
     Type: AWS::S3::Bucket
     DeletionPolicy: Delete
   MyLambdaTrustRole:
-    Description: Creating service role in IAM for AWS Lambda
     Properties:
       AssumeRolePolicyDocument:
         Statement:
@@ -202,7 +201,6 @@ Resources:
           Version: '2012-10-17'
   CodeBuildLambdaTrigger:
     Type: AWS::CodeBuild::Project
-    DependsOn: CodeBuildRole
     Properties:
       Name:
         Fn::Join:
@@ -216,7 +214,7 @@ Resources:
         - CodeBuildRole
         - Arn
       Artifacts:
-        Type: no_artifacts
+        Type: NO_ARTIFACTS
       Environment:
         EnvironmentVariables:
         - Name: S3_BUCKET
@@ -265,9 +263,6 @@ Resources:
         Events:
         - all
   CloudFormationTrustRole:
-    DependsOn:
-    - ArtifactBucket
-    Description: Creating service role in IAM for AWS CloudFormation
     Properties:
       AssumeRolePolicyDocument:
         Statement:
@@ -382,7 +377,6 @@ Resources:
           Version: '2012-10-17'
   CodeBuildWebsite:
     Type: AWS::CodeBuild::Project
-    DependsOn: CodeBuildRole
     Properties:
       Name:
         Ref: AWS::StackName
@@ -392,7 +386,7 @@ Resources:
         - CodeBuildRole
         - Arn
       Artifacts:
-        Type: no_artifacts
+        Type: NO_ARTIFACTS
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
