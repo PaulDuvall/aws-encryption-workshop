@@ -47,7 +47,6 @@ Resources:
     UpdateReplacePolicy: Retain
     Properties:
       AccessControl: BucketOwnerFullControl
-      BucketName: !Sub '${AWS::StackName}-awsconfig'
   ConfigTopic:
     Type: AWS::SNS::Topic
   DeliveryChannel: 
