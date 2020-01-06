@@ -250,7 +250,7 @@ Resources:
     Type: AWS::CodeCommit::Repository
     Properties:
       RepositoryName:
-        Ref: AWS::StackName
+        Ref: PipelineBucket
       RepositoryDescription: CodeCommit Repository for Config Rule solution
       Code:
         S3:
@@ -417,14 +417,6 @@ Resources:
     Type: AWS::CodePipeline::Pipeline
     Properties:
       RoleArn: !GetAtt CodePipelineRole.Arn
-    Properties:
-      RoleArn:
-        Fn::Join:
-        - ''
-        - - 'arn:aws:iam::'
-          - Ref: AWS::AccountId
-          - ":role/"
-          - Ref: CodePipelineRole
       Stages:
       - Name: Source
         Actions:
@@ -441,7 +433,7 @@ Resources:
             BranchName:
               Ref: RepositoryBranch
             RepositoryName:
-              Ref: AWS::StackName
+              Ref: PipelineBucket
           RunOrder: 1
       - Name: Build
         Actions:
