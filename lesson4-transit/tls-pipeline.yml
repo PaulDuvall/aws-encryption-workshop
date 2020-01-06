@@ -47,7 +47,7 @@ Resources:
   CodeCommitRepo:
     Type: AWS::CodeCommit::Repository
     Properties:
-      RepositoryName: !Sub ceoa-lesson4-${AWS::Region}
+      RepositoryName: !Ref SiteBucket
       RepositoryDescription: CodeCommit Repository for TLS solution
       Code:
         S3:
@@ -208,7 +208,7 @@ Resources:
           Configuration:
             BranchName:
               Ref: RepositoryBranch
-            RepositoryName: !Sub ceoa-lesson4-${AWS::Region}
+            RepositoryName: !Ref SiteBucket
           RunOrder: 1
       - Name: Build
         Actions:
