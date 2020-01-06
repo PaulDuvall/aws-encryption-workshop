@@ -324,8 +324,7 @@ Resources:
           - Action:
             - cloudformation:CreateChangeSet
             Effect: Allow
-            Resource:
-            - arn:aws:cloudformation:us-east-1:aws:transform/Serverless-2016-10-31
+            Resource: "*"
         PolicyName: CloudFormationRolePolicy
       RoleName: !Sub ${AWS::StackName}-cfn-${AWS::Region}
     Type: AWS::IAM::Role
