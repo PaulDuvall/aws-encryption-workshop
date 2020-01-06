@@ -43,6 +43,7 @@ Resources:
   ConfigBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Properties:
       AccessControl: BucketOwnerFullControl
       BucketName: !Sub '${AWS::StackName}-awsconfig'
@@ -491,7 +492,7 @@ Resources:
             Category: Deploy
             Owner: AWS
             Provider: CloudFormation
-            Version: 1
+            Version: "1"
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: pipeline-changeset
