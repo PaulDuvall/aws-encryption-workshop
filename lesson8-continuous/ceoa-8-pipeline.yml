@@ -2,8 +2,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: CodePipeline for Config Rules, CloudWatch Event Rules, and Lambda
 Parameters:
-  ComplianceResourceId:
-    Description: Resource id to exclude from Config Rule
+  S3ComplianceResourceId:
+    Description: S3 Bucket Name to exclude from Config Rule.
     Type: String
   EmailAddress:
     Description: Email Address for sending SNS notifications for CodeCommit
@@ -140,7 +140,7 @@ Resources:
       Description: Checks that your Amazon S3 bucket either has Amazon S3 default encryption enabled or that the S3 bucket policy explicitly denies put-object requests without server side encryption.
       InputParameters: {}
       Scope:
-        ComplianceResourceId: !Ref 'ComplianceResourceId'
+        ComplianceResourceId: !Ref 'S3ComplianceResourceId'
         ComplianceResourceTypes:
         - AWS::S3::Bucket
       Source:
