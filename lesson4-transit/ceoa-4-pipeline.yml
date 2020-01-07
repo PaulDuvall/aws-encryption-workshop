@@ -250,7 +250,7 @@ Resources:
                 "CertificateExportName": "${SiteBucket}"
               }
             StackName: !Sub ${AWS::StackName}-acm
-            TemplatePath: SourceArtifacts::tls-acm.yml
+            TemplatePath: SourceArtifacts::ceoa-4-acm.yml
           RunOrder: 1
         - ActionTypeId:
             Category: Deploy
@@ -288,7 +288,7 @@ Resources:
                 "CertificateExportName": "${SiteBucket}"
               }
             StackName: !Sub ${AWS::StackName}-cloudfront
-            TemplatePath: SourceArtifacts::tls-cloudfront.yml
+            TemplatePath: SourceArtifacts::ceoa-4-cloudfront.yml
           RunOrder: 3
         - ActionTypeId:
             Category: Deploy
