@@ -10,7 +10,7 @@ Resources:
   S3Key:
     Type: AWS::KMS::Key
     Properties:
-      Description: DynamoDB Key
+      Description: S3 Key
       Enabled: true
       EnableKeyRotation: true
       PendingWindowInDays: 7
@@ -59,7 +59,7 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub ${AWS::StackName}-S3Key
-  DynamoDBAlias:
+  S3Alias:
     Type: AWS::KMS::Alias
     Properties:
       AliasName: !Sub alias/${AWS::StackName}
