@@ -105,6 +105,7 @@ Resources:
           - Action:
             - cloudformation:*
             - cloudwatch:*
+            - cloudtrail:*
             - codebuild:*
             - codecommit:*
             - codepipeline:*
@@ -112,6 +113,7 @@ Resources:
             - dynamodb:*
             - ec2:*
             - iam:*
+            - kms:*
             - lambda:*
             - logs:*
             - s3:*

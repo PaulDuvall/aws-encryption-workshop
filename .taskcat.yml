@@ -11,6 +11,8 @@ tests:
 #      CodeCommitS3Bucket: ceoa-workshop
 #      CodeCommitS3Key: ceoa-1-examples.zip
 #    template: ./lesson1-automate/ceoa-1-pipeline.yml
+  # l2:
+  #   template: ./lesson2-manage/ceoa-2-kms.yml
   # l4:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop
@@ -26,6 +28,8 @@ tests:
 #    template: ./lesson5-rest/ceoa-5-s3.yml
   l5-rest-kms:
     template: ./lesson5-rest/ceoa-5-kms.yml
+  # l7-log-cloudtrail:
+  #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
   # l8:
   #   parameters:
   #     ComplianceResourceId: ceoa-82-s3-test
