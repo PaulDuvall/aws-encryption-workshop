@@ -4,10 +4,8 @@ Description: CloudFront configuration for S3 bucket
 Parameters: 
   SiteBucketName:
     Type: String
-    Default: "test"
   CertificateExportName:
     Type: String
-    Default: "test"
   CloudFrontCName: 
     Type: String 
     Description: "CloudFront CNames" 
@@ -16,7 +14,6 @@ Parameters:
     Type: String 
     Description: "Hosted Zone Id" 
     Default: "ZLND5TXS03SWZ" 
- 
 Resources: 
   CloudFrontOriginAccessIdentity: 
     Type: "AWS::CloudFront::CloudFrontOriginAccessIdentity" 

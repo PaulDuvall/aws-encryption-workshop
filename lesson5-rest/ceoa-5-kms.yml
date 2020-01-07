@@ -1,6 +1,11 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Create a KMS Key
+Parameters: 
+  IAMUser: 
+    Type: String 
+    Description: "IAM Username. See https://console.aws.amazon.com/iam/home#/users" 
+    Default: "ceoa" 
 Resources:
   DynamoDBKey:
     Type: AWS::KMS::Key
@@ -24,7 +29,7 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - !Sub arn:aws:iam::${AWS::AccountId}:user/ceoa
+                - !Sub arn:aws:iam::${AWS::AccountId}:user/${IAMUser}
             Action:
               - kms:Create*
               - kms:Describe*
@@ -43,7 +48,7 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - !Sub arn:aws:iam::${AWS::AccountId}:user/ceoa
+                - !Sub arn:aws:iam::${AWS::AccountId}:user/${IAMUser}
             Action:
               - kms:Encrypt
               - kms:Decrypt
