@@ -2,18 +2,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: This template creates one or more Amazon resources. 
   You will be billed for AWS resources used if you create a stack
-Parameters:
-  QueueName:
-    Type: String
-    Default: ceoa-1-queue
-    AllowedPattern: "[\\x20-\\x7E]*"
-    ConstraintDescription: Can contain only ASCII characters.
 Resources:
   MyQueue:
     Type: AWS::SQS::Queue
     Properties:
-      QueueName:
-        Ref: QueueName
+      QueueName: !Sub SampleQueue-${AWS::StackName}
 Outputs:
   SourceQueueARN: 
     Description: "ARN of source queue"
