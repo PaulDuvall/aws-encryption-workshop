@@ -30,11 +30,16 @@ tests:
   #   template: ./lesson5-rest/ceoa-5-s3.yml
   # l5-rest-kms:
   #   template: ./lesson5-rest/ceoa-5-kms.yml
+  l6-detect:
+    parameters:
+      CodeCommitS3Bucket: ceoa-workshop
+      CodeCommitS3Key: ceoa-6-examples.zip
+    template: ./lesson6-detect/ceoa-6-mcr-pipeline.yml
   # l7-log-cloudtrail:
   #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
-  l8:
-    parameters:
-      S3ComplianceResourceId: ceoa-82-s3-test
-      CodeCommitS3Bucket: ceoa-workshop
-      CodeCommitS3Key: ceoa-8-examples.zip
-    template: ./lesson8-continuous/ceoa-8-pipeline.yml
+  # l8:
+  #   parameters:
+  #     S3ComplianceResourceId: ceoa-82-s3-test
+  #     CodeCommitS3Bucket: ceoa-workshop
+  #     CodeCommitS3Key: ceoa-8-examples.zip
+  #   template: ./lesson8-continuous/ceoa-8-pipeline.yml
