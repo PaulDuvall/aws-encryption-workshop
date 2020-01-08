@@ -34,7 +34,7 @@ tests:
   #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
   l8:
     parameters:
-      ComplianceResourceId: ceoa-82-s3-test
+      S3ComplianceResourceId: ceoa-82-s3-test
       CodeCommitS3Bucket: ceoa-workshop
       CodeCommitS3Key: ceoa-8-examples.zip
     template: ./lesson8-continuous/ceoa-8-pipeline.yml
