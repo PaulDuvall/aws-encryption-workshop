@@ -140,12 +140,6 @@ Resources:
             Resource:
             - arn:aws:cloudformation:us-east-1:aws:transform/Serverless-2016-10-31
         PolicyName: CloudFormationRolePolicy
-      RoleName:
-        Fn::Join:
-        - "-"
-        - - stelligent
-          - Ref: AWS::StackName
-          - CloudFormation
     Type: AWS::IAM::Role
   CodePipelineRole:
     Type: AWS::IAM::Role
