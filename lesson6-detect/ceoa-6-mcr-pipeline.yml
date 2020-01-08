@@ -206,7 +206,7 @@ Resources:
             BranchName:
               Ref: RepositoryBranch
             RepositoryName:
-              Ref: AWS::StackName
+              Ref: ArtifactBucket
           RunOrder: 1
       - Name: Build
         Actions:
