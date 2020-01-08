@@ -4,6 +4,8 @@ project:
     - us-east-1
     # - us-east-2
 tests:
+  l0-test-ssm-param:
+    template: ./lesson0-setup/test-ssm-param.yml
   # lesson1-automate:
   #   template: ./lesson1-automate/ceoa-1-cfn.yml
   # lesson1-pipeline:
@@ -11,8 +13,8 @@ tests:
   #     CodeCommitS3Bucket: ceoa-workshop
   #     CodeCommitS3Key: ceoa-1-examples.zip
   #   template: ./lesson1-automate/ceoa-1-pipeline.yml
-  l2:
-    template: ./lesson2-manage/ceoa-2-kms.yml
+  # l2:
+  #   template: ./lesson2-manage/ceoa-2-kms.yml
   # l4:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop

@@ -1,3 +1,8 @@
+Parameters: 
+  SSMParam: 
+    Type: AWS::SSM::Parameter::Name 
+    Description: Ensure this SSM Parameter exists
+    Default: "ContinuousAssessmentInput" 
 Resources:
   BasicParameter:
     Type: "AWS::SSM::Parameter"
@@ -6,3 +11,6 @@ Resources:
       Type: "String"
       Value: !Sub "${AWS::StackName}"
       Description: "SSM Parameter for running date command."
+      
+      
+      
