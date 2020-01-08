@@ -75,7 +75,7 @@ Resources:
     Type: AWS::CodeCommit::Repository
     Properties:
       RepositoryName:
-        Ref: AWS::StackName
+        Ref: ArtifactBucket
       RepositoryDescription: CodeCommit Repository for Config Rule solution
       Code:
         S3:
