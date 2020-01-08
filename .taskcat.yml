@@ -4,8 +4,8 @@ project:
     - us-east-1
     # - us-east-2
 tests:
-  l0-test-ssm-param:
-    template: ./lesson0-setup/test-ssm-param.yml
+  # l0-test-ssm-param:
+  #   template: ./lesson0-setup/test-ssm-param.yml
   # lesson1-automate:
   #   template: ./lesson1-automate/ceoa-1-cfn.yml
   # lesson1-pipeline:
@@ -32,9 +32,9 @@ tests:
   #   template: ./lesson5-rest/ceoa-5-kms.yml
   # l7-log-cloudtrail:
   #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
-  # l8:
-  #   parameters:
-  #     ComplianceResourceId: ceoa-82-s3-test
-  #     CodeCommitS3Bucket: ceoa-workshop
-  #     CodeCommitS3Key: ceoa-8-examples.zip
-  #   template: ./lesson8-continuous/ceoa-8-pipeline.yml
+  l8:
+    parameters:
+      ComplianceResourceId: ceoa-82-s3-test
+      CodeCommitS3Bucket: ceoa-workshop
+      CodeCommitS3Key: ceoa-8-examples.zip
+    template: ./lesson8-continuous/ceoa-8-pipeline.yml
