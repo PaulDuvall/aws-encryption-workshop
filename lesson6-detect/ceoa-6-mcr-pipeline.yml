@@ -44,7 +44,6 @@ Resources:
           Version: '2012-10-17'
   CodeBuildConfigRules:
     Type: AWS::CodeBuild::Project
-    DependsOn: CodeBuildRole
     Properties:
       Name: !Sub ${AWS::StackName}-codepipeline
       Description: Build application
@@ -53,7 +52,7 @@ Resources:
         - CodeBuildRole
         - Arn
       Artifacts:
-        Type: no_artifacts
+        Type: NO_ARTIFACTS
       Environment:
         EnvironmentVariables:
         - Name: S3_BUCKET
@@ -91,9 +90,6 @@ Resources:
         Events:
         - all
   CloudFormationTrustRole:
-    DependsOn:
-    - ArtifactBucket
-    Description: Creating service role in IAM for AWS CloudFormation
     Properties:
       AssumeRolePolicyDocument:
         Statement:
@@ -267,7 +263,7 @@ Resources:
             Category: Deploy
             Owner: AWS
             Provider: CloudFormation
-            Version: 1
+            Version: "1"
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: pipeline-changeset
