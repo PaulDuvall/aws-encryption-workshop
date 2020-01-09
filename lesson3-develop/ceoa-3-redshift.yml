@@ -6,6 +6,7 @@ Parameters:
     Type: String
     Description: MasterUserPassword
     Default: "Password9875"
+    NoEcho: true
 Resources:
     myCluster: 
       Type: "AWS::Redshift::Cluster"
