@@ -5,7 +5,7 @@ Parameters:
   MasterUserPassword:
     Type: String
     Description: MasterUserPassword
-    Default: "ceoa-3-redshift-password"
+    Default: "CEOA-3-redshift-password"
     NoEcho: true
 Resources:
     myCluster: 
