@@ -116,6 +116,8 @@ Resources:
             - kms:*
             - lambda:*
             - logs:*
+            - redshift:*
+            - secretsmanager:*
             - s3:*
             - sns:*
             - sqs:*
