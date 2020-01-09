@@ -103,6 +103,7 @@ Resources:
         PolicyDocument:
           Statement:
           - Action:
+            - apigateway:*
             - cloudformation:*
             - cloudwatch:*
             - cloudtrail:*
@@ -117,6 +118,7 @@ Resources:
             - lambda:*
             - logs:*
             - redshift:*
+            - rds:*
             - secretsmanager:*
             - s3:*
             - sns:*
