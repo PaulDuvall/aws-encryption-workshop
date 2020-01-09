@@ -9,7 +9,7 @@ from botocore.exceptions import ClientError
 
 def get_secret():
 
-    secret_name = "SECRETS-MANAGER-SECRET-NAME"
+    secret_name = "ceoa-32b-redshift"
     region_name = "us-east-1"
 
     # Create a Secrets Manager client

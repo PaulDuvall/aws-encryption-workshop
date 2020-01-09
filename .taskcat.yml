@@ -15,8 +15,10 @@ tests:
   #   template: ./lesson1-automate/ceoa-1-pipeline.yml
   # l2:
   #   template: ./lesson2-manage/ceoa-2-kms.yml
-  l3-develop:
-    template: ./lesson3-develop/ceoa-3-redshift.yml
+  # l3-develop:
+  #   template: ./lesson3-develop/ceoa-3-redshift.yml
+  l3-rds-secrets:
+    template: ./lesson3-develop/ceoa-3-rds-rotate-secrets.yml
   # l4:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop

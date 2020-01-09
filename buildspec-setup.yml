@@ -20,6 +20,9 @@ phases:
       - cd ../lesson2-manage
       - zip ceoa-2-examples.zip *.*
       - 'aws s3 sync . s3://ceoa-workshop'
+      - cd ../lesson3-develop
+      - zip ceoa-3-examples.zip *.*
+      - 'aws s3 sync . s3://ceoa-workshop'
       - cd ../lesson4-transit
       - zip ceoa-4-examples.zip *.*
       - 'aws s3 sync . s3://ceoa-workshop'
