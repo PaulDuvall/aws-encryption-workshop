@@ -13,15 +13,16 @@ tests:
   #     CodeCommitS3Bucket: ceoa-workshop
   #     CodeCommitS3Key: ceoa-1-examples.zip
   #   template: ./lesson1-automate/ceoa-1-pipeline.yml
-  l2-iam:
-    parameters:
-      MyUsername: ceoa-$[taskcat_genuuid]
-      MyPassword: $[taskcat_genpass_8A]
-    template: ./lesson2-manage/ceoa-2-iam-user.yml
+  # l2-iam:
+  #   parameters:
+  #     # MyUsername: ceoa-$[taskcat_genuuid]
+  #     MyUsername: ceoa
+  #     MyPassword: $[taskcat_genpass_8A]
+  #   template: ./lesson2-manage/ceoa-2-iam-user.yml
   # l2-kms:
   #   template: ./lesson2-manage/ceoa-2-kms.yml
-  # l3-develop:
-  #   template: ./lesson3-develop/ceoa-3-redshift.yml
+  l3-develop:
+    template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-rds-secrets:
   #   template: ./lesson3-develop/ceoa-3-rds-rotate-secrets.yml
   # l4:
