@@ -15,6 +15,7 @@ tests:
   #   template: ./lesson1-automate/ceoa-1-pipeline.yml
   l2-iam:
     parameters:
+      MyUsername: ceoa-$[taskcat_genuuid]
       MyPassword: $[taskcat_genpass_8A]
     template: ./lesson2-manage/ceoa-2-iam-user.yml
   # l2-kms:
