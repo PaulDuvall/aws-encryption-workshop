@@ -2,15 +2,16 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Create an IAM User
 Parameters: 
-  MyUser: 
+  MyUsername: 
     Type: String 
     Description: "IAM Username. See https://console.aws.amazon.com/iam/home#/users" 
     Default: "ceoa" 
   MyPassword: 
     Type: String 
     Description: "Password for MyUser See https://console.aws.amazon.com/iam/home#/users" 
+    NoEcho: true
   IAMGroup: 
-    Type: String 
+    Type: List 
     Description: "IAM Group to assign to MyUser"
     Default: "Administrators" 
 Resources:
@@ -20,7 +21,7 @@ Resources:
       Groups:
         Ref: IAMGroup
       UserName:
-        Ref: MyUser
+        Ref: MyUsername
       LoginProfile:
         Password:
           Ref: MyPassword
