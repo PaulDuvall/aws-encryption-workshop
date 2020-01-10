@@ -1,0 +1,31 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Create an IAM User
+Parameters: 
+  MyUser: 
+    Type: String 
+    Description: "IAM Username. See https://console.aws.amazon.com/iam/home#/users" 
+    Default: "ceoa" 
+  MyPassword: 
+    Type: String 
+    Description: "Password for MyUser See https://console.aws.amazon.com/iam/home#/users" 
+  IAMGroup: 
+    Type: String 
+    Description: "IAM Group to assign to MyUser"
+    Default: "Administrators" 
+Resources:
+  MyUser:
+    Type: AWS::IAM::User
+    Properties:
+      Groups:
+        Ref: IAMGroup
+      UserName:
+        Ref: MyUser
+      LoginProfile:
+        Password:
+          Ref: MyPassword
+        PasswordResetRequired: false
+Outputs:
+  Username:
+    Value: !Ref MyUser
+    Description: Generated Username
