@@ -11,7 +11,7 @@ Parameters:
     Description: "Password for MyUser See https://console.aws.amazon.com/iam/home#/users" 
     NoEcho: true
   IAMGroup: 
-    Type: List 
+    Type: CommaDelimitedList 
     Description: "IAM Group to assign to MyUser"
     Default: "Administrators" 
 Resources:
