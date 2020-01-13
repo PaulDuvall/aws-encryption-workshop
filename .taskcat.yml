@@ -21,10 +21,12 @@ tests:
   #   template: ./lesson2-manage/ceoa-2-iam-user.yml
   # l2-kms:
   #   template: ./lesson2-manage/ceoa-2-kms.yml
-  l3-develop:
-    template: ./lesson3-develop/ceoa-3-redshift.yml
+  # l3-redshift:
+  #   template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-rds-secrets:
   #   template: ./lesson3-develop/ceoa-3-rds-rotate-secrets.yml
+  l3-secrets:
+    template: ./lesson3-develop/ceoa-3-sm
   # l4:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop
