@@ -33,13 +33,13 @@ Resources:
   MyDBInstance:
     Type: AWS::RDS::DBInstance
     Properties:
-      AllocatedStorage: "20"
+      AllocatedStorage: 20
       DBInstanceClass: db.t2.micro
       Engine: mysql
       MasterUsername: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:username}}' ]]
       MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password}}' ]]
       BackupRetentionPeriod: 0
-      DBInstanceIdentifier: !Ref AWS::StackName
+      DBInstanceIdentifier: 'rotation-instance'
 
   #This is a SecretTargetAttachment resource which updates the referenced Secret resource with properties about
   #the referenced RDS instance
@@ -61,7 +61,7 @@ Resources:
       SecretId: !Ref MyRDSInstanceRotationSecret
       RotationLambdaARN: !GetAtt MyRotationLambda.Arn
       RotationRules:
-        AutomaticallyAfterDays: 1
+        AutomaticallyAfterDays: 30
 
   #This is ResourcePolicy resource which can be used to attach a resource policy to the referenced secret.
   #The resource policy in this example denies the DeleteSecret action to all principals within the current account
@@ -84,11 +84,11 @@ Resources:
   MyRotationLambda:
     Type: AWS::Lambda::Function
     Properties:
-      Runtime: python2.7
+      Runtime: python3.8
       Role: !GetAtt MyLambdaExecutionRole.Arn
       Handler: lambda_function.lambda_handler
       Description: 'This is a lambda to rotate MySql user passwd'
-      FunctionName: !Ref AWS::StackId
+      FunctionName: 'cfn-rotation-lambda'
       Environment:
         Variables:
           SECRETS_MANAGER_ENDPOINT: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
@@ -101,7 +101,7 @@ Resources:
     Type: AWS::Lambda::Permission
     DependsOn: MyRotationLambda
     Properties:
-      FunctionName: !Ref AWS::StackId
+      FunctionName: 'cfn-rotation-lambda'
       Action: 'lambda:InvokeFunction'
       Principal: secretsmanager.amazonaws.com
 
@@ -110,6 +110,7 @@ Resources:
   MyLambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
+      RoleName: 'cfn-rotation-lambda-role'
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -154,5 +155,4 @@ Resources:
                 Action:
                   - "kms:Decrypt"
                   - "kms:DescribeKey"
-                  - "kms:GenerateDataKey"
-                Resource: "*"
+                  - "kms:Genera
