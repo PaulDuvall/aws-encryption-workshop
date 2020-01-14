@@ -25,8 +25,8 @@ tests:
   #   template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-rds-secrets:
   #   template: ./lesson3-develop/ceoa-3-rds-rotate-secrets.yml
-  l3-secrets:
-    template: ./lesson3-develop/ceoa-3-sm.yml
+  # l3-secrets:
+  #   template: ./lesson3-develop/ceoa-3-sm.yml
   # l4:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop
