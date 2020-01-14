@@ -61,7 +61,7 @@ Resources:
       SecretId: !Ref MyRDSInstanceRotationSecret
       RotationLambdaARN: !GetAtt MyRotationLambda.Arn
       RotationRules:
-        AutomaticallyAfterDays: 30
+        AutomaticallyAfterDays: 1
 
   #This is ResourcePolicy resource which can be used to attach a resource policy to the referenced secret.
   #The resource policy in this example denies the DeleteSecret action to all principals within the current account
@@ -155,4 +155,5 @@ Resources:
                 Action:
                   - "kms:Decrypt"
                   - "kms:DescribeKey"
-                  - "kms:Genera
+                  - "kms:GenerateDataKey"
+                Resource: "*"
