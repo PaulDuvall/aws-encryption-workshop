@@ -1,5 +1,14 @@
 ---
 Description: "This is an example template to demonstrate CloudFormation resources for Secrets Manager"
+Parameters:
+  MyS3Bucket:
+    Description: S3 bucket that holds zip of source code for CodeCommit Repo
+    Type: String
+    Default: aws-sm-lambda-code.zip
+  MyS3Key:
+    Description: zipfile key located in CodeCommitS3Bucket 
+    Type: String
+    Default: ceoa-lambda
 Resources:
 
   #This is a Secret resource with a randomly generated password in its SecretString JSON.
@@ -84,9 +93,8 @@ Resources:
         Variables:
           SECRETS_MANAGER_ENDPOINT: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
       Code:
-        S3Bucket: <% name-of-s3-bucket-that-contains-lambda-function-code %>
-        S3Key: <% path-and-filename-of-zip-file-that-contains-lambda-function-code %>
-        S3ObjectVersion: <% lambda-zip-file-version-if-s3-bucket-versioning-is-enabled %>
+        S3Bucket: !Ref MyS3Bucket
+        S3Key: !Ref MyS3Key
 
   #This is a lambda Permission resource which grants Secrets Manager permission to invoke the rotation lambda function
   LambdaInvokePermission:
