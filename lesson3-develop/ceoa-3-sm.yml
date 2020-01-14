@@ -39,7 +39,7 @@ Resources:
       MasterUsername: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:username}}' ]]
       MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password}}' ]]
       BackupRetentionPeriod: 0
-      DBInstanceIdentifier: !Ref AWS::StackId
+      DBInstanceIdentifier: !Ref AWS::StackName
 
   #This is a SecretTargetAttachment resource which updates the referenced Secret resource with properties about
   #the referenced RDS instance
