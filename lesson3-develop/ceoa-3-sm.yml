@@ -4,11 +4,11 @@ Parameters:
   MyS3Bucket:
     Description: S3 bucket that holds zip of source code for CodeCommit Repo
     Type: String
-    Default: aws-sm-lambda-code.zip
+    Default: ceoa-lambda
   MyS3Key:
     Description: zipfile key located in CodeCommitS3Bucket 
     Type: String
-    Default: ceoa-lambda
+    Default: aws-sm-lambda-code.zip
 Resources:
 
   #This is a Secret resource with a randomly generated password in its SecretString JSON.
