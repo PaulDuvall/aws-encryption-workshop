@@ -4,7 +4,7 @@ import json
 from botocore.exceptions import ClientError
 
 def get_secret():
-    secret_name = "MySecretName"
+    secret_name = "MyRDSInstanceRotationSecret-W2tKLVGFlSD7"
     region_name = "us-east-1"
 
     session = boto3.session.Session()
