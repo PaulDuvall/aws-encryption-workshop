@@ -1,14 +1,18 @@
 ---
 Description: "This is an example template to demonstrate CloudFormation resources for Secrets Manager"
 Parameters:
-  S3BucketLambdaAutoRotate:
+  S3BucketLambda:
     Description: S3 bucket that holds Lambda code
     Type: String
     Default: ceoa-lambda
   S3KeyLambdaAutoRotate:
     Description: zipfile key for Lambda code
     Type: String
-    Default: aws-sm-lambda-code.zip
+    Default: lambda-auto-rotate.zip
+  S3KeyPyMySQL:
+    Description: zipfile key for Python MySQL Package
+    Type: String
+    Default: pymysql.zip
 Resources:
 
   #This is a Secret resource with a randomly generated password in its SecretString JSON.
@@ -77,6 +81,19 @@ Resources:
               AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
             Action: secretsmanager:DeleteSecret
             Resource: "*"
+  MyLayer:
+    Type: AWS::Lambda::LayerVersion
+    Properties:
+      CompatibleRuntimes:
+        - python3.6
+        - python3.7
+        - python3.8
+      Content:
+        S3Bucket: !Ref S3BucketLambda
+        S3Key: !Ref S3KeyPyMySQL
+      Description: My layer
+      LayerName: my-layer
+      LicenseInfo: MIT
 
   #This is a lambda Function resource. We will use this lambda to rotate secrets
   #For details about rotation lambdas, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html
@@ -89,11 +106,12 @@ Resources:
       Handler: lambda_function.lambda_handler
       Description: 'This is a lambda to rotate MySql user passwd'
       FunctionName: 'cfn-rotation-lambda'
+      Layers: [!Ref MyLayer]
       Environment:
         Variables:
           SECRETS_MANAGER_ENDPOINT: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
       Code:
-        S3Bucket: !Ref S3BucketLambdaAutoRotate
+        S3Bucket: !Ref S3BucketLambda
         S3Key: !Ref S3KeyLambdaAutoRotate
 
   #This is a lambda Permission resource which grants Secrets Manager permission to invoke the rotation lambda function
