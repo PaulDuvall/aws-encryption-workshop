@@ -113,10 +113,7 @@ Resources:
   LambdaInvokePermission:
     Type: AWS::Lambda::Permission
     Properties:
-      FunctionName:
-        'Fn::GetAtt':
-          - MyRotationLambda
-          - Arn
+      FunctionName: !Ref MyRotationLambda
       Action: 'lambda:InvokeFunction'
       Principal: secretsmanager.amazonaws.com
 
