@@ -102,6 +102,7 @@ Resources:
       Handler: lambda_function.lambda_handler
       Description: 'This is a lambda to rotate MySql user passwd'
       Layers: [!Ref PyMySqlLayer]
+      FunctionName: 'cfn-rotation-lambda'
       Environment:
         Variables:
           SECRETS_MANAGER_ENDPOINT: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
@@ -148,7 +149,7 @@ Resources:
                 Resource: !Sub 'arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:*'
                 Condition:
                   StringEquals:
-                    secretsmanager:resource/AllowRotationLambdaArn: !Sub 'arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${MyRotationLambda}'
+                    secretsmanager:resource/AllowRotationLambdaArn: !Sub 'arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:cfn-rotation-lambda'
               -
                 Effect: "Allow"
                 Action:
