@@ -112,7 +112,6 @@ Resources:
   #This is a lambda Permission resource which grants Secrets Manager permission to invoke the rotation lambda function
   LambdaInvokePermission:
     Type: AWS::Lambda::Permission
-    DependsOn: MyRotationLambda
     Properties:
       FunctionName:
         'Fn::GetAtt':
