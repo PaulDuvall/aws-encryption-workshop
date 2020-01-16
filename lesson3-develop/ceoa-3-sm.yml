@@ -1,5 +1,5 @@
 ---
-Description: "This is an example template to demonstrate CloudFormation resources for Secrets Manager"
+Description: "Auto Rotation of Secrets in Secrets Manager for RDS Database"
 Parameters:
   S3BucketLambda:
     Description: S3 bucket that holds Lambda code
