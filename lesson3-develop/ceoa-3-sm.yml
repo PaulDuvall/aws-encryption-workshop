@@ -1,5 +1,5 @@
 ---
-Description: "Auto Rotation of Secrets in Secrets Manager for RDS Database"
+Description: "This is an example template to demonstrate CloudFormation resources for Secrets Manager"
 Parameters:
   S3BucketLambda:
     Description: S3 bucket that holds Lambda code
@@ -40,6 +40,7 @@ Resources:
       MasterUsername: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:username}}' ]]
       MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password}}' ]]
       BackupRetentionPeriod: 0
+      DBInstanceIdentifier: 'rotation-instance'
 
   #This is a SecretTargetAttachment resource which updates the referenced Secret resource with properties about
   #the referenced RDS instance
@@ -77,7 +78,7 @@ Resources:
               AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
             Action: secretsmanager:DeleteSecret
             Resource: "*"
-  PyMySqlLayer:
+  MyLayer:
     Type: AWS::Lambda::LayerVersion
     Properties:
       CompatibleRuntimes:
@@ -87,11 +88,11 @@ Resources:
       Content:
         S3Bucket: !Ref S3BucketLambda
         S3Key: !Ref S3KeyPyMySQL
-      Description: Layer for the PyMySQL Package
-      LayerName: pymysql-layer
-      LicenseInfo: MIT PyMySQL contributors
+      Description: My layer
+      LayerName: my-layer
+      LicenseInfo: MIT
 
-  #This is a lambda Function resource.  We will use this lambda to rotate secrets
+  #This is a lambda Function resource. We will use this lambda to rotate secrets
   #For details about rotation lambdas, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html
   #The below example assumes that the lambda code has been uploaded to a S3 bucket, and that it will rotate a mysql database password
   MyRotationLambda:
@@ -101,8 +102,8 @@ Resources:
       Role: !GetAtt MyLambdaExecutionRole.Arn
       Handler: lambda_function.lambda_handler
       Description: 'This is a lambda to rotate MySql user passwd'
-      Layers: [!Ref PyMySqlLayer]
       FunctionName: 'cfn-rotation-lambda'
+      Layers: [!Ref MyLayer]
       Environment:
         Variables:
           SECRETS_MANAGER_ENDPOINT: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
@@ -124,6 +125,7 @@ Resources:
   MyLambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
+      RoleName: 'cfn-rotation-lambda-role'
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -181,5 +183,5 @@ Outputs:
     Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/functions/${MyRotationLambda}
     Description: Lambda Function URL
   LambdaLayerUrl:
-    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/layers/
+    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/layers/${MyLa/versions/2
     Description: Lambda Layer URL
