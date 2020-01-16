@@ -78,7 +78,7 @@ Resources:
               AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'
             Action: secretsmanager:DeleteSecret
             Resource: "*"
-  MyLayer:
+  PyMySqlLayer:
     Type: AWS::Lambda::LayerVersion
     Properties:
       CompatibleRuntimes:
@@ -88,9 +88,9 @@ Resources:
       Content:
         S3Bucket: !Ref S3BucketLambda
         S3Key: !Ref S3KeyPyMySQL
-      Description: My layer
-      LayerName: my-layer
-      LicenseInfo: MIT
+      Description: Layer for the PyMySQL Package
+      LayerName: pymysql-layer
+      LicenseInfo: MIT PyMySQL contributors
 
   #This is a lambda Function resource. We will use this lambda to rotate secrets
   #For details about rotation lambdas, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html
@@ -102,8 +102,7 @@ Resources:
       Role: !GetAtt MyLambdaExecutionRole.Arn
       Handler: lambda_function.lambda_handler
       Description: 'This is a lambda to rotate MySql user passwd'
-      FunctionName: 'cfn-rotation-lambda'
-      Layers: [!Ref MyLayer]
+      Layers: [!Ref PyMySqlLayer]
       Environment:
         Variables:
           SECRETS_MANAGER_ENDPOINT: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
@@ -116,7 +115,7 @@ Resources:
     Type: AWS::Lambda::Permission
     DependsOn: MyRotationLambda
     Properties:
-      FunctionName: 'cfn-rotation-lambda'
+      FunctionName: !Ref MyRotationLambda
       Action: 'lambda:InvokeFunction'
       Principal: secretsmanager.amazonaws.com
 
@@ -172,3 +171,16 @@ Resources:
                   - "kms:DescribeKey"
                   - "kms:GenerateDataKey"
                 Resource: "*"
+Outputs:
+  SecretsManagerUrl:
+    Value: !Sub https://console.aws.amazon.com/secretsmanager/home?region=${AWS::Region}#/secret?name=${MyRDSInstanceRotationSecret}
+    Description: Secrets Manager URL
+  RDSInstanceUrl:
+    Value: !Sub https://console.aws.amazon.com/rds/home?region=${AWS::Region}#database:id=${MyDBInstance};is-cluster=false
+    Description: RDS Instance URL
+  LambdaFunctionUrl:
+    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/functions/${MyRotationLambda}
+    Description: Lambda Function URL
+  LambdaLayerUrl:
+    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/layers/${MyLa/versions/2
+    Description: Lambda Layer URL
