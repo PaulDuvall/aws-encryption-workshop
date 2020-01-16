@@ -6,8 +6,8 @@ project:
 tests:
   # l0-test-ssm-param:
   #   template: ./lesson0-setup/test-ssm-param.yml
-  lesson1-automate:
-    template: ./lesson1-automate/ceoa-1-cfn.yml
+  # lesson1-automate:
+  #   template: ./lesson1-automate/ceoa-1-cfn.yml
   # lesson1-pipeline:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop
@@ -25,6 +25,11 @@ tests:
   #   template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-secrets:
   #   template: ./lesson3-develop/ceoa-3-sm.yml
+  l3-lambda-layer:
+    parameters:
+      S3Bucket: ceoa-workshop
+      S3Key: lesson3-develop/pymysql.zip
+    template: ./lesson3-develop/ceoa-3-lambda-layers.yml
   # l4:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop
