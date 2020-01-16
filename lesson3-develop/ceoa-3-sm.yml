@@ -101,6 +101,7 @@ Resources:
       Role: !GetAtt MyLambdaExecutionRole.Arn
       Handler: lambda_function.lambda_handler
       Description: 'This is a lambda to rotate MySql user passwd'
+      FunctionName: !Sub '${MyRotationLambda}'
       Layers: [!Ref PyMySqlLayer]
       Environment:
         Variables:
