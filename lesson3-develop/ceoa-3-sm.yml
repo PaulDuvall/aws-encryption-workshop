@@ -91,7 +91,7 @@ Resources:
       LayerName: pymysql-layer
       LicenseInfo: MIT PyMySQL contributors
 
-  #This is a lambda Function resource. We will use this lambda to rotate secrets
+  #This is a lambda Function resource.  We will use this lambda to rotate secrets
   #For details about rotation lambdas, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html
   #The below example assumes that the lambda code has been uploaded to a S3 bucket, and that it will rotate a mysql database password
   MyRotationLambda:
