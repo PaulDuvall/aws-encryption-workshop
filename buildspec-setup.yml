@@ -26,8 +26,14 @@ phases:
       - cd ../lesson4-transit
       - zip ceoa-4-examples.zip *.*
       - 'aws s3 sync . s3://ceoa-workshop'
+      - cd ../lesson5-rest
+      - zip ceoa-5-examples.zip *.*
+      - 'aws s3 sync . s3://ceoa-workshop'
       - cd ../lesson6-detect
       - zip ceoa-6-examples.zip *.*
+      - 'aws s3 sync . s3://ceoa-workshop'
+      - cd ../lesson7-log
+      - zip ceoa-7-examples.zip *.*
       - 'aws s3 sync . s3://ceoa-workshop'
       - cd ../lesson8-continuous
       - zip ceoa-8-examples.zip *.*
