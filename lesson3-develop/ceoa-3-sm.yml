@@ -4,15 +4,12 @@ Parameters:
   S3BucketLambda:
     Description: S3 bucket that holds Lambda code
     Type: String
-    Default: ceoa-lambda
   S3KeyLambdaAutoRotate:
     Description: zipfile key for Lambda code
     Type: String
-    Default: lambda-auto-rotate.zip
   S3KeyPyMySQL:
     Description: zipfile key for Python MySQL Package
     Type: String
-    Default: pymysql.zip
 Resources:
 
   #This is a Secret resource with a randomly generated password in its SecretString JSON.
