@@ -40,7 +40,6 @@ Resources:
       MasterUsername: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:username}}' ]]
       MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password}}' ]]
       BackupRetentionPeriod: 0
-      DBInstanceIdentifier: 'rotation-instance'
 
   #This is a SecretTargetAttachment resource which updates the referenced Secret resource with properties about
   #the referenced RDS instance
@@ -124,7 +123,6 @@ Resources:
   MyLambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: 'cfn-rotation-lambda-role'
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -182,5 +180,5 @@ Outputs:
     Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/functions/${MyRotationLambda}
     Description: Lambda Function URL
   LambdaLayerUrl:
-    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/layers/${MyLa/versions/2
+    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/layers/${PyMySqlLayer}
     Description: Lambda Layer URL
