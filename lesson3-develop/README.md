@@ -1,3 +1,5 @@
 # Lesson 3 - Developing with Encryption
 
-Some of this sublesson is based on the [RDS Secrets Rotation example](https://github.com/aws-samples/automating-governance-sample) which was originally written by AWS as described at [How to securely provide database credentials to Lambda functions by using AWS Secrets Manager](https://aws.amazon.com/blogs/security/how-to-securely-provide-database-credentials-to-lambda-functions-by-using-aws-secrets-manager/).
+Some of this sublesson is based on these examples:
+* [Automating Secret Creation in AWS CloudFormation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_cloudformation.html#integrating_cloudformation_examples)
+* [Contains Lambda functions to be used for automatic rotation of secrets stored in AWS Secrets Manager](https://github.com/aws-samples/aws-secrets-manager-rotation-lambdas)
