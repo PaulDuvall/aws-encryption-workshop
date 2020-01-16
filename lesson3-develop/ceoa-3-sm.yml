@@ -114,7 +114,10 @@ Resources:
     Type: AWS::Lambda::Permission
     DependsOn: MyRotationLambda
     Properties:
-      FunctionName: !Ref MyRotationLambda
+      FunctionName:
+        'Fn::GetAtt':
+          - MyRotationLambda
+          - Arn
       Action: 'lambda:InvokeFunction'
       Principal: secretsmanager.amazonaws.com
 
@@ -180,5 +183,5 @@ Outputs:
     Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/functions/${MyRotationLambda}
     Description: Lambda Function URL
   LambdaLayerUrl:
-    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/layers/${PyMySqlLayer}
+    Value: !Sub https://console.aws.amazon.com/lambda/home?region=${AWS::Region}#/layers/
     Description: Lambda Layer URL
