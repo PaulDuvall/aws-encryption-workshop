@@ -10,7 +10,48 @@ Parameters:
   S3KeyPyMySQL:
     Description: zipfile key for Python MySQL Package
     Type: String
+    
 Resources:
+  VPC:
+    Type: "AWS::EC2::VPC"
+    Properties:
+      CidrBlock: "10.0.0.0/16"
+      Tags:
+        - Key: Name
+          Value: RDSLambda
+
+  SubnetA:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      AvailabilityZone: !Select [0, !GetAZs ]
+      CidrBlock: "10.0.1.0/24"
+      MapPublicIpOnLaunch: true
+      VpcId: !Ref VPC
+
+  SG2:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: "RDSLambdaSG"
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        -
+          CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          ToPort: "3306"
+          FromPort: "3306"
+        -
+          CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          ToPort: "3306"
+          FromPort: "3306"
+      SecurityGroupEgress:
+        -
+          CidrIp: 0.0.0.0/0
+          ToPort: "-1"
+          IpProtocol: "-1"
+      Tags:
+        - Key: Name
+          Value: RDSLambdaSG
 
   #This is a Secret resource with a randomly generated password in its SecretString JSON.
   MyRDSInstanceRotationSecret:
@@ -110,6 +151,11 @@ Resources:
       Code:
         S3Bucket: !Ref S3BucketLambda
         S3Key: !Ref S3KeyLambdaAutoRotate
+      VpcConfig:
+        SecurityGroupIds:
+          - !Ref SG1
+        SubnetIds:
+          - !Ref SubnetA
 
   #This is a lambda Permission resource which grants Secrets Manager permission to invoke the rotation lambda function
   LambdaInvokePermission:
