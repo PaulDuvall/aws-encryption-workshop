@@ -10,7 +10,7 @@ Parameters:
   S3KeyPyMySQL:
     Description: zipfile key for Python MySQL Package
     Type: String
-    
+    Default: pymysql.zip
 Resources:
   VPC:
     Type: "AWS::EC2::VPC"
