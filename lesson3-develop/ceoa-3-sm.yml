@@ -151,11 +151,7 @@ Resources:
       Code:
         S3Bucket: !Ref S3BucketLambda
         S3Key: !Ref S3KeyLambdaAutoRotate
-      VpcConfig:
-        SecurityGroupIds:
-          - !Ref SG2
-        SubnetIds:
-          - !Ref SubnetA
+
 
   #This is a lambda Permission resource which grants Secrets Manager permission to invoke the rotation lambda function
   LambdaInvokePermission:
