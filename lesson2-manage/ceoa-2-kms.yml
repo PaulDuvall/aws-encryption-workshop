@@ -1,12 +1,31 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Create a KMS Key
+Description: Create a KMS Key. Run ceoa-2-iam-user.yml first.
 Parameters: 
-  IAMUser: 
+  MyUsername: 
     Type: String 
     Description: "IAM Username. See https://console.aws.amazon.com/iam/home#/users" 
-    Default: "ceoa" 
+    Default: "ceoa"
+  MyPassword: 
+    Type: String 
+    Description: "Password for MyUser See https://console.aws.amazon.com/iam/home#/users" 
+    NoEcho: true
+  IAMGroup: 
+    Type: CommaDelimitedList 
+    Description: "IAM Group to assign to MyUser"
+    Default: "Administrators" 
 Resources:
+  MyUser:
+    Type: AWS::IAM::User
+    Properties:
+      Groups:
+        Ref: IAMGroup
+      UserName:
+        Ref: MyUsername
+      LoginProfile:
+        Password:
+          Ref: MyPassword
+        PasswordResetRequired: false
   S3Key:
     Type: AWS::KMS::Key
     Properties:
@@ -29,7 +48,7 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - !Sub arn:aws:iam::${AWS::AccountId}:user/${IAMUser}
+                - !Sub arn:aws:iam::${AWS::AccountId}:user/${MyUser}
             Action:
               - kms:Create*
               - kms:Describe*
@@ -48,7 +67,7 @@ Resources:
             Effect: Allow
             Principal:
               AWS:
-                - !Sub arn:aws:iam::${AWS::AccountId}:user/${IAMUser}
+                - !Sub arn:aws:iam::${AWS::AccountId}:user/${MyUser}
             Action:
               - kms:Encrypt
               - kms:Decrypt
@@ -58,11 +77,11 @@ Resources:
             Resource: '*'
       Tags:
         - Key: Name
-          Value: !Sub ceoa-2-S3Key
+          Value: !Sub ${AWS::StackName}-S3Key
   S3Alias:
     Type: AWS::KMS::Alias
     Properties:
-      AliasName: !Sub alias/ceoa-2
+      AliasName: !Sub alias/${AWS::StackName}
       TargetKeyId:
         Ref: S3Key
 Outputs:
