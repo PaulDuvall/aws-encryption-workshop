@@ -20,6 +20,10 @@ tests:
   #     MyPassword: $[taskcat_genpass_8A]
   #   template: ./lesson2-manage/ceoa-2-iam-user.yml
   l2-kms:
+    parameters:
+      # MyUsername: ceoa-$[taskcat_genuuid]
+      MyUsername: ceoa
+      MyPassword: $[taskcat_genpass_8A]  
     template: ./lesson2-manage/ceoa-2-kms.yml
   # l3-redshift:
   #   template: ./lesson3-develop/ceoa-3-redshift.yml
