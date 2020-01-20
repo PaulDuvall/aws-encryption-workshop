@@ -58,11 +58,11 @@ Resources:
             Resource: '*'
       Tags:
         - Key: Name
-          Value: !Sub ${AWS::StackName}-S3Key
+          Value: !Sub ceoa-2-S3Key
   S3Alias:
     Type: AWS::KMS::Alias
     Properties:
-      AliasName: !Sub alias/${AWS::StackName}
+      AliasName: !Sub alias/ceoa-2
       TargetKeyId:
         Ref: S3Key
 Outputs:
