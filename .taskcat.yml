@@ -6,8 +6,8 @@ project:
 tests:
   # l0-test-ssm-param:
   #   template: ./lesson0-setup/test-ssm-param.yml
-  # lesson1-automate:
-  #   template: ./lesson1-automate/ceoa-1-cfn.yml
+  lesson1-automate:
+    template: ./lesson1-automate/ceoa-1-cfn.yml
   # lesson1-pipeline:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop
@@ -19,12 +19,12 @@ tests:
   #     MyUsername: ceoa
   #     MyPassword: $[taskcat_genpass_8A]
   #   template: ./lesson2-manage/ceoa-2-iam-user.yml
-  l2-kms:
-    parameters:
-      # MyUsername: ceoa-$[taskcat_genuuid]
-      MyUsername: ceoa
-      MyPassword: $[taskcat_genpass_8A]  
-    template: ./lesson2-manage/ceoa-2-kms.yml
+  # l2-kms:
+  #   parameters:
+  #     # MyUsername: ceoa-$[taskcat_genuuid]
+  #     MyUsername: ceoa
+  #     MyPassword: $[taskcat_genpass_8A]  
+  #   template: ./lesson2-manage/ceoa-2-kms.yml
   # l3-redshift:
   #   template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-secrets:
