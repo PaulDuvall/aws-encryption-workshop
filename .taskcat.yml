@@ -4,8 +4,8 @@ project:
     - us-east-1
     # - us-east-2
 tests:
-  l0-test-ssm-param:
-    template: ./lesson0-setup/test-ssm-param.yml
+  # l0-test-ssm-param:
+  #   template: ./lesson0-setup/test-ssm-param.yml
   lesson1-automate:
     template: ./lesson1-automate/ceoa-1-cfn.yml
   # lesson1-pipeline:
