@@ -1,0 +1,48 @@
+  # RDS 
+  MyDBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: 20
+      DBInstanceClass: db.t2.micro
+      Engine: mysql
+      MasterUsername: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:username}}' ]]
+      MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password}}' ]]
+      BackupRetentionPeriod: 0
+      DBInstanceIdentifier: 'rotation-instance'
+      VPCSecurityGroups: 
+        - Fn::GetAtt: SG2.GroupId
+      DBSubnetGroupName:
+        Ref: "DBSubnetGroup"
+
+  # Lambda        
+  MyRotationLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      Runtime: python2.7
+      Role: !GetAtt MyLambdaExecutionRole.Arn
+      Handler: lambda_function.lambda_handler
+      Description: 'This is a lambda to rotate MySql user passwd'
+      Layers: [!Ref PyMySqlLayer]
+      FunctionName: 'cfn-rotation-lambda'
+      Environment:
+        Variables:
+          SECRETS_MANAGER_ENDPOINT: !Sub 'https://secretsmanager.${AWS::Region}.amazonaws.com'
+      Code:
+        S3Bucket: !Ref S3BucketLambda
+        S3Key: !Ref S3KeyLambdaAutoRotate
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt: SG2.GroupId
+        SubnetIds:
+        - !Ref PrivateSubnet1
+        - !Ref PrivateSubnet2
+        
+        
+  DBSubnetGroup:
+    Type: "AWS::RDS::DBSubnetGroup"
+    Properties:
+      DBSubnetGroupDescription: "RDS Subnet Group"
+      SubnetIds:
+        - !Ref PrivateSubnet1
+        - !Ref PrivateSubnet2        
+        
