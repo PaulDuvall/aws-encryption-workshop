@@ -1,6 +1,6 @@
 ---
-Description: "This is an example template to demonstrate CloudFormation resources for Secrets Manager"
-# This template is a mixture of examples from https://github.com/widdix/aws-cf-templates/tree/master/vpc, https://github.com/aws-samples/aws-secrets-manager-rotation-lambdas/tree/master/SecretsManagerRDSMySQLRotationSingleUser, and https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_cloudformation.html, and https://github.com/samkeen/aws-ssm-session-manager-example/blob/master/ssm-session-mgr-example.yaml
+Description: "Periodically Automatically Rotate RDS Secrets in Secrets Manager"
+# This template contains examples from https://github.com/widdix/aws-cf-templates/tree/master/vpc, https://github.com/aws-samples/aws-secrets-manager-rotation-lambdas/tree/master/SecretsManagerRDSMySQLRotationSingleUser, https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_cloudformation.html, and https://github.com/samkeen/aws-ssm-session-manager-example/blob/master/ssm-session-mgr-example.yaml
 Metadata:
   'AWS::CloudFormation::Interface':
     ParameterGroups:
