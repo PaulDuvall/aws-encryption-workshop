@@ -234,12 +234,12 @@ Resources:
       VpcId: !Ref VPC
       SecurityGroupIngress:
         -
-          CidrIp: 0.0.0.0/0
+          CidrIp: !GetAtt 'VPC.CidrBlock'
           IpProtocol: tcp
           ToPort: "3306"
           FromPort: "3306"
         -
-          CidrIp: 0.0.0.0/0
+          CidrIp: !GetAtt 'VPC.CidrBlock'
           IpProtocol: tcp
           ToPort: "3306"
           FromPort: "3306"
