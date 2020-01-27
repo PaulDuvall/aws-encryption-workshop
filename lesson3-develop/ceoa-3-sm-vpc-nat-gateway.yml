@@ -36,7 +36,7 @@ Resources:
       InstanceTenancy: default
       Tags:
       - Key: Name
-        Value: !Sub '10.${ClassB}.0.0/16'
+        Value: !Ref AWS::StackName
   InternetGateway:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
