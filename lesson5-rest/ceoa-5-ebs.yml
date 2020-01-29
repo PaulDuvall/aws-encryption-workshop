@@ -5,6 +5,7 @@ Parameters:
   AvailabilityZones:
     Description: Availability zone to deploy
     Type: String
+    Default: us-east-1f
 Resources:
   EBSVolume:    
     Type: "AWS::EC2::Volume"
@@ -12,3 +13,6 @@ Resources:
       Encrypted: true
       AvailabilityZone: !Ref AvailabilityZones
       Size: 100
+      Tags:
+      - Key: Name
+        Value: !Ref AWS::StackName    
