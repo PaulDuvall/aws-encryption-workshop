@@ -2,30 +2,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Create a KMS Key. Run ceoa-2-iam-user.yml first.
 Parameters: 
-  MyUsername: 
+  MyUser: 
     Type: String 
     Description: "IAM Username. See https://console.aws.amazon.com/iam/home#/users" 
     Default: "ceoa"
-  MyPassword: 
-    Type: String 
-    Description: "Password for MyUser See https://console.aws.amazon.com/iam/home#/users" 
-    NoEcho: true
-  IAMGroup: 
-    Type: CommaDelimitedList 
-    Description: "IAM Group to assign to MyUser"
-    Default: "Administrators" 
 Resources:
-  MyUser:
-    Type: AWS::IAM::User
-    Properties:
-      Groups:
-        Ref: IAMGroup
-      UserName:
-        Ref: MyUsername
-      LoginProfile:
-        Password:
-          Ref: MyPassword
-        PasswordResetRequired: false
   S3Key:
     Type: AWS::KMS::Key
     Properties:
