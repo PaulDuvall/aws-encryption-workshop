@@ -469,7 +469,7 @@ Outputs:
     Value: !Ref SubnetBPrivate
     Description: SubnetBPrivate - used by Cloud9
   RDSEndpoint: 
-    Value: !Re MyDBInstance
+    Value: !Ref MyDBInstance
     Description: RDS Database Instance Name - used when connecting to MySQL
   SecretId: 
     Value: !Ref MyRDSInstanceRotationSecret
