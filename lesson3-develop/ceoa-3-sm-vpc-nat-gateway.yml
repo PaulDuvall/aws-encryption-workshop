@@ -462,10 +462,13 @@ Outputs:
   MyVPC:
     Value: !Ref VPC
     Description: VPC ID - used by Cloud9
-  Subnet1:
+  PublicSubnet1: 
+    Value: !Ref SubnetAPublic
+    Description: SubnetAPublic - used by Cloud9
+  PrivateSubnet1:
     Value: !Ref SubnetAPrivate
     Description: SubnetAPrivate - used by Cloud9
-  Subnet2: 
+  PrivateSubnet2: 
     Value: !Ref SubnetBPrivate
     Description: SubnetBPrivate - used by Cloud9
   RDSEndpoint: 
