@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: SAR nested app stack test
+Resources:
+  NestedApp:
+    Type: AWS::Serverless::Application
+    Properties:
+      Location:
+        ApplicationId: arn:aws:serverlessrepo:us-east-1:297356227824:applications/SecretsManagerRDSMySQLRotationSingleUser
+        SemanticVersion: 1.1.8
+      Parameters:
+        endpoint:
+          Fn::Sub: https://secretsmanager.${AWS::Region}.amazonaws.com
+        functionName: RDSMySQLSingleUserRotationLambda

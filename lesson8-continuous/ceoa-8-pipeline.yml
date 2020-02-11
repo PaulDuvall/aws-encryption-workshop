@@ -148,7 +148,7 @@ Resources:
         SourceIdentifier: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
   ArtifactBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
   MyLambdaTrustRole:
     Properties:
       AssumeRolePolicyDocument:

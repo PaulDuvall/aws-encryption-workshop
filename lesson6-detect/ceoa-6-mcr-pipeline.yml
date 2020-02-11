@@ -17,7 +17,7 @@ Parameters:
 Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
   CodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
