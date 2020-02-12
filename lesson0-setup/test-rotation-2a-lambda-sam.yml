@@ -1,6 +1,13 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: SAR nested app stack test
+Parameters:
+  MySecurityGroupLambda:
+    Description: Security Group ID from test-rotation-1-vpc.yml
+    Type: String
+  PrivateSubnet1:
+    Description: PrivateSubnet1 from test-rotation-1-vpc.yml
+    Type: String
 Resources:
   NestedApp:
     Type: AWS::Serverless::Application
@@ -12,3 +19,5 @@ Resources:
         endpoint:
           Fn::Sub: https://secretsmanager.${AWS::Region}.amazonaws.com
         functionName: RDSMySQLSingleUserRotationLambda
+        vpcSecurityGroupIds: !Ref MySecurityGroupLambda
+        vpcSubnetIds: !Ref PrivateSubnet1  

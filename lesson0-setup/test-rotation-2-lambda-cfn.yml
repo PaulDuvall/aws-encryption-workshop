@@ -18,6 +18,12 @@ Parameters:
   CodeCommitS3Key:
     Description: zipfile key located in CodeCommitS3Bucket 
     Type: String
+  MySecurityGroupLambda:
+    Description: MySecurityGroupLambda Output from test-rotation-1-vpc.yml
+    Type: String
+  PrivateSubnet1:
+    Description: PrivateSubnet1 Output from test-rotation-1-vpc.yml
+    Type: String
 Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
@@ -165,6 +171,7 @@ Resources:
                 - Ref: ArtifactBucket
                 - "/*"
           - Action:
+            - ec2:*
             - events:*
             - iam:*
             - lambda:*
@@ -288,6 +295,11 @@ Resources:
           Configuration:
             ActionMode: CHANGE_SET_REPLACE
             ChangeSetName: pipeline-changeset
+            ParameterOverrides: !Sub |
+              {
+                "MySecurityGroupLambda": "${MySecurityGroupLambda}",
+                "PrivateSubnet1": "${PrivateSubnet1}"
+              }
             RoleArn:
               Fn::GetAtt:
               - CloudFormationTrustRole

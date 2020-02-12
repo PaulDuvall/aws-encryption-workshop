@@ -9,7 +9,7 @@ phases:
     commands:
       - pip install --user aws-sam-cli
       - >-
-        aws cloudformation package --template test-sam.yml --s3-bucket
+        aws cloudformation package --template test-rotation-2a-lambda-sam.yml --s3-bucket
         $S3_BUCKET --output-template template-export.json
 artifacts:
   type: zip
