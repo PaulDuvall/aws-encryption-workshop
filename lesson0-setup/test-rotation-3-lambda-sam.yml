@@ -13,4 +13,6 @@ Resources:
           Fn::Sub: https://secretsmanager.${AWS::Region}.amazonaws.com
         functionName: RDSMySQLSingleUserRotationLambda
         vpcSecurityGroupIds: !ImportValue 'MySecurityGroupLambda'
-        vpcSubnetIds: !ImportValue 'PrivateSubnet1'
+        vpcSubnetIds: 
+          - !ImportValue 'PrivateSubnet1'
+          - !ImportValue 'PrivateSubnet2'
