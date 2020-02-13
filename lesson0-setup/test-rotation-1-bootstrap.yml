@@ -170,6 +170,7 @@ Resources:
             - events:*
             - iam:*
             - lambda:*
+            - rds:*
             - serverlessrepo:*
             - sns:CreateTopic
             - sns:DeleteTopic
@@ -353,7 +354,7 @@ Resources:
                 - Ref: AWS::StackName
                 - "-"
                 - Ref: AWS::Region
-                - ""
+                - "-lambda"
             TemplatePath: lambdatrigger-BuildArtifact::template-export.json
           RunOrder: 1
         - ActionTypeId:
@@ -372,7 +373,7 @@ Resources:
                 - Ref: AWS::StackName
                 - "-"
                 - Ref: AWS::Region
-                - ""
+                - "-lambda"
           InputArtifacts: []
           Name: ExecuteLambdaFunction
           OutputArtifacts: []
