@@ -276,9 +276,15 @@ Outputs:
   PrivateSubnet1:
     Value: !Ref SubnetAPrivate
     Description: SubnetAPrivate - used by Cloud9, Lambda Function, and RDS::DBSubnetGroup
+    Export:
+      Name: 'PrivateSubnet1'
   PrivateSubnet2: 
     Value: !Ref SubnetBPrivate
     Description: SubnetBPrivate - used by Cloud9 and RDS::DBSubnetGroup
+    Export:
+      Name: 'PrivateSubnet2'
   MySecurityGroupLambda: 
     Value: !GetAtt SecurityGroupLambda.GroupId
     Description: SecurityGroup ID. Used by AWS::RDS::DBInstance and AWS::Lambda::Function
+    Export:
+      Name: 'MySecurityGroupLambda'

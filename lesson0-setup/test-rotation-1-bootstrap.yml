@@ -18,12 +18,6 @@ Parameters:
   CodeCommitS3Key:
     Description: zipfile key located in CodeCommitS3Bucket 
     Type: String
-  MySecurityGroupLambda:
-    Description: MySecurityGroupLambda Output from test-rotation-1-vpc.yml
-    Type: String
-  PrivateSubnet1:
-    Description: PrivateSubnet1 Output from test-rotation-1-vpc.yml
-    Type: String
 Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
@@ -171,6 +165,7 @@ Resources:
                 - Ref: ArtifactBucket
                 - "/*"
           - Action:
+            - cloudwatch:*
             - ec2:*
             - events:*
             - iam:*
@@ -181,6 +176,7 @@ Resources:
             - sns:ListTopics
             - sns:GetTopicAttributes
             - sns:SetTopicAttributes
+            - sqs:*
             - s3:*
             Effect: Allow
             Resource: "*"
@@ -265,6 +261,56 @@ Resources:
             RepositoryName:
               Ref: PipelineBucket
           RunOrder: 1
+      - Name: DeployVPC
+        Actions:
+        - InputArtifacts:
+          - Name: MyApp
+          Name: DeployVPCStack
+          ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Version: '1'
+            Provider: CloudFormation
+          OutputArtifacts: []
+          Configuration:
+            ActionMode: CHANGE_SET_REPLACE
+            ChangeSetName: vpc-changeset
+            RoleArn:
+              Fn::GetAtt:
+              - CloudFormationTrustRole
+              - Arn
+            Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
+            StackName:
+              Fn::Join:
+              - ''
+              - - ""
+                - Ref: AWS::StackName
+                - "-"
+                - Ref: AWS::Region
+                - "-vpc"
+            TemplatePath: MyApp::test-rotation-2-vpc.yml
+          RunOrder: 1
+        - ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Provider: CloudFormation
+            Version: "1"
+          Configuration:
+            ActionMode: CHANGE_SET_EXECUTE
+            ChangeSetName: vpc-changeset
+            Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
+            StackName:
+              Fn::Join:
+              - ''
+              - - ""
+                - Ref: AWS::StackName
+                - "-"
+                - Ref: AWS::Region
+                - "-vpc"
+          InputArtifacts: []
+          Name: ExecuteVPCStack
+          OutputArtifacts: []
+          RunOrder: 2
       - Name: Build
         Actions:
         - InputArtifacts:
@@ -295,11 +341,6 @@ Resources:
           Configuration:
             ActionMode: CHANGE_SET_REPLACE
             ChangeSetName: pipeline-changeset
-            ParameterOverrides: !Sub |
-              {
-                "MySecurityGroupLambda": "${MySecurityGroupLambda}",
-                "PrivateSubnet1": "${PrivateSubnet1}"
-              }
             RoleArn:
               Fn::GetAtt:
               - CloudFormationTrustRole
@@ -334,6 +375,56 @@ Resources:
                 - ""
           InputArtifacts: []
           Name: ExecuteLambdaFunction
+          OutputArtifacts: []
+          RunOrder: 2
+      - Name: DeployRDS
+        Actions:
+        - InputArtifacts:
+          - Name: MyApp
+          Name: DeployRDSStack
+          ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Version: '1'
+            Provider: CloudFormation
+          OutputArtifacts: []
+          Configuration:
+            ActionMode: CHANGE_SET_REPLACE
+            ChangeSetName: rds-changeset
+            RoleArn:
+              Fn::GetAtt:
+              - CloudFormationTrustRole
+              - Arn
+            Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
+            StackName:
+              Fn::Join:
+              - ''
+              - - ""
+                - Ref: AWS::StackName
+                - "-"
+                - Ref: AWS::Region
+                - "-rds"
+            TemplatePath: MyApp::test-rotation-4-rds.yml
+          RunOrder: 1
+        - ActionTypeId:
+            Category: Deploy
+            Owner: AWS
+            Provider: CloudFormation
+            Version: "1"
+          Configuration:
+            ActionMode: CHANGE_SET_EXECUTE
+            ChangeSetName: rds-changeset
+            Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
+            StackName:
+              Fn::Join:
+              - ''
+              - - ""
+                - Ref: AWS::StackName
+                - "-"
+                - Ref: AWS::Region
+                - "-rds"
+          InputArtifacts: []
+          Name: ExecuteRDSStack
           OutputArtifacts: []
           RunOrder: 2
       ArtifactStore:
