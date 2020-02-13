@@ -311,7 +311,7 @@ Resources:
           Name: ExecuteVPCStack
           OutputArtifacts: []
           RunOrder: 2
-      - Name: Build
+      - Name: BuildLambda
         Actions:
         - InputArtifacts:
           - Name: MyApp
@@ -327,7 +327,7 @@ Resources:
             ProjectName:
               Ref: CodeBuildLambdaTrigger
           RunOrder: 1
-      - Name: Deploy
+      - Name: DeployLambda
         Actions:
         - InputArtifacts:
           - Name: lambdatrigger-BuildArtifact
