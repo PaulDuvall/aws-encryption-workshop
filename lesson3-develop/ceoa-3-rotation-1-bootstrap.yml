@@ -171,6 +171,7 @@ Resources:
             - iam:*
             - lambda:*
             - rds:*
+            - secretsmanager:*
             - serverlessrepo:*
             - sns:CreateTopic
             - sns:DeleteTopic

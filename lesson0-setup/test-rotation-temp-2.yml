@@ -1,8 +1,0 @@
----
-AWSTemplateFormatVersion: '2010-09-09'
-Description: Test Import Value from Export Value
-Resources:
-  MyQueue:
-    Type: AWS::SQS::Queue
-    Properties:
-        Name: !ImportValue 'MySecurityGroupLambda'
