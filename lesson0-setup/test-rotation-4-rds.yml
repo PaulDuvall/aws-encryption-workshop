@@ -2,11 +2,6 @@
 Description: "Periodically Automatically Rotate RDS Secrets in Secrets Manager"
 # This template contains portions of examples from https://github.com/widdix/aws-cf-templates/tree/master/vpc, https://github.com/aws-samples/aws-secrets-manager-rotation-lambdas/tree/master/SecretsManagerRDSMySQLRotationSingleUser, and https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_cloudformation.html
 
-Parameters:
-  MySecurityGroupLambda:
-    Type: CommaDelimitedList
-    Description: The list of SecurityGroupIds in your Virtual Private Cloud (VPC)
-    Default: "test1, test2"
 Resources:
   #This is a Secret resource with a randomly generated password in its SecretString JSON.
   MyRDSInstanceRotationSecret:
@@ -45,7 +40,8 @@ Resources:
       MasterUserPassword: !Join ['', ['{{resolve:secretsmanager:', !Ref MyRDSInstanceRotationSecret, ':SecretString:password}}' ]]
       BackupRetentionPeriod: 0
       DBInstanceIdentifier: 'rotation-instance'
-      VPCSecurityGroups: !Ref MySecurityGroupLambda
+      VPCSecurityGroups:
+        - !ImportValue 'MySecurityGroupLambda'
       DBSubnetGroupName:
         Ref: "DBSubnetGroup"
 
