@@ -333,7 +333,7 @@ Resources:
         Actions:
         - InputArtifacts:
           - Name: lambdatrigger-BuildArtifact
-          Name: BuildLambdaFunction
+          Name: TransformLambdaFunction
           ActionTypeId:
             Category: Deploy
             Owner: AWS
