@@ -123,7 +123,7 @@ Resources:
     Properties:
       RepositoryName:
         Ref: PipelineBucket
-      RepositoryDescription: CodeCommit Repository for Config Rule solution
+      RepositoryDescription: CodeCommit Repository for Secrets Rotation Solution
       Code:
         S3:
           Bucket: !Ref CodeCommitS3Bucket
