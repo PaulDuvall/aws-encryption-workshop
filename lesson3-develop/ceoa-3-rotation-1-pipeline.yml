@@ -290,7 +290,7 @@ Resources:
                 - "-"
                 - Ref: AWS::Region
                 - "-vpc"
-            TemplatePath: MyApp::test-rotation-2-vpc.yml
+            TemplatePath: MyApp::ceoa-3-rotation-2-vpc.yml
           RunOrder: 1
         - ActionTypeId:
             Category: Deploy
@@ -406,7 +406,7 @@ Resources:
                 - "-"
                 - Ref: AWS::Region
                 - "-rds"
-            TemplatePath: MyApp::test-rotation-4-rds.yml
+            TemplatePath: MyApp::ceoa-3-rotation-4-rds.yml
           RunOrder: 1
         - ActionTypeId:
             Category: Deploy
