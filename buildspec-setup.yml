@@ -14,7 +14,9 @@ phases:
         rb s3://{} --force
       - 'aws s3 mb s3://ceoa-workshop'
       - 'aws s3 sync . s3://ceoa-workshop'
-      - cd lesson1-automate
+      - cd lesson0-setup
+      - python ccoa-delete-config.py
+      - cd ../lesson1-automate
       - zip ceoa-1-examples.zip *.*
       - 'aws s3 sync . s3://ceoa-workshop'
       - cd ../lesson2-manage
