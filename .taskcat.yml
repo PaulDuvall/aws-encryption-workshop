@@ -36,19 +36,19 @@ tests:
   #     S3Bucket: ceoa-workshop
   #     S3Key: lesson3-develop/pymysql.zip
   #   template: ./lesson3-develop/ceoa-3-lambda-layers.yml
-  # l4:
-  #   parameters:
-  #     CodeCommitS3Bucket: ceoa-workshop
-  #     CodeCommitS3Key: ceoa-4-examples.zip
-  #   template: ./lesson4-transit/ceoa-4-pipeline.yml
-  l5-rest-ebs:
+  l4:
     parameters:
-      AvailabilityZones: '$[taskcat_genaz_1]'
-    template: ./lesson5-rest/ceoa-5-ebs.yml
-  l5-rest-ddb:
-    template: ./lesson5-rest/ceoa-5-ddb.yml
-  l5-rest-s3:
-    template: ./lesson5-rest/ceoa-5-s3.yml
+      CodeCommitS3Bucket: ceoa-workshop
+      CodeCommitS3Key: ceoa-4-examples.zip
+    template: ./lesson4-transit/ceoa-4-pipeline.yml
+  # l5-rest-ebs:
+  #   parameters:
+  #     AvailabilityZones: '$[taskcat_genaz_1]'
+  #   template: ./lesson5-rest/ceoa-5-ebs.yml
+  # l5-rest-ddb:
+  #   template: ./lesson5-rest/ceoa-5-ddb.yml
+  # l5-rest-s3:
+  #   template: ./lesson5-rest/ceoa-5-s3.yml
   # l5-rest-kms:
   #   template: ./lesson5-rest/ceoa-5-kms.yml
   # l6-detect:
