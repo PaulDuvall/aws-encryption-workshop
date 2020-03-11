@@ -149,6 +149,7 @@ Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   MyLambdaTrustRole:
     Properties:
       AssumeRolePolicyDocument:
