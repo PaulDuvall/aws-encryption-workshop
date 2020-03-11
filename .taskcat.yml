@@ -60,7 +60,7 @@ tests:
   #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
   l8:
     parameters:
-      S3ComplianceResourceId: ccoa-8-s3-unencrypted-$(aws sts get-caller-identity --output text --query 'Account')
+      S3ComplianceResourceId: ccoa-8-s3-unencrypted-test
       CodeCommitS3Bucket: ceoa-workshop
       CodeCommitS3Key: ceoa-8-examples.zip
     template: ./lesson8-continuous/ceoa-8-pipeline.yml
