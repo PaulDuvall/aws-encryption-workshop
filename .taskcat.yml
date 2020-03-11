@@ -25,6 +25,11 @@ tests:
   #   template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-secrets:
   #   template: ./lesson3-develop/ceoa-3-sm.yml
+  l3-secrets-rotation:
+      parameters:
+        CodeCommitS3Bucket: ceoa-workshop
+        CodeCommitS3Key: lesson3-develop/ceoa-3-examples.zip
+      template: ./lesson3-develop/ceoa-3-rotation-1-pipeline.yml
   # l3-secrets:
   #   parameters:
   #     S3BucketLambda: ceoa-workshop
@@ -36,11 +41,11 @@ tests:
   #     S3Bucket: ceoa-workshop
   #     S3Key: lesson3-develop/pymysql.zip
   #   template: ./lesson3-develop/ceoa-3-lambda-layers.yml
-  l4:
-    parameters:
-      CodeCommitS3Bucket: ceoa-workshop
-      CodeCommitS3Key: ceoa-4-examples.zip
-    template: ./lesson4-transit/ceoa-4-pipeline.yml
+  # l4:
+  #   parameters:
+  #     CodeCommitS3Bucket: ceoa-workshop
+  #     CodeCommitS3Key: ceoa-4-examples.zip
+  #   template: ./lesson4-transit/ceoa-4-pipeline.yml
   # l5-rest-ebs:
   #   parameters:
   #     AvailabilityZones: '$[taskcat_genaz_1]'
