@@ -28,7 +28,7 @@ tests:
   l3:
       parameters:
         CodeCommitS3Bucket: ceoa-workshop
-        CodeCommitS3Key: lesson3-develop/ceoa-3-examples.zip
+        CodeCommitS3Key: ceoa-3-examples.zip
       template: ./lesson3-develop/ceoa-3-rotation-1-pipeline.yml
   # l3-secrets:
   #   parameters:
