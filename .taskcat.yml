@@ -1,5 +1,5 @@
 project:
-  name: ceoa
+  name: ce
   regions:
     - us-east-1
     # - us-east-2
@@ -25,7 +25,7 @@ tests:
   #   template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-secrets:
   #   template: ./lesson3-develop/ceoa-3-sm.yml
-  l3-sm:
+  l3:
       parameters:
         CodeCommitS3Bucket: ceoa-workshop
         CodeCommitS3Key: lesson3-develop/ceoa-3-examples.zip
