@@ -12,7 +12,7 @@ tests:
     parameters:
       CodeCommitS3Bucket: ceoa-workshop
       CodeCommitS3Key: ceoa-1-examples.zip
-    template: ./lesson1-automate/ceoa-1-pipeline.yml
+    template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
   # l2-iam:
   #   parameters:
   #     # MyUsername: ceoa-$[taskcat_genuuid]
