@@ -18,6 +18,7 @@ Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   CodeBuildRole:
     Type: AWS::IAM::Role
     Properties:

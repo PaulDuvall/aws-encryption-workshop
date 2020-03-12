@@ -49,6 +49,7 @@ tests:
     template: ./lesson5-rest/ceoa-5-ddb.yml
   l5-rest-s3:
     template: ./lesson5-rest/ceoa-5-s3.yml
+  # TODO: Manually create an IAM user named ceoa
   l5-rest-kms:
     template: ./lesson5-rest/ceoa-5-kms.yml
   # l6-detect:

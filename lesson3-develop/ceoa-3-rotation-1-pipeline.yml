@@ -22,6 +22,7 @@ Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   MyLambdaTrustRole:
     Properties:
       AssumeRolePolicyDocument:
@@ -241,6 +242,7 @@ Resources:
   PipelineBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
