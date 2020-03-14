@@ -190,6 +190,8 @@ Resources:
       TimeoutInMinutes: 10
   PipelineBucket:
     Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:

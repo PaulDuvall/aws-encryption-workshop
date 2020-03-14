@@ -402,7 +402,8 @@ Resources:
         Value: MyCodeBuildProject
   PipelineBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:

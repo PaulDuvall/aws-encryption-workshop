@@ -18,6 +18,7 @@ Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   CodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
@@ -185,7 +186,8 @@ Resources:
           Version: '2012-10-17'
   PipelineBucket:
     Type: AWS::S3::Bucket
-    DeletionPolicy: Delete
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
