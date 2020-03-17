@@ -52,6 +52,7 @@ tests:
   # TODO: Manually create an IAM user named ceoa
   l5-rest-kms:
     template: ./lesson5-rest/ceoa-5-kms.yml
+  # TODO: Create a Config Recorder/Delivery Channel?
   # l6-detect:
   #   parameters:
   #     CodeCommitS3Bucket: ceoa-workshop
