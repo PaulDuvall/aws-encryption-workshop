@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Create a KMS Key. Run ceoa-2-iam-user.yml first.
+Description: Create a KMS Key. There needs to be an IAM user created named ceoa.
 Parameters: 
   MyUser: 
     Type: String 

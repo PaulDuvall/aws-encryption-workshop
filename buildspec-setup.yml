@@ -38,7 +38,6 @@ phases:
       - zip ceoa-7-examples.zip *.*
       - 'aws s3 sync . s3://ceoa-workshop'
       - cd ../lesson8-continuous
-      # - aws s3 mb s3://ccoa-8-s3-unencrypted-test
       - zip ceoa-8-examples.zip *.*
       - 'aws s3 sync . s3://ceoa-workshop'
   post_build:
