@@ -10,36 +10,36 @@ phases:
       - echo In buildspec-setup.yml Build started on `date`
       - >-
         aws s3api list-buckets --query 'Buckets[?starts_with(Name,
-        `ceoa-workshop`) == `true`].[Name]' --output text | xargs -I {} aws s3
+        `ceoa-workshop-pmd`) == `true`].[Name]' --output text | xargs -I {} aws s3
         rb s3://{} --force
-      - 'aws s3 mb s3://ceoa-workshop'
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 mb s3://ceoa-workshop-pmd'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd lesson0-setup
       - python ccoa-delete-config.py
       - cd ../lesson1-automate
       - zip ceoa-1-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd ../lesson2-manage
       - zip ceoa-2-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd ../lesson3-develop
       - zip ceoa-3-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd ../lesson4-transit
       - zip ceoa-4-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd ../lesson5-rest
       - zip ceoa-5-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd ../lesson6-detect
       - zip ceoa-6-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd ../lesson7-log
       - zip ceoa-7-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
       - cd ../lesson8-continuous
       - zip ceoa-8-examples.zip *.*
-      - 'aws s3 sync . s3://ceoa-workshop'
+      - 'aws s3 sync . s3://ceoa-workshop-pmd'
   post_build:
     commands:
       - echo In buildspec-setup.yml Build completed on `date`
