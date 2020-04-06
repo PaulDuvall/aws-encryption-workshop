@@ -1,0 +1,32 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Test CW Rule
+Parameters:
+  Topic:
+    Description: 'ARN for an SNSTopic that uses AWS Chatbot'
+    Type: String
+Resources:
+  EventRule: 
+    Type: "AWS::Events::Rule"
+    Properties: 
+      Description: "EventRule"
+      EventPattern: 
+        source:
+        - aws.ssm
+        detail-type:
+        - Parameter Store Change
+        detail:
+          name:
+          - TriggerCWEChatbot
+          operation:
+          - Update
+      State: "ENABLED"
+      Targets: 
+        - 
+          Arn: 
+            Ref: "Topic"
+          Id: "ChatbotTopic"
+          InputTransformer:
+            InputTemplate: '"AWS Chatbot test  is <paulduvall>" '
+            InputPathsMap:
+              paulduvall: "$.detail.description" 

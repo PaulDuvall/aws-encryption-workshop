@@ -1,0 +1,22 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Test CW Alarm
+Parameters:
+  Topic:
+    Description: 'ARN for an SNSTopic that uses AWS Chatbot'
+    Type: String
+Resources:
+  AlarmLambdaInvocations:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      AlarmActions:
+        - !Ref 'Topic'
+      AlarmDescription: Lambda invocations
+      AlarmName: LambdaInvocationsAlarm
+      Namespace: 'AWS/Lambda'
+      MetricName: Errors
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 10
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Threshold: 1
