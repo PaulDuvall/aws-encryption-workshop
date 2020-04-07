@@ -1,0 +1,22 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Test CW Alarm
+Parameters:
+  Topic:
+    Description: 'ARN for an SNSTopic that uses AWS Chatbot'
+    Type: String
+Resources:
+  ParameterStorePipelineTriggerRule:
+    Type: 'AWS::Events::Rule'
+    Properties:
+      EventPattern:
+        source:
+        - 'aws.ssm'
+        'detail-type':
+        - 'Parameter Store Change'
+        resources:
+        - !Sub 'arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/TriggerCWEChatbot'
+      State: ENABLED
+      Targets:
+      - Arn: !Ref Topic
+        Id: pipeline

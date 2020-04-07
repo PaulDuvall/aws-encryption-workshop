@@ -9,24 +9,26 @@ Resources:
   EventRule: 
     Type: "AWS::Events::Rule"
     Properties: 
-      Description: "EventRule"
+      Description: "CWE when AWS Chatbot is run by setting Parameter Store value"
       EventPattern: 
         source:
         - aws.ssm
         detail-type:
         - Parameter Store Change
-        detail:
-          name:
-          - TriggerCWEChatbot
-          operation:
-          - Update
       State: "ENABLED"
       Targets: 
-        - 
-          Arn: 
-            Ref: "Topic"
-          Id: "ChatbotTopic"
+        - Arn: !Ref Topic
+          Id: SSMChatbotTopic
           InputTransformer:
-            InputTemplate: '"AWS Chatbot test  is <paulduvall>" '
             InputPathsMap:
-              paulduvall: "$.detail.description" 
+              detail-type: $.detail-type
+              resources: $.resources
+              time: $.time
+              region: $.region
+              account: $.account
+            InputTemplate: |-
+              "AWS Event Account ID: <account>"
+              "AWS Event Region: <region>"
+              "AWS Event Time: <time>"
+              "AWS Event Name: <detail-type>"
+              "AWS Event Resource(s): <resources>"
