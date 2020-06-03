@@ -19,7 +19,7 @@ aws cloudformation delete-stack --stack-name pmd-security-controls
 
 sleep 25
 
-cd lesson8-continuous
+cd aws-encryption-workshop/lesson8-continuous
 
 aws s3 mb s3://pmd-security-controls-$(aws sts get-caller-identity --output text --query 'Account')
 zip -r pmd-security-controls.zip .
