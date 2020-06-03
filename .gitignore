@@ -2,6 +2,10 @@
 taskcat_outputs
 .taskcat_overrides.yml
 
+# Temporary Directories
+.tmp
+tmp-gitrepo
+
 # MacOS
 __MACOSX
 

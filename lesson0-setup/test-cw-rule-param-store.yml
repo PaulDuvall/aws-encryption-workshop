@@ -20,3 +20,8 @@ Resources:
       Targets:
       - Arn: !Ref Topic
         Id: pipeline
+        InputTransformer:
+          InputPathsMap:
+            account: $.account
+          InputTemplate: |-
+            "AWS Event Account ID: <account>"
