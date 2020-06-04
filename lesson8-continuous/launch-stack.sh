@@ -7,16 +7,18 @@ S3BUCKET=${2:-pmd-security-controls-}
 SAMSTACK=${3:-pmd-security-controls-us-east-1}
 CFNSTACK=${4:-pmd-security-controls}
 PIPELINEYAML=${5:-ceoa-8-pipeline.yml}
-UNENCRYPTEDS3BUCKETPREFIX=${6:-ceoa-8-s3-unencrypted-}
+UNENCRYPTEDS3BUCKETPREFIX=${6:-ceoa-8-s3-unencrypted}
 
 sudo rm -rf $TMPDIR
 mkdir $TMPDIR
 cd $TMPDIR
 git clone https://github.com/PaulDuvall/aws-encryption-workshop.git
 
+aws configservice delete-config-rule --config-rule-name s3-bucket-server-side-encryption-enabled
+
 aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$S3BUCKET'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
 
-aws s3 rb s3://$UNENCRYPTEDS3BUCKETPREFIX$(aws sts get-caller-identity --output text --query 'Account') --force
+aws s3 rb s3://$UNENCRYPTEDS3BUCKETPREFIX-$(aws sts get-caller-identity --output text --query 'Account') --force
 
 sleep 20
 
