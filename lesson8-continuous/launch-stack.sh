@@ -3,9 +3,9 @@
 # ./launch-stack.sh
 
 TMPDIR=${1:-tmp-gitrepo}   
-S3BUCKET=${2:-pmd-security-controls-}
-SAMSTACK=${3:-pmd-security-controls-us-east-1}
-CFNSTACK=${4:-pmd-security-controls}
+S3BUCKET=${2:-stelligent-security-}
+SAMSTACK=${3:-stelligent-security-us-east-1}
+CFNSTACK=${4:-stelligent-security}
 PIPELINEYAML=${5:-ceoa-8-pipeline.yml}
 UNENCRYPTEDS3BUCKETPREFIX=${6:-ceoa-8-s3-unencrypted}
 
