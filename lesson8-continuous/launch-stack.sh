@@ -24,11 +24,11 @@ sleep 20
 
 aws cloudformation delete-stack --stack-name $SAMSTACK
 
-sleep 50
+aws cloudformation wait stack-delete-complete --stack-name $SAMSTACK
 
 aws cloudformation delete-stack --stack-name $CFNSTACK
 
-sleep 25
+aws cloudformation wait stack-delete-complete --stack-name $CFNSTACK
 
 cd aws-encryption-workshop/lesson8-continuous
 
