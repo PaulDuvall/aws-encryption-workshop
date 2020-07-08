@@ -48,8 +48,9 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     cd $TMPDIR
 
     aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$S3BUCKET'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
-    
-    aws s3 rb s3://$UNENCRYPTEDS3BUCKETPREFIX-$(aws sts get-caller-identity --output text --query 'Account') --force
+
+    aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$UNENCRYPTEDS3BUCKETPREFIX-$(aws sts get-caller-identity --output text --query 'Account')'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
+
     
     info "Sleeping for 20 seconds to ensure bucket removal has taken effect"
     sleep 20
