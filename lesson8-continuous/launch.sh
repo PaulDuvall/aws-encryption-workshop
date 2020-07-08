@@ -27,13 +27,15 @@ if [ -z "$MYNAME" ]; then
     usage
 fi
 
-TMPDIR=${2:-.tmp-gitrepo}   
-S3BUCKET=${3:-ceoa-8-$MYNAME}
+TMPDIR=${2:-.tmp-gitrepo}
+UUID=${3:-ceoa-8}
+S3BUCKET=${4:-$UUID-$MYNAME}
 # SAMSTACK is the app stack, whereas CFNSTACK is the pipeline stack
-SAMSTACK=${4:-ceoa-8-app-$MYNAME-$AWS_REGION}
-CFNSTACK=${5:-ceoa-8-pl-$MYNAME}
-PIPELINEYAML=${6:-ceoa-8-pipeline.yml}
-UNENCRYPTEDS3BUCKETPREFIX=${7:-ceoa-8-s3-unencrypted}
+SAMSTACK=${5:-$UUID-app-$MYNAME-$AWS_REGION}
+CFNSTACK=${6:-$UUID-pl-$MYNAME}
+PIPELINEYAML=${7:-$UUID-pipeline.yml}
+UNENCRYPTEDS3BUCKETPREFIX=${8:-$UUID-s3-unencrypted}
+
 
 cleanup() {
     sudo rm -rf $TMPDIR
@@ -57,10 +59,10 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
         set -e
         clone_source="https://github.com/PaulDuvall/aws-encryption-workshop.git"
     fi
-    info "Cloning from $clone_source into $TMPDIR/ceoa-8-temp"
-    rm -rf ceoa-8-temp
-    git clone "$clone_source" ceoa-8-temp
-    cd ceoa-8-temp/lesson8-continuous
+    info "Cloning from $clone_source into $TMPDIR/$UUID-temp"
+    rm -rf $UUID-temp
+    git clone "$clone_source" $UUID-temp
+    cd $UUID-temp/lesson8-continuous
 
     info Removing buckets previously used by this script    
     aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$S3BUCKET'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
@@ -82,6 +84,7 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     aws cloudformation wait stack-delete-complete --stack-name $CFNSTACK
     
     zip -r $S3BUCKET.zip . -x '*.git*'
+    # zip -r $CFNSTACK.zip .
     mkdir zipfiles
     cp $PIPELINEYAML zipfiles
     mv $S3BUCKET.zip zipfiles
@@ -91,5 +94,6 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     aws s3 sync . "s3://$s3_bucket_qualified"
    
     info Creating the pipeline stack $CFNSTACK 
-aws cloudformation create-stack --stack-name $CFNSTACK --capabilities CAPABILITY_NAMED_IAM --disable-rollback --template-body file://$PIPELINEYAML --parameters ParameterKey=EmailAddress,ParameterValue=fake-email@fake-fake-fake-email.com ParameterKey=CodeCommitS3Bucket,ParameterValue=$CFNSTACK-$(aws sts get-caller-identity --output text --query 'Account') ParameterKey=CodeCommitS3Key,ParameterValue=$CFNSTACK.zip ParameterKey=S3ComplianceResourceId,ParameterValue=$UNENCRYPTEDS3BUCKETPREFIX-$(aws sts get-caller-identity --output text --query 'Account')
+aws cloudformation create-stack --stack-name $CFNSTACK --capabilities CAPABILITY_NAMED_IAM --disable-rollback --template-body file://$PIPELINEYAML --parameters ParameterKey=EmailAddress,ParameterValue=fake-email@fake-fake-fake-email.com ParameterKey=CodeCommitS3Bucket,ParameterValue=$CFNSTACK-$(aws sts get-caller-identity --output text --query 'Account') ParameterKey=CodeCommitS3Key,ParameterValue=$S3BUCKET.zip ParameterKey=S3ComplianceResourceId,ParameterValue=$UNENCRYPTEDS3BUCKETPREFIX-$(aws sts get-caller-identity --output text --query 'Account')
+
 fi
