@@ -58,7 +58,7 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
         clone_source="https://github.com/PaulDuvall/aws-encryption-workshop.git"
     fi
     info "Cloning from $clone_source into $TMPDIR/ceoa-8-temp"
-    rm -rf -temp
+    rm -rf ceoa-8-temp
     git clone "$clone_source" ceoa-8-temp
     cd ceoa-8-temp/lesson8-continuous
 
