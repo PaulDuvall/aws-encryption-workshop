@@ -51,7 +51,7 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
         # Use whatever git protocol the user prefers
         set -e
         clone_source="$(git --git-dir ../.git remote show origin  | grep Fetch | awk '{print $3;}')"
-        git clone "$clone_source" chickenpi
+        git clone "$clone_source" aws-encryption-workshop
     else
         # Default to https
         set -e
