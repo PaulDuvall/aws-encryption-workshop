@@ -32,7 +32,7 @@ S3BUCKET=${3:-ceoa-8-$MYNAME}
 # SAMSTACK is the app stack, whereas CFNSTACK is the pipeline stack
 SAMSTACK=${4:-ceoa-8-app-$MYNAME-$AWS_REGION}
 CFNSTACK=${5:-ceoa-8-pl-$MYNAME}
-PIPELINEYAML=${6:-pipeline.yml}
+PIPELINEYAML=${6:-ceoa-8-pipeline.yml}
 UNENCRYPTEDS3BUCKETPREFIX=${7:-ceoa-8-s3-unencrypted}
 
 cleanup() {
