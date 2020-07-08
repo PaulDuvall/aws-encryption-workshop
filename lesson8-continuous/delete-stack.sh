@@ -47,6 +47,7 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     mkdir $TMPDIR
     cd $TMPDIR
 
+    info "Remove buckets used in previous invocations"
     aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$S3BUCKET'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
 
     aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$UNENCRYPTEDS3BUCKETPREFIX-$(aws sts get-caller-identity --output text --query 'Account')'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
