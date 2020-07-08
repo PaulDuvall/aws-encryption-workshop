@@ -31,7 +31,7 @@ TMPDIR=${2:-.tmp-gitrepo}
 UUID=${3:-ceoa-8}
 S3BUCKET=${4:-$UUID}
 # SAMSTACK is the app stack, whereas CFNSTACK is the pipeline stack
-SAMSTACK=${5:-$UUID-app-$MYNAME-$AWS_REGION}
+SAMSTACK=${5:-$UUID-pl-$MYNAME-$AWS_REGION}
 CFNSTACK=${6:-$UUID-pl-$MYNAME}
 PIPELINEYAML=${7:-$UUID-pipeline.yml}
 UNENCRYPTEDS3BUCKETPREFIX=${8:-$UUID-s3-unencrypted}
