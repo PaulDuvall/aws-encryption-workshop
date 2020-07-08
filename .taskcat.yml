@@ -36,11 +36,11 @@ tests:
   #     S3KeyLambdaAutoRotate: lesson3-develop/lambda-auto-rotate.zip
   #     S3KeyPyMySQL: lesson3-develop/pymysql.zip
   #   template: ./lesson3-develop/ceoa-3-sm.yml
-  l4:
-    parameters:
-      CodeCommitS3Bucket: ceoa-wkshop-abcd
-      CodeCommitS3Key: ceoa-4-examples.zip
-    template: ./lesson4-transit/ceoa-4-pipeline.yml
+  # l4:
+  #   parameters:
+  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
+  #     CodeCommitS3Key: ceoa-4-examples.zip
+  #   template: ./lesson4-transit/ceoa-4-pipeline.yml
   l5-rest-ebs:
     parameters:
       AvailabilityZones: '$[taskcat_genaz_1]'
@@ -50,8 +50,8 @@ tests:
   l5-rest-s3:
     template: ./lesson5-rest/ceoa-5-s3.yml
   # TODO: Manually create an IAM user named ceoa
-  l5-rest-kms:
-    template: ./lesson5-rest/ceoa-5-kms.yml
+  # l5-rest-kms:
+  #   template: ./lesson5-rest/ceoa-5-kms.yml
   # TODO: Create a Config Recorder/Delivery Channel?
   # l6-detect:
   #   parameters:

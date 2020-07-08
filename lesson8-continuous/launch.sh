@@ -29,7 +29,7 @@ fi
 
 TMPDIR=${2:-.tmp-gitrepo}
 UUID=${3:-ceoa-8}
-S3BUCKET=${4:-$UUID-$MYNAME}
+S3BUCKET=${4:-$UUID}
 # SAMSTACK is the app stack, whereas CFNSTACK is the pipeline stack
 SAMSTACK=${5:-$UUID-app-$MYNAME-$AWS_REGION}
 CFNSTACK=${6:-$UUID-pl-$MYNAME}
@@ -46,6 +46,12 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     sudo rm -rf $TMPDIR
     mkdir $TMPDIR
     cd $TMPDIR
+    
+    info "Delete existing Config Rule"
+    
+    # sgGroup_id=$(aws configservice describe-config-rules --config-rule-names s3-bucket-server-side-encryption-enabled)
+    # info "Display return code"
+    # echo $sgGroup_id
 
     info "Detecting which git protocol to use for our 'git clone' command"
     set +e
