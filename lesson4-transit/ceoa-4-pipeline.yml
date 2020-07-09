@@ -175,7 +175,7 @@ Resources:
       Environment:
         Type: "LINUX_CONTAINER"
         ComputeType: "BUILD_GENERAL1_SMALL"
-        Image: aws/codebuild/eb-nodejs-4.4.6-amazonlinux-64:2.1.3
+        Image: "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
       Source:
         Type: CODEPIPELINE
         BuildSpec: !Sub |
