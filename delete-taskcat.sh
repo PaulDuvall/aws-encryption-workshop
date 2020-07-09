@@ -16,7 +16,7 @@ NESTED_APP_CODE=${2:-TBD}
 echo Environment: $TASKCAT
 
 echo "Removing buckets previously used by this script"
-aws s3api list-buckets --query 'Buckets[?starts_with(Name, `$PREFIX-ce`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
+aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$PREFIX-$PROJECT_NAME'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
 
 echo "Deleting Lesson 8 stacks"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT-$AWS_REGION
