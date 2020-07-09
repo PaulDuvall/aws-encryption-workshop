@@ -6,13 +6,13 @@ project:
 tests:
   # l0-test-ssm-param:
   #   template: ./lesson0-setup/test-ssm-param.yml
-  lesson1-automate:
-    template: ./lesson1-automate/ceoa-1-cfn.yml
-  lesson1-pipeline:
-    parameters:
-      CodeCommitS3Bucket: ceoa-wkshop-abcd
-      CodeCommitS3Key: ceoa-1-examples.zip
-    template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
+  # lesson1-automate:
+  #   template: ./lesson1-automate/ceoa-1-cfn.yml
+  # lesson1-pipeline:
+  #   parameters:
+  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
+  #     CodeCommitS3Key: ceoa-1-examples.zip
+  #   template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
   # l2-iam:
   #   parameters:
   #     # MyUsername: ceoa-$[taskcat_genuuid]
@@ -41,28 +41,28 @@ tests:
   #     CodeCommitS3Bucket: ceoa-wkshop-abcd
   #     CodeCommitS3Key: ceoa-4-examples.zip
   #   template: ./lesson4-transit/ceoa-4-pipeline.yml
-  l5-rest-ebs:
-    parameters:
-      AvailabilityZones: '$[taskcat_genaz_1]'
-    template: ./lesson5-rest/ceoa-5-ebs.yml
-  l5-rest-ddb:
-    template: ./lesson5-rest/ceoa-5-ddb.yml
-  l5-rest-s3:
-    template: ./lesson5-rest/ceoa-5-s3.yml
-  # TODO: Manually create an IAM user named ceoa
-  # l5-rest-kms:
-  #   template: ./lesson5-rest/ceoa-5-kms.yml
-  # TODO: Create a Config Recorder/Delivery Channel?
-  # l6-detect:
+  # l5-rest-ebs:
   #   parameters:
+  #     AvailabilityZones: '$[taskcat_genaz_1]'
+  #   template: ./lesson5-rest/ceoa-5-ebs.yml
+  # l5-rest-ddb:
+  #   template: ./lesson5-rest/ceoa-5-ddb.yml
+  # l5-rest-s3:
+  #   template: ./lesson5-rest/ceoa-5-s3.yml
+  # # TODO: Manually create an IAM user named ceoa
+  # # l5-rest-kms:
+  # #   template: ./lesson5-rest/ceoa-5-kms.yml
+  # # TODO: Create a Config Recorder/Delivery Channel?
+  # # l6-detect:
+  # #   parameters:
+  # #     CodeCommitS3Bucket: ceoa-wkshop-abcd
+  # #     CodeCommitS3Key: ceoa-6-examples.zip
+  # #   template: ./lesson6-detect/ceoa-6-mcr-pipeline.yml
+  # # l7-log-cloudtrail:
+  # #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
+  # l8:
+  #   parameters:
+  #     S3ComplianceResourceId: ccoa-8-s3-unencrypted-test
   #     CodeCommitS3Bucket: ceoa-wkshop-abcd
-  #     CodeCommitS3Key: ceoa-6-examples.zip
-  #   template: ./lesson6-detect/ceoa-6-mcr-pipeline.yml
-  # l7-log-cloudtrail:
-  #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
-  l8:
-    parameters:
-      S3ComplianceResourceId: ccoa-8-s3-unencrypted-test
-      CodeCommitS3Bucket: ceoa-wkshop-abcd
-      CodeCommitS3Key: ceoa-8-examples.zip
-    template: ./lesson8-continuous/ceoa-8-pipeline.yml
+  #     CodeCommitS3Key: ceoa-8-examples.zip
+  #   template: ./lesson8-continuous/ceoa-8-pipeline.yml
