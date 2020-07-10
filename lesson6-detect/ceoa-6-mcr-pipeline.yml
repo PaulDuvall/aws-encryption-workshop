@@ -61,7 +61,7 @@ Resources:
             Ref: ArtifactBucket
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/eb-nodejs-4.4.6-amazonlinux-64:2.1.3
+        Image: "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
       Source:
         BuildSpec: buildspec.yml
         Location: !Sub https://git-codecommit.${AWS::Region}.amazonaws.com/v1/repos/${AWS::StackName}
@@ -245,14 +245,7 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - Ref: AWS::Region
-                - ""
+            StackName: !Sub ${AWS::StackName}-${AWS::Region}
             TemplatePath: ConfigRuleTemplateArtifacts::CLOUD_TRAIL_ENCRYPTION_ENABLED.template
           RunOrder: 1
         - ActionTypeId:
@@ -263,14 +256,7 @@ Resources:
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: pipeline-changeset
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - Ref: AWS::Region
-                - ""
+            StackName: !Sub ${AWS::StackName}-${AWS::Region}
           InputArtifacts: []
           Name: ExecuteChangeSetCloudTrailEncryption
           OutputArtifacts: []

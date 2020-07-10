@@ -6,13 +6,13 @@ project:
 tests:
   # l0-test-ssm-param:
   #   template: ./lesson0-setup/test-ssm-param.yml
-  lesson1-automate:
-    template: ./lesson1-automate/ceoa-1-cfn.yml
-  lesson1-pipeline:
-    parameters:
-      CodeCommitS3Bucket: ceoa-wkshop-abcd
-      CodeCommitS3Key: ceoa-1-examples.zip
-    template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
+  # lesson1-automate:
+  #   template: ./lesson1-automate/ceoa-1-cfn.yml
+  # lesson1-pipeline:
+  #   parameters:
+  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
+  #     CodeCommitS3Key: ceoa-1-examples.zip
+  #   template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
   # l2-iam:
   #   parameters:
   #     # MyUsername: ceoa-$[taskcat_genuuid]
@@ -53,11 +53,11 @@ tests:
   # # l5-rest-kms:
   # #   template: ./lesson5-rest/ceoa-5-kms.yml
   # # TODO: Create a Config Recorder/Delivery Channel?
-  # # l6-detect:
-  # #   parameters:
-  # #     CodeCommitS3Bucket: ceoa-wkshop-abcd
-  # #     CodeCommitS3Key: ceoa-6-examples.zip
-  # #   template: ./lesson6-detect/ceoa-6-mcr-pipeline.yml
+  l6-detect:
+    parameters:
+      CodeCommitS3Bucket: ceoa-wkshop-abcd
+      CodeCommitS3Key: ceoa-6-examples.zip
+    template: ./lesson6-detect/ceoa-6-mcr-pipeline.yml
   # # l7-log-cloudtrail:
   # #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
   # l8:
