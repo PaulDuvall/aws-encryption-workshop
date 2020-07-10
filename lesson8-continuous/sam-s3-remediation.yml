@@ -2,22 +2,19 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform:
   - 'AWS::Serverless-2016-10-31'
 Resources:
-  PermissionForEventsToInvokeLambda:
-    Type: 'AWS::Lambda::Permission'
-    Properties:
-      FunctionName:
-        Ref: S3F
-      Action: 'lambda:InvokeFunction'
-      Principal: events.amazonaws.com
-      SourceArn:
-        'Fn::GetAtt':
-          - S3F
-          - Arn
   S3F:
     Type: 'AWS::Serverless::Function'
     Properties:
       Handler: index.handler
-      Runtime: nodejs10.x
+      Runtime: nodejs12.x
+      MemorySize: 128
+      Timeout: 10
+      Role:
+        'Fn::ImportValue':
+          'Fn::Join':
+            - '-'
+            - - Ref: 'AWS::StackName'
+              - LambdaTrustRole
       Events:
         S3CWE:
           Type: CloudWatchEvent
@@ -26,16 +23,12 @@ Resources:
               source:
                 - aws.config
               detail:
-                requestParameters:
-                  evaluations:
+                configurationItem:
+                  configuration:
                     complianceType:
                       - NON_COMPLIANT
-                additionalEventData:
-                  managedRuleIdentifier:
-                    - S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
-      Role:
-        'Fn::ImportValue':
-          'Fn::Join':
-            - '-'
-            - - Ref: 'AWS::StackName'
-              - LambdaTrustRole
+                configurationItem:
+                  configuration:
+                    configRuleList:
+                      configRuleName:
+                    - s3-bucket-server-side-encryption-enabled

@@ -62,7 +62,7 @@ tests:
   # #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
   l8:
     parameters:
-      S3ComplianceResourceId: ccoa-8-s3-unencrypted-test
+      S3ComplianceResourceId: ceoa-8-s3-unencrypted-test
       CodeCommitS3Bucket: ceoa-wkshop-abcd
       CodeCommitS3Key: ceoa-8-examples.zip
     template: ./lesson8-continuous/ceoa-8-pipeline.yml

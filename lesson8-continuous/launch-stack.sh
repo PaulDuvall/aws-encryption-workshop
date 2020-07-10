@@ -70,8 +70,8 @@ if [[ "${BASH_SOURCE[0]}" = "$0" ]]; then
     git clone "$clone_source" $UUID-temp
     cd $UUID-temp/lesson8-continuous
 
-    info Removing buckets previously used by this script    
-    aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$S3BUCKET'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
+    echo "Removing S3 buckets starting with $S3BUCKET that were previously used by this script"    
+    # aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$S3BUCKET'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
     
     info Sleeping for 20 seconds to ensure bucket removal has taken effect
     sleep 20
