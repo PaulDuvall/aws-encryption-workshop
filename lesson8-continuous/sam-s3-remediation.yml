@@ -1,34 +1,31 @@
+---
 AWSTemplateFormatVersion: '2010-09-09'
 Transform:
-  - 'AWS::Serverless-2016-10-31'
+- AWS::Serverless-2016-10-31
 Resources:
   S3F:
-    Type: 'AWS::Serverless::Function'
+    Type: AWS::Serverless::Function
     Properties:
       Handler: index.handler
       Runtime: nodejs12.x
       MemorySize: 128
       Timeout: 10
       Role:
-        'Fn::ImportValue':
-          'Fn::Join':
-            - '-'
-            - - Ref: 'AWS::StackName'
-              - LambdaTrustRole
+        Fn::ImportValue:
+          Fn::Join:
+          - "-"
+          - - Ref: AWS::StackName
+            - LambdaTrustRole
       Events:
         S3CWE:
           Type: CloudWatchEvent
           Properties:
             Pattern:
               source:
-                - aws.config
+              - aws.config
               detail:
-                configurationItem:
-                  configuration:
-                    complianceType:
-                      - NON_COMPLIANT
                 configurationItem:
                   configuration:
                     configRuleList:
                       configRuleName:
-                    - s3-bucket-server-side-encryption-enabled
+                      - s3-bucket-server-side-encryption-enabled
