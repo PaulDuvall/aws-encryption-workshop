@@ -19,10 +19,13 @@ echo "Removing buckets previously used by this script"
 aws s3api list-buckets --query 'Buckets[?starts_with(Name, `'$PREFIX-$PROJECT_NAME'`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
 
 # Lesson 8
-echo "Deleting Lesson 8 stacks"
+echo "Deleting $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE-$AWS_REGION stack"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE-$AWS_REGION
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE-$AWS_REGION
+
+echo "Deleting $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE stack"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE
+aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE
 
 # Lesson 6
 
@@ -35,13 +38,19 @@ aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l6-detect-$TA
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l6-detect-$TASKCAT_CODE
 
 # Lesson 5
-echo "Deleting Lesson 5 stacks"
+echo "Deleting $PREFIX-$PROJECT_NAME-l5-rest-ddb-$TASKCAT_CODE stack"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l5-rest-ddb-$TASKCAT_CODE
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l5-rest-ddb-$TASKCAT_CODE
+
+echo "Deleting $PREFIX-$PROJECT_NAME-l5-rest-ebs-$TASKCAT_CODE stack"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l5-rest-ebs-$TASKCAT_CODE
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l5-rest-ebs-$TASKCAT_CODE
+
+echo "Deleting $PREFIX-$PROJECT_NAME-l5-rest-kms-$TASKCAT_CODE stack"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l5-rest-kms-$TASKCAT_CODE
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l5-rest-kms-$TASKCAT_CODE
+
+echo "Deleting $PREFIX-$PROJECT_NAME-l5-rest-s3-$TASKCAT_CODE stack"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l5-rest-s3-$TASKCAT_CODE
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l5-rest-s3-$TASKCAT_CODE
 
