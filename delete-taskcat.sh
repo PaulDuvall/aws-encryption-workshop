@@ -24,6 +24,16 @@ aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT_C
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE-$AWS_REGION
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l8-$TASKCAT_CODE
 
+# Lesson 6
+
+echo "Deleting $PREFIX-$PROJECT_NAME-l6-detect-$TASKCAT_CODE-$AWS_REGION stack"
+aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l6-detect-$TASKCAT_CODE-$AWS_REGION
+aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l6-detect-$TASKCAT_CODE-$AWS_REGION
+
+echo "Deleting $PREFIX-$PROJECT_NAME-l6-detect-$TASKCAT_CODE stack"
+aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l6-detect-$TASKCAT_CODE
+aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-l6-detect-$TASKCAT_CODE
+
 # Lesson 5
 echo "Deleting Lesson 5 stacks"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-l5-rest-ddb-$TASKCAT_CODE
