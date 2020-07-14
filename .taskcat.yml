@@ -10,11 +10,11 @@ tests:
     parameters:
       SQSQueueName: S3_BUCKET_TOKEN
     template: ./lesson1-automate/ceoa-1-cfn.yml
-  # lesson1-pipeline:
-  #   parameters:
-  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
-  #     CodeCommitS3Key: ceoa-1-examples.zip
-  #   template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
+  lesson1-pipeline:
+    parameters:
+      CodeCommitS3Bucket: S3_BUCKET_TOKEN
+      CodeCommitS3Key: ceoa-examples.zip
+    template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
   # l2-iam:
   #   parameters:
   #     # MyUsername: ceoa-$[taskcat_genuuid]
@@ -29,19 +29,19 @@ tests:
   #   template: ./lesson3-develop/ceoa-3-sm.yml
   # l3:
   #     parameters:
-  #       CodeCommitS3Bucket: ceoa-wkshop-abcd
-  #       CodeCommitS3Key: ceoa-3-examples.zip
+  #       CodeCommitS3Bucket: S3_BUCKET_TOKEN
+  #       CodeCommitS3Key: ceoa-examples.zip
   #     template: ./lesson3-develop/ceoa-3-rotation-1-pipeline.yml
   # l3-secrets:
   #   parameters:
-  #     S3BucketLambda: ceoa-wkshop-abcd
+  #     S3BucketLambda: S3_BUCKET_TOKEN
   #     S3KeyLambdaAutoRotate: lesson3-develop/lambda-auto-rotate.zip
   #     S3KeyPyMySQL: lesson3-develop/pymysql.zip
   #   template: ./lesson3-develop/ceoa-3-sm.yml
   # l4:
   #   parameters:
-  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
-  #     CodeCommitS3Key: ceoa-4-examples.zip
+  #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
+  #     CodeCommitS3Key: ceoa-examples.zip
   #   template: ./lesson4-transit/ceoa-4-pipeline.yml
   # l5-rest-ebs:
   #   parameters:
@@ -65,6 +65,6 @@ tests:
   # l8:
   #   parameters:
   #     S3ComplianceResourceId: ceoa-8-s3-unencrypted-test
-  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
-  #     CodeCommitS3Key: ceoa-8-examples.zip
+  #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
+  #     CodeCommitS3Key: ceoa-examples.zip
   #   template: ./lesson8-continuous/ceoa-8-pipeline.yml
