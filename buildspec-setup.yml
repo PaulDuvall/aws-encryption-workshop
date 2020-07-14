@@ -18,6 +18,7 @@ phases:
       -
       - >-
         zip -r ceoa-examples.zip . -x '*.git*'
+        zip -r ceoa-3-examples.zip ./lesson3-develop -x '*.git*'
       - >-
         aws s3 sync . s3://$PIPELINE_BUCKET
   post_build:
