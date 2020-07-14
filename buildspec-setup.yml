@@ -11,7 +11,7 @@ phases:
       - >-
         ls -las
       - chmod +x *.sh
-      - ./update-taskcat.sh ${$PIPELINE_BUCKET}
+      - ./update-taskcat.sh $PIPELINE_BUCKET
   build:
     commands:
       - echo In buildspec-setup.yml Build started on `date`
