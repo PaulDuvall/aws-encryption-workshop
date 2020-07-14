@@ -47,7 +47,6 @@ Resources:
             Resource: "*"
           Version: '2012-10-17'
         PolicyName: MyLambdaWorkerPolicy
-      RoleName: !Sub ${AWS::StackName}-lambda-${AWS::Region}
     Type: AWS::IAM::Role
   CodeBuildRole:
     Type: AWS::IAM::Role
@@ -74,10 +73,9 @@ Resources:
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'
-  CodeBuildLambdaTrigger:
+  CodeBuildLambda:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub ${AWS::StackName}-lambda-build
       Description: Build application
       ServiceRole:
         Fn::GetAtt:
@@ -184,7 +182,6 @@ Resources:
             Effect: Allow
             Resource: "*"
         PolicyName: CloudFormationRolePolicy
-      RoleName: !Sub ${AWS::StackName}-cfn-${AWS::Region}
     Type: AWS::IAM::Role
   CodePipelineRole:
     Type: AWS::IAM::Role
@@ -301,15 +298,15 @@ Resources:
             Version: '1'
             Provider: CodeBuild
           OutputArtifacts:
-          - Name: lambdatrigger-BuildArtifact
+          - Name: LambdaBuildArtifact
           Configuration:
             ProjectName:
-              Ref: CodeBuildLambdaTrigger
+              Ref: CodeBuildLambda
           RunOrder: 1
       - Name: DeployLambda
         Actions:
         - InputArtifacts:
-          - Name: lambdatrigger-BuildArtifact
+          - Name: LambdaBuildArtifact
           Name: BuildLambdaFunction
           ActionTypeId:
             Category: Deploy
@@ -326,7 +323,7 @@ Resources:
               - Arn
             Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
             StackName: !Sub ${AWS::StackName}-${AWS::Region}-lambda
-            TemplatePath: lambdatrigger-BuildArtifact::template-export.json
+            TemplatePath: LambdaBuildArtifact::template-export.json
           RunOrder: 1
         - ActionTypeId:
             Category: Deploy
