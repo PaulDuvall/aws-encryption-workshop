@@ -167,7 +167,6 @@ Resources:
   CodeBuildDeploySite:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub ${AWS::StackName}-Site
       Description: Deploy site to S3
       ServiceRole: !GetAtt CodeBuildRole.Arn
       Artifacts:

@@ -46,8 +46,7 @@ Resources:
   CodeBuildConfigRules:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: !Sub ${AWS::StackName}-codepipeline
-      Description: Build application
+      Description: Deploy Config Rules
       ServiceRole:
         Fn::GetAtt:
         - CodeBuildRole

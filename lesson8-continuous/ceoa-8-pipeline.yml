@@ -345,8 +345,6 @@ Resources:
   CodeBuildCfnAnalysis:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name:
-        Ref: AWS::StackName
       Description: Build application
       ServiceRole:
         Fn::GetAtt:
@@ -440,14 +438,7 @@ Resources:
               - CloudFormationTrustRole
               - Arn
             Capabilities: CAPABILITY_IAM
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - Ref: AWS::Region
-                - ""
+            StackName: !Sub ${AWS::StackName}-${AWS::Region}
             TemplatePath: lambdatrigger-BuildArtifact::template-export.json
           RunOrder: 1
         - ActionTypeId:
@@ -458,14 +449,7 @@ Resources:
           Configuration:
             ActionMode: CHANGE_SET_EXECUTE
             ChangeSetName: pipeline-changeset
-            StackName:
-              Fn::Join:
-              - ''
-              - - ""
-                - Ref: AWS::StackName
-                - "-"
-                - Ref: AWS::Region
-                - ""
+            StackName: !Sub ${AWS::StackName}-${AWS::Region}
           InputArtifacts: []
           Name: ExecuteChangeSetLambdaFunction
           OutputArtifacts: []
@@ -480,14 +464,7 @@ Outputs:
   LambdaTrustRole:
     Description: IAM role for AWS Lambda used for passRole to Lambda functions.
     Export:
-      Name:
-        Fn::Join:
-        - ''
-        - - ""
-          - Ref: AWS::StackName
-          - "-"
-          - Ref: AWS::Region
-          - "-LambdaTrustRole"
+      Name: !Sub ${AWS::StackName}-${AWS::Region}-LambdaTrustRole
     Value:
       Fn::GetAtt:
       - MyLambdaTrustRole
