@@ -261,7 +261,7 @@ Resources:
           - Name: TaskCatArtifacts
           Configuration:
             ProjectName:
-              Ref: CodeBuildTest
+              Ref: CodeBuildTaskCatTest
           RunOrder: 10
         - InputArtifacts:
           - Name: TaskCatArtifacts
@@ -274,7 +274,7 @@ Resources:
           OutputArtifacts: [] 
           Configuration:
             ProjectName:
-              Ref: CodeBuildWebsite
+              Ref: CodeBuildDashboard
           RunOrder: 20
       - Name: Cleanup
         Actions:
