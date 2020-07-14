@@ -23,15 +23,15 @@ fatal()   { echo "[FATAL]   $@" | tee -a "$LOG_FILE" >&2 ; exit 1 ; }
 AWS_REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')
 
 echo "Removing buckets previously used by this script"
-aws s3api list-buckets --query 'Buckets[?starts_with(Name, `ceoa-`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
+aws s3api list-buckets --query 'Buckets[?starts_with(Name, `tasckat-ceoa`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
 
-echo "Deleting ceoa-taskcat stack"
-aws cloudformation delete-stack --stack-name ceoa-taskcat
-aws cloudformation wait stack-delete-complete --stack-name ceoa-taskcat
+echo "Deleting taskcat-ceoa stack"
+aws cloudformation delete-stack --stack-name taskcat-ceoa
+aws cloudformation wait stack-delete-complete --stack-name taskcat-ceoa
 
 GH_BRANCH=${1:-${GH_BRANCH:-}}
 if [ -z "$GH_BRANCH" ]; then
     usage
 fi
 
-aws cloudformation create-stack --stack-name ceoa-taskcat-$GH_BRANCH --capabilities CAPABILITY_NAMED_IAM --disable-rollback --template-body file://pipeline-taskcat.yml --parameters ParameterKey=GitHubBranch,ParameterValue=$GH_BRANCH
+aws cloudformation create-stack --stack-name taskcat-ceoa-$GH_BRANCH --capabilities CAPABILITY_NAMED_IAM --disable-rollback --template-body file://pipeline-taskcat.yml --parameters ParameterKey=GitHubBranch,ParameterValue=$GH_BRANCH
