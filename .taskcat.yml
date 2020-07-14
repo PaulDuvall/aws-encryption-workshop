@@ -25,11 +25,11 @@ tests:
   #   template: ./lesson3-develop/ceoa-3-redshift.yml
   # l3-secrets:
   #   template: ./lesson3-develop/ceoa-3-sm.yml
-  # l3:
-  #     parameters:
-  #       CodeCommitS3Bucket: S3_BUCKET_TOKEN
-  #       CodeCommitS3Key: ceoa-examples.zip
-  #     template: ./lesson3-develop/ceoa-3-rotation-1-pipeline.yml
+  l3:
+      parameters:
+        CodeCommitS3Bucket: S3_BUCKET_TOKEN
+        CodeCommitS3Key: ceoa-examples.zip
+      template: ./lesson3-develop/ceoa-3-rotation-1-pipeline.yml
   # l3-secrets:
   #   parameters:
   #     S3BucketLambda: S3_BUCKET_TOKEN
