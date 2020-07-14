@@ -5,10 +5,17 @@ phases:
       python: 3.7
     commands:
       - python --version
+      - yum install -y jq
+  pre_build:
+    commands:
+      - >-
+        ls -las
+      - chmod +x *.sh
+      - ./update-taskcat.sh ${$PIPELINE_BUCKET}
   build:
     commands:
-      - ACCOUNT_ID=$(aws sts get-caller-identity --output text --query 'Account')
       - echo In buildspec-setup.yml Build started on `date`
+      -
       - >-
         zip -r ceoa-examples.zip . -x '*.git*'
       - >-

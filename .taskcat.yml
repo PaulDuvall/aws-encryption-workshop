@@ -7,6 +7,8 @@ tests:
   # l0-test-ssm-param:
   #   template: ./lesson0-setup/test-ssm-param.yml
   lesson1-automate:
+    parameters:
+      SQSQueueName: S3_BUCKET_TOKEN
     template: ./lesson1-automate/ceoa-1-cfn.yml
   # lesson1-pipeline:
   #   parameters:

@@ -1,0 +1,14 @@
+project:
+  name: ce
+  regions:
+    - us-east-1
+tests:
+  lesson1-automate:
+     parameters:
+       SQSQueueName: my-pipeline-name-bucketclear
+    template: ./lesson1-automate/ceoa-1-cfn.yml
+  # lesson1-pipeline:
+  #   parameters:
+  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
+  #     CodeCommitS3Key: ceoa-1-examples.zip
+  #   template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
