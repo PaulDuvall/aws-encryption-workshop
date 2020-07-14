@@ -1,11 +1,16 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Create an SQS Queue
+Parameters:
+  SQSQueueName:
+    Description: SQS QueueName
+    Type: String
+    Default: MySQSQueue
 Resources:
   MyQueue:
     Type: AWS::SQS::Queue
     Properties:
-      QueueName: !Sub ${AWS::StackName}
+      QueueName: !Sub ${SQSQueueName}
 Outputs:
   SourceQueueARN: 
     Description: "ARN of source queue"

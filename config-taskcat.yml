@@ -1,0 +1,7 @@
+[{
+    "ParameterKey": "MyPassword",
+    "ParameterValue": "$[taskcat_genpass_8]"
+}, {
+    "ParameterKey": "SQSQueueName",
+    "ParameterValue": "$[taskcat_getval_MyPassword]"
+}]
