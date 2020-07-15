@@ -102,3 +102,7 @@ aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME
 echo "Deleting $PREFIX-$PROJECT_NAME-lesson1-pipeline-$TASKCAT_CODE stack"
 aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-lesson1-pipeline-$TASKCAT_CODE
 aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-lesson1-pipeline-$TASKCAT_CODE
+
+echo "Deleting $PREFIX-$PROJECT_NAME-lesson1-automate-$TASKCAT_CODE stack"
+aws cloudformation delete-stack --stack-name $PREFIX-$PROJECT_NAME-lesson1-automate-$TASKCAT_CODE
+aws cloudformation wait stack-delete-complete --stack-name $PREFIX-$PROJECT_NAME-lesson1-automate-$TASKCAT_CODE
