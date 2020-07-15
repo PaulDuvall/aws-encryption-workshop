@@ -14,10 +14,11 @@ phases:
   build:
     commands:
       - echo Build phase started on `date`
-      - taskcat test run --no-delete
+      # - taskcat test run
+      - taskcat test run -k
   post_build:
     commands:
-      - echo In buildspec.yml Build completed on `date`
+      - echo Build completed on `date`
 artifacts:
   files:
     - '**/*'
