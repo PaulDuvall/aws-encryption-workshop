@@ -15,6 +15,7 @@ phases:
     commands:
       - echo Build phase started on `date`
       - taskcat test run --no-delete
+      # Delete all non-failed stacks after running tests
       # - taskcat test run -k
   post_build:
     commands:
