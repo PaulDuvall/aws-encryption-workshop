@@ -6,42 +6,40 @@ project:
 tests:
   # l0-test-ssm-param:
   #   template: ./lesson0-setup/test-ssm-param.yml
-  lesson1-automate:
-    parameters:
-      SQSQueueName: S3_BUCKET_TOKEN
-    template: ./lesson1-automate/ceoa-1-cfn.yml
-  lesson1-pipeline:
-    parameters:
-      CodeCommitS3Bucket: S3_BUCKET_TOKEN
-      CodeCommitS3Key: ceoa-examples.zip
-    template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
-  # l2-iam:
+  # lesson1-automate:
+  #   template: ./lesson1-automate/ceoa-1-cfn.yml
+  # lesson1-pipeline:
   #   parameters:
-  #     # MyUsername: ceoa-$[taskcat_genuuid]
-  #     MyUsername: ceoa
-  #     MyPassword: $[taskcat_genpass_8A]
-  #   template: ./lesson2-manage/ceoa-2-iam-user.yml
-  # l2-kms:
-  #   template: ./lesson2-manage/ceoa-2-kms.yml
-  # l3-redshift:
-  #   template: ./lesson3-develop/ceoa-3-redshift.yml
-  # l3-secrets:
-  #   template: ./lesson3-develop/ceoa-3-sm.yml
+  #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
+  #     CodeCommitS3Key: ceoa-1-examples.zip
+  #   template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
+  # # l2-iam:
+  # #   parameters:
+  # #     # MyUsername: ceoa-$[taskcat_genuuid]
+  # #     MyUsername: ceoa
+  # #     MyPassword: $[taskcat_genpass_8A]
+  # #   template: ./lesson2-manage/ceoa-2-iam-user.yml
+  # # l2-kms:
+  # #   template: ./lesson2-manage/ceoa-2-kms.yml
+  # # l3-redshift:
+  # #   template: ./lesson3-develop/ceoa-3-redshift.yml
+  # # l3-secrets:
+  # #   template: ./lesson3-develop/ceoa-3-sm.yml
   # l3:
-  #     parameters:
-  #       CodeCommitS3Bucket: S3_BUCKET_TOKEN
-  #       CodeCommitS3Key: ceoa-examples.zip
-  #     template: ./lesson3-develop/ceoa-3-rotation-1-pipeline.yml
-  # l3-secrets:
   #   parameters:
-  #     S3BucketLambda: S3_BUCKET_TOKEN
-  #     S3KeyLambdaAutoRotate: lesson3-develop/lambda-auto-rotate.zip
-  #     S3KeyPyMySQL: lesson3-develop/pymysql.zip
-  #   template: ./lesson3-develop/ceoa-3-sm.yml
+  #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
+  #     CodeCommitS3Key: ceoa-3-examples.zip
+  #   template: ./lesson3-develop/ceoa-3-rotation-1-pipeline.yml
+  # # l3-secrets:
+  # #   parameters:
+  # #     S3BucketLambda: S3_BUCKET_TOKEN
+  # #     S3KeyLambdaAutoRotate: lesson3-develop/lambda-auto-rotate.zip
+  # #     S3KeyPyMySQL: lesson3-develop/pymysql.zip
+  # #   template: ./lesson3-develop/ceoa-3-sm.yml
   # l4:
   #   parameters:
   #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
-  #     CodeCommitS3Key: ceoa-examples.zip
+  #     CodeCommitS3Key: ceoa-4-examples.zip
   #   template: ./lesson4-transit/ceoa-4-pipeline.yml
   # l5-rest-ebs:
   #   parameters:
@@ -51,20 +49,20 @@ tests:
   #   template: ./lesson5-rest/ceoa-5-ddb.yml
   # l5-rest-s3:
   #   template: ./lesson5-rest/ceoa-5-s3.yml
-  # # TODO: Manually create an IAM user named ceoa
-  # # l5-rest-kms:
-  # #   template: ./lesson5-rest/ceoa-5-kms.yml
-  # # TODO: Create a Config Recorder/Delivery Channel?
+  # # # TODO: Manually create an IAM user named ceoa
+  # # # l5-rest-kms:
+  # # #   template: ./lesson5-rest/ceoa-5-kms.yml
+  # # # TODO: Create a Config Recorder/Delivery Channel?
   # l6-detect:
   #   parameters:
-  #     CodeCommitS3Bucket: ceoa-wkshop-abcd
+  #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
   #     CodeCommitS3Key: ceoa-6-examples.zip
   #   template: ./lesson6-detect/ceoa-6-mcr-pipeline.yml
-  # # l7-log-cloudtrail:
-  # #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
-  # l8:
-  #   parameters:
-  #     S3ComplianceResourceId: ceoa-8-s3-unencrypted-test
-  #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
-  #     CodeCommitS3Key: ceoa-examples.zip
-  #   template: ./lesson8-continuous/ceoa-8-pipeline.yml
+  # # # l7-log-cloudtrail:
+  # # #   template: ./lesson7-log/ceoa-7-cloudtrail.yml
+  l8:
+    parameters:
+      S3ComplianceResourceId: ceoa-8-s3-unencrypted-test
+      CodeCommitS3Bucket: S3_BUCKET_TOKEN
+      CodeCommitS3Key: ceoa-8-examples.zip
+    template: ./lesson8-continuous/ceoa-8-pipeline.yml
