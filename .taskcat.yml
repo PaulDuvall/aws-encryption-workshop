@@ -11,7 +11,7 @@ tests:
   lesson1-pipeline:
     parameters:
       CodeCommitS3Bucket: S3_BUCKET_TOKEN
-      CodeCommitS3Key: ceoa-examples.zip
+      CodeCommitS3Key: ceoa-1-examples.zip
     template: ./lesson1-automate/ceoa-1-pipeline-cfn.yml
   # # l2-iam:
   # #   parameters:
