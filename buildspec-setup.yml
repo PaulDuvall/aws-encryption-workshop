@@ -17,9 +17,21 @@ phases:
       - echo In buildspec-setup.yml Build started on `date`
       -
       - >-
-        zip -r ceoa-examples.zip . -x '*.git*'
+        zip -r ceoa-1-examples.zip ./lesson1-automate -j -x '*.git*'
+      - >-
+        zip -r ceoa-2-examples.zip ./lesson2-manage -j -x '*.git*'
       - >-
         zip -r ceoa-3-examples.zip ./lesson3-develop -j -x '*.git*'
+      - >-
+        zip -r ceoa-4-examples.zip ./lesson4-transit -j -x '*.git*'
+      - >-
+        zip -r ceoa-5-examples.zip ./lesson5-rest -j -x '*.git*'
+      - >-
+        zip -r ceoa-6-examples.zip ./lesson6-detect -j -x '*.git*'
+      - >-
+        zip -r ceoa-7-examples.zip ./lesson7-log -j -x '*.git*'
+      - >-
+        zip -r ceoa-8-examples.zip ./lesson8-continuous -j -x '*.git*'
       - >-
         aws s3 sync . s3://$PIPELINE_BUCKET
   post_build:
