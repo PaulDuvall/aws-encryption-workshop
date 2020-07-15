@@ -36,11 +36,11 @@ tests:
   # #     S3KeyLambdaAutoRotate: lesson3-develop/lambda-auto-rotate.zip
   # #     S3KeyPyMySQL: lesson3-develop/pymysql.zip
   # #   template: ./lesson3-develop/ceoa-3-sm.yml
-  # l4:
-  #   parameters:
-  #     CodeCommitS3Bucket: S3_BUCKET_TOKEN
-  #     CodeCommitS3Key: ceoa-4-examples.zip
-  #   template: ./lesson4-transit/ceoa-4-pipeline.yml
+  l4:
+    parameters:
+      CodeCommitS3Bucket: S3_BUCKET_TOKEN
+      CodeCommitS3Key: ceoa-4-examples.zip
+    template: ./lesson4-transit/ceoa-4-pipeline.yml
   # l5-rest-ebs:
   #   parameters:
   #     AvailabilityZones: '$[taskcat_genaz_1]'
