@@ -41,10 +41,10 @@ tests:
       CodeCommitS3Bucket: S3_BUCKET_TOKEN
       CodeCommitS3Key: ceoa-4-examples.zip
     template: ./lesson4-transit/ceoa-4-pipeline.yml
-  # l5-rest-ebs:
-  #   parameters:
-  #     AvailabilityZones: '$[taskcat_genaz_1]'
-  #   template: ./lesson5-rest/ceoa-5-ebs.yml
+  l5-rest-ebs:
+    parameters:
+      AvailabilityZones: '$[taskcat_genaz_1]'
+    template: ./lesson5-rest/ceoa-5-ebs.yml
   # l5-rest-ddb:
   #   template: ./lesson5-rest/ceoa-5-ddb.yml
   # l5-rest-s3:
