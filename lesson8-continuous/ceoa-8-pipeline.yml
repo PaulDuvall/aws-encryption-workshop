@@ -155,6 +155,7 @@ Resources:
             - logs:CreateLogGroup
             - logs:CreateLogStream
             - logs:PutLogEvents
+            - lambda:GetFunction
             Effect: Allow
             Resource: "*"
           Version: '2012-10-17'

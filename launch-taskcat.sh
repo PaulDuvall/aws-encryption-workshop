@@ -25,6 +25,8 @@ AWS_REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availabil
 echo "Removing buckets previously used by this script"
 aws s3api list-buckets --query 'Buckets[?starts_with(Name, `tasckat-ceoa`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
 
+aws s3api list-buckets --query 'Buckets[?starts_with(Name, `tcat-ce`) == `true`].[Name]' --output text | xargs -I {} aws s3 rb s3://{} --force
+
 echo "Deleting taskcat-ceoa stack"
 aws cloudformation delete-stack --stack-name taskcat-ceoa
 aws cloudformation wait stack-delete-complete --stack-name taskcat-ceoa
