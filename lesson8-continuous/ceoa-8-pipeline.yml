@@ -462,6 +462,9 @@ Outputs:
   PipelineUrl:
     Value: !Sub https://console.aws.amazon.com/codepipeline/home?region=${AWS::Region}#/view/${Pipeline}
     Description: CodePipeline URL
+  S3ComplianceResourceId:
+    Value: !Ref S3ComplianceResourceId
+    Description: Generated S3 bucket name
   LambdaTrustRole:
     Description: IAM role for AWS Lambda used for passRole to Lambda functions.
     Export:
