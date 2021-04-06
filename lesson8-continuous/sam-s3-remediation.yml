@@ -11,8 +11,11 @@ Resources:
       MemorySize: 128
       Timeout: 10
       Role:
-				Fn::ImportValue:
-				  !Sub "${AWS::StackName}-LambdaTrustRole"
+        Fn::ImportValue:
+          Fn::Join:
+          - "-"
+          - - Ref: AWS::StackName
+            - LambdaTrustRole
       Events:
         S3CWE:
           Type: EventBridgeRule
