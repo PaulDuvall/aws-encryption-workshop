@@ -1,6 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: CodePipeline for Config Rules, CloudWatch Event Rules, and Lambda
+Description: CodePipeline for Config Rules, EventBridge Rules, and Lambda
 Parameters:
   S3ComplianceResourceId:
     Description: S3 Bucket Name to exclude from Config Rule.
