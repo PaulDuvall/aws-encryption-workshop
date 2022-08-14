@@ -3,9 +3,9 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12
+      nodejs: 16
     commands:
-          - echo "Installing Node.js version 12 ..."
+          - echo "Installing Node.js version 16 ..."
           - n $NODE_12_VERSION
   build:
     commands:
